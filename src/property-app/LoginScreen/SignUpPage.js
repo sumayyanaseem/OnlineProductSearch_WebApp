@@ -95,7 +95,7 @@ function SignUpPage() {
                 <div className="input-container">
                 <label className="label">Email</label>
                 <input onChange={handleEmail}
-                       value={email} type="email" />
+                       value={email} type="email"  />
                 </div>
 
                 <div className="input-container">
