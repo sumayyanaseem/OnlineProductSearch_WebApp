@@ -8,7 +8,7 @@ const SearchComponent = (props) => {
 
     return(
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search for properties" aria-label="Recipient's username" aria-describedby="basic-addon2" value={filter} onChange={event => setFilter(event.target.value)}/>
+            <input type="text" class="form-control" placeholder={props.placeHolder} aria-label="Recipient's username" aria-describedby="basic-addon2" value={filter} onChange={event => setFilter(event.target.value)}/>
             <div class="input-group-append">
                 <button class="btn btn-dark" type="button" onClick={()=>props.onSearch(filter)}>Search</button>
             </div>

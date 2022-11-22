@@ -24,7 +24,7 @@ function HomeScreen(){
                     <NavbarComponent />
                 </div>
                 <div className="wd-search-comp">
-                    <SearchComponent onSearch={(res)=>{setFilter(res)}}/>
+                    <SearchComponent placeHolder="Search for Properties..." onSearch={(res)=>{setFilter(res)}}/>
                 </div>
                 <div className="wd-mt-40">
                     <div class="row wd-mb-80 wd-home-gallery">
