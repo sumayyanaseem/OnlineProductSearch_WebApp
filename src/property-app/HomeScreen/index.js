@@ -15,8 +15,6 @@ function HomeScreen(){
     const [filter, setFilter] = useState('');
     const test = useSelector((state)=>state.user);
     console.log(test);
-    
-
 
     return(
             <div className='container-fluid wd-container '>

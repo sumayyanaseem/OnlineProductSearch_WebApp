@@ -3,7 +3,7 @@ import './index.css'
 
 function NavbarComponent(){
     return(
-        <div class="topnav">
+        <div className="topnav">
             <Link className='active'>TEAM 52 </Link>
             {/* <a class="active" ></a> */}
 
