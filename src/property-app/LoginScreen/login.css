@@ -112,14 +112,30 @@ input[type="submit"]:hover {
 .button-container {
     display: flex;
     justify-content: center;
+
 }
 
 .login-form {
     background-color: white;
     padding: 2rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-sizing: border-box;
+    display: block;
+
 }
 
+
+.signup-form {
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-sizing: border-box;
+    display: block;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 5%;
+
+}
 .list-container {
     display: flex;
 }
@@ -159,7 +175,7 @@ a{
 .label{
     display: block;
     font-size: larger;
-    color: white;
+    color: black;
     padding: 5px;
 }
 
@@ -167,16 +183,19 @@ a{
     font-size: larger;
     padding: 5px;
     margin: 2px;
-
+    border:1px solid black !important;
 }
 .btn{
-    color: white;
-    background-color: red;
+    color: white !important;
+
     border-radius: 5px;
     font-size: larger;
     display: block;
     padding: 5px;
     margin: 10px auto;
+    font-size: 15px;
+    background: #01d28e !important;
+    border: 1px solid #01d28e;
 }
 
 .messages{
@@ -200,4 +219,8 @@ a{
     width: fit-content;
     height: 50px;
     padding: 5px;
+}
+
+.signup-link{
+    padding-left: 35%;
 }

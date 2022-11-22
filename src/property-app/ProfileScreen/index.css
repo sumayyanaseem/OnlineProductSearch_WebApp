@@ -1,0 +1,135 @@
+.wd-profile-container {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid lightgray;
+    padding: 20px;
+}
+
+.wd-profile-header {
+    display: flex;
+    align-items: center;
+}
+
+.wd-back {
+    padding: 10px;
+}
+
+.wd-profile-icon{
+    margin-top: 4px;
+}
+
+.wd-profile-name {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 2px 10px 2px 10px;
+}
+
+.wd-profile-tweet-count {
+    color: rgb(89, 101, 114);
+    padding: 2px 10px 2px 10px;
+}
+
+.wd-banner-picture {
+    position: relative;
+}
+
+.wd-profile-picture {
+    position: absolute;
+    top: 200px;
+    margin-left: 15px;
+}
+
+.wd-edit-profile-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+}
+
+.wd-edit-profile-btn {
+    border-radius: 25px;
+    background-color: white;
+    padding: 10px 20px 10px 20px;
+    border: 1px solid lightgray;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    margin-left: 10px;
+}
+
+.wd-picture-container {
+    height: 300px;
+}
+
+.wd-profile-handle {
+    color: rgb(89, 101, 114);
+    padding: 2px 10px 2px 10px;
+}
+
+.wd-profile-bio {
+    padding: 2px 10px 2px 10px;
+    color: black;
+}
+
+.wd-profile-additional-icons-container {
+    display: flex;
+    padding: 2px 10px 2px 10px;
+}
+
+.wd-profile-additional-info-container {
+    display: flex;
+    color: rgb(89, 101, 114);
+}
+
+.wd-profile-additional-info-text {
+    padding: 4px;
+}
+
+.wd-count-container {
+    display: flex;
+    padding: 2px 10px 2px 10px;
+}
+
+.wd-count-item {
+    padding: 2px;
+}
+
+.wd-count-item-text {
+    color: rgb(89, 101, 114);
+}
+
+.wd-close-icon {
+    text-decoration: none;
+    color: black;
+}
+
+.wd-edit-profile-header-container {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+
+.wd-profile-save-btn {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 20px;
+}
+
+.wd-profile-input {
+    border: 0px;
+    width: 100%;
+    outline:none;
+}
+
+.wd-profile-input-label {
+    color: rgb(89, 101, 114);
+}
+
+.wd-profile-input-container {
+    border: 1px solid lightgray;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}

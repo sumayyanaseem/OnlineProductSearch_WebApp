@@ -1,0 +1,9 @@
+{
+    "id":123,
+    "firstName": "Jayaraman",
+    "lastName": "Venkatesan",
+    "handle": "@jayvenkat",
+    "profImg":"room.jpg",
+    "dateOfBirth": "09/11/1998",
+    "role":"Admin"
+}

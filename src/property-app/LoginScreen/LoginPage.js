@@ -126,7 +126,8 @@ function LoginPage() {
                 <div className="button-container">
                     <input type="submit" />
                 </div>
-                <div>
+                <br/>
+                <div className="signup-link">
                     <Link to="/signup">Sign Up</Link>
                 </div>
             </form>

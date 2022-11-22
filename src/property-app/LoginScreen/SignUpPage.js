@@ -52,7 +52,7 @@ function SignUpPage() {
                 style={{
                     display: submitted ? '' : 'none',
                 }}>
-                <h1>User {name} successfully registered!!</h1>
+                <h4>User {name} successfully registered!!</h4>
             </div>
         );
     };
@@ -65,15 +65,16 @@ function SignUpPage() {
                 style={{
                     display: error ? '' : 'none',
                 }}>
-                <h1>Please enter all the fields</h1>
+                <h4>Please enter all the fields</h4>
             </div>
         );
     };
 
     return (
+        <div className="signup-form">
         <div className="form">
             <div>
-                <h1>User Registration</h1>
+                <h3>User Registration</h3>
             </div>
 
             {/* Calling to the methods */}
@@ -84,22 +85,32 @@ function SignUpPage() {
 
             <form>
                 {/* Labels and inputs for form data */}
+
+                <div className="input-container">
                 <label className="label">Name</label>
                 <input onChange={handleName} className="input"
                        value={name} type="text" />
+                </div>
 
+                <div className="input-container">
                 <label className="label">Email</label>
-                <input onChange={handleEmail} className="input"
+                <input onChange={handleEmail}
                        value={email} type="email" />
+                </div>
 
+                <div className="input-container">
                 <label className="label">Password</label>
                 <input onChange={handlePassword} className="input"
                        value={password} type="password" />
+                </div>
 
+                <div className="button-container">
                 <button onClick={handleSubmit} className="btn" type="submit">
                     Submit
                 </button>
+                </div>
             </form>
+        </div>
         </div>
     );
 }
