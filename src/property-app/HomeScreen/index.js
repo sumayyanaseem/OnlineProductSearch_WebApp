@@ -2,12 +2,11 @@
 import PropertyCard from './PropertyCard';
 import './index.css'
 import './bootstrap.min.css'
-import properties from './properties.json'
+import properties from '../../assets/Properties.json'
 import NavbarComponent from '../NavbarComponent';
 import SearchComponent from './SearchComponent';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
 
 
 function HomeScreen(){
@@ -29,6 +28,7 @@ function HomeScreen(){
                         {   
                             properties.filter(p => p.name.includes(filter)||filter==='').length===0?<h3>sorry no properties found :(</h3>:
                             properties.filter(p => p.name.includes(filter)||filter==='').map(property=> <PropertyCard key={property._id} property={property} />)
+
                         }
                     </div>
                 </div>

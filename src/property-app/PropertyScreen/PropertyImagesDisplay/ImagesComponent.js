@@ -1,13 +1,15 @@
 import SimpleImageSlider from "react-simple-image-slider";
 
-const images = [
-    { url: "../../Images/P2.jpg" },
-    { url: "../../Images/P1.jpg" },
-    { url: "../../Images/P1-1.jpg" },
-    { url: "../../Images/P2-2.jpg" },
-];
+
 
 const ImagesComponent = ({property}) => {
+    const images = [
+        { url: "https://www.istockphoto.com/photos/boston"},
+        { url: `${property.path2}` },
+        { url: `${property.path3}` },
+    ];
+    console.log(property);
+    console.log(images);
     return (
         <div>
             <SimpleImageSlider
