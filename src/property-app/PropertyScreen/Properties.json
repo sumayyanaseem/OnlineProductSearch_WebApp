@@ -2,9 +2,9 @@
   {
     "_id" : "123",
     "name": "463, Park Drive",
-    "image": "assets/P1.jpg",
-    "path2": "assets/P1-1.jpg",
-    "path3": "assets/P2.jpg",
+    "image": "/assets/P1.jpg",
+    "path2": "/assets/P1-1.jpg",
+    "path3": "/assets/P2.jpg",
     "city": "Austin, Texas",
     "state": "MA",
     "rating": "4.8",
