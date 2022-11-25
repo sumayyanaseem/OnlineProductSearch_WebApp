@@ -12,13 +12,15 @@ import PropertyComponent from "./property-app/PropertyScreen/PropertyComponent";
 import {configureStore} from '@reduxjs/toolkit';
 import {Provider} from "react-redux";
 import userReducer from './property-app/user-reducer';
+import propertyReducer from './property-app/HomeScreen/properties-reducer';
 import ManageRequestScreen from './property-app/ManageRequestScreen';
 
 const store = configureStore(
     {
         reducer:
             {
-                user: userReducer
+                user: userReducer,
+                properties:propertyReducer
             }
     });
 
