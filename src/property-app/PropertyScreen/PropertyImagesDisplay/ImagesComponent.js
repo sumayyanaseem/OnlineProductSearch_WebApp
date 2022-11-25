@@ -4,7 +4,7 @@ import SimpleImageSlider from "react-simple-image-slider";
 
 const ImagesComponent = ({property}) => {
     const images = [
-        { url: "https://www.istockphoto.com/photos/boston"},
+        { string: "https://www.istockphoto.com/photos/boston"},
         { url: `${property.path2}` },
         { url: `${property.path3}` },
     ];
