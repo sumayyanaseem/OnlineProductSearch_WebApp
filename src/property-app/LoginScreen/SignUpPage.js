@@ -52,7 +52,7 @@ function SignUpPage() {
                 style={{
                     display: submitted ? '' : 'none',
                 }}>
-                <h4>User {name} successfully registered!!</h4>
+                <h6>User {name} successfully registered!!</h6>
             </div>
         );
     };
@@ -82,10 +82,23 @@ function SignUpPage() {
                 {errorMessage()}
                 {successMessage()}
             </div>
-
-            <form>
+        <form>
+            <div class="flex-container">
                 {/* Labels and inputs for form data */}
+                <div >
+                <input type="radio" value="Customer"
+                       name="radio-genre" id="radio-comedy"/>
+                <label htmlFor="radio-comedy">Customer</label><br/>
+                </div>
 
+                <div >
+                <input type="radio" value="Property Owner"
+                       name="radio-genre" id="radio-drama"/>
+                <label htmlFor="radio-drama">Property Owner</label><br/>
+                </div>
+                <br/>
+
+            </div>
                 <div className="input-container">
                 <label className="label">Name</label>
                 <input onChange={handleName} className="input"
@@ -95,7 +108,7 @@ function SignUpPage() {
                 <div className="input-container">
                 <label className="label">Email</label>
                 <input onChange={handleEmail}
-                       value={email} type="email"  />
+                       value={email} type="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
                 </div>
 
                 <div className="input-container">
