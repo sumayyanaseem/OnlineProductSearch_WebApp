@@ -7,6 +7,7 @@ const ImagesComponent = ({property}) => {
         `/assets/room.jpg`,
         `${property.path2}`,
         `${property.path3}`,
+
     ];
     // console.log(property);
     console.log(images);
