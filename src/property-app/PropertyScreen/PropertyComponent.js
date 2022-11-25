@@ -4,6 +4,8 @@ import NavbarComponent from "../NavbarComponent";
 import ImagesComponent from "./PropertyImagesDisplay/ImagesComponent";
 import {useLocation} from "react-router-dom";
 import properties from "../../assets/Properties.json";
+import reviews from "../../assets/Reviews.json";
+import ReviewList from "./ReviewsComponent/ReviewList.js"
 
 
 const PropertyComponent = ({property})=> {
@@ -12,6 +14,7 @@ const PropertyComponent = ({property})=> {
     const active = paths[2];
     console.log(active);
     const propertyDetails=properties.filter(p => p._id === active);
+    const reviewDetails = reviews.filter(r => r.property_id === active);
     return(
         <div className ="container-fluid wd-container">
             <div>
@@ -27,7 +30,9 @@ const PropertyComponent = ({property})=> {
 
         </div>
 
-            <div></div>
+            <div>
+               <ReviewList review={reviewDetails}/>
+            </div>
 
         </div>
     );
