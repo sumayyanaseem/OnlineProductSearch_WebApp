@@ -21,7 +21,9 @@ const DescriptionComponent2 = ({product}) => {
                         aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice"
                         focusable="false"><title>Placeholder</title>
                         <rect width="100%" height="100%" fill="#eee"/>
-                        <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
+                        <text x="50%" y="50%" fill="#aaa" dy=".3em">
+                            product.price
+                        </text>
                     </svg>
 
                 </div>
@@ -34,10 +36,7 @@ const DescriptionComponent2 = ({product}) => {
                     <h2 className="featurette-heading fw-normal lh-1">Oh yeah, it’s that
                         good. <span
                             className="text-muted">See for yourself.</span></h2>
-                    <p className="lead">Another featurette? Of course. More placeholder
-                        content here
-                        to give you an idea of how this layout would work with some actual
-                        real-world content in place.</p>
+                    <p className="lead">product.description</p>
                 </div>
                 <div className="col-md-5 order-md-1">
                     <svg

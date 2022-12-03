@@ -5,8 +5,6 @@ function NavbarComponent(){
     return(
         <div className="topnav">
             <Link className='active'>TEAM 52 </Link>
-
-
             <Link to="/contact" className='split'>Contact</Link>
             <Link to="/account" className='split'>Account</Link>
             <Link to="/login" className='split'>Login</Link>

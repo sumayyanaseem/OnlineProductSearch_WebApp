@@ -9,6 +9,7 @@ import {findPropertiesThunkById} from "../../services/property-screen-thunk";
 import ProductImagesCarousel from "./ProductsImageComponent/ProductImagesCarousel";
 import ImagesComponent from "./productImageScreen";
 import DescriptionComponent2 from "./Description/DescriptionComponent2";
+import DetailsComponent from "./Details/Details";
 
 const templateProperty = {
     "host": "Space",
@@ -55,8 +56,13 @@ const ProductComponent = ({product}) => {
                     <div>
                         <NavbarComponent/>
                     </div>
-                    <div >
+                    <div className="row ms-1 mt-3">
+                        <div  className="col-9">
                         <ImagesComponent property={propertyDetails}/>
+                        </div>
+                        <div  className="col-3">
+                            <DetailsComponent property={propertyDetails}/>
+                        </div>
                     </div>
                     <div>
                         <DescriptionComponent2 property={propertyDetails}/>
