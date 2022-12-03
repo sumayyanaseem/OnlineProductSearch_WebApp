@@ -1,6 +1,6 @@
 import './App.css';
-import LoginPage from "./property-app/LoginScreen/LoginPage";
-import SignUpPage from "./property-app/LoginScreen/SignUpPage";
+import Login from "./property-app/LoginScreen/LoginPage";
+import Register from "./property-app/LoginScreen/SignUpPage";
 
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
@@ -20,7 +20,8 @@ const store = configureStore(
         reducer:
             {
                 user: userReducer,
-                properties:propertyReducer
+                properties:propertyReducer,
+                users: userReducer,
             }
     });
 
@@ -34,8 +35,8 @@ function App() {
                         <Route path="/property/:pid" element={<PropertyComponent/>}/>
                         <Route path="/account" element={<ProfileScreen/>}/>
                         <Route path="/manage-requests" element={<ManageRequestScreen/>}/>
-                        <Route path="/login" element={<LoginPage/>}/>
-                        <Route path="/signup" element={<SignUpPage/>}/>
+                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/register" element={<Register/>}/>
 
                     </Routes>
 

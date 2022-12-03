@@ -1,147 +1,120 @@
-/*import './login.css';
-import profile from "./../../images/a.png";
-import email from "./../../images/email.jpg";
-import pass from "./../../images/pass.png";
+import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {loginThunk} from "./../user-thunks";
+import { Link } from "react-router-dom";
+import './login.css'
+const Login = () => {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState(null)
+    const {currentUser} = useSelector((state) => state.users)
+    const dispatch = useDispatch()
+    const handleLoginBtn = () => {
+        setError(null)
+        const loginUser = {username, password}
+        dispatch(loginThunk(loginUser))
+    }
+    return(
+        <div className="container">
+            <div className="row">
+                <div className="col-md-8 offset-md-2">
 
+        <div className="form-container">
+            <div className="form-icon"><i className="fa fa-user"></i></div>
+            <h3 className="title">Login</h3>
+            <form className="form-horizontal">
 
-function LoginPage() {
-    return (
-        <div className="main">
-            <div className="sub-main">
-                <div>
-
-                    <div className="imgs">
-                        <div className="container-image">
-                            <img src={profile} alt="profile" className="profile"/>
-
-                        </div>
-
-
-                    </div>
-                    <div>
-                        <h1>Login Page</h1>
-                        <div>
-                            <img src={email} alt="email" className="email"/>
-                            <input type="text" placeholder="user name" className="name"/>
-                        </div>
-                        <div className="second-input">
-                            <img src={pass} alt="pass" className="email"/>
-                            <input type="password" placeholder="user name" className="name"/>
-                        </div>
-                        <div className="login-button">
-                            <button>Login</button>
-                        </div>
-
-                        <p className="link">
-                            <a href="#">Forgot password ?</a> Or<a href="#">Sign Up</a>
-                        </p>
-
-
-                    </div>
-
+            {
+                error &&
+                <div className="alert alert-danger">
+                    {error}
                 </div>
-
-
-            </div>
-        </div>
-    );
-}
-
-export default LoginPage;*/
-
-
-
-
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-
-import "./login.css";
-import {Link} from "react-router-dom";
-
-function LoginPage() {
-    // React States
-    const [errorMessages, setErrorMessages] = useState({});
-    const [isSubmitted, setIsSubmitted] = useState(false);
-
-    // User Login info
-    const database = [
-        {
-            username: "user1",
-            password: "pass1"
-        },
-        {
-            username: "user2",
-            password: "pass2"
-        }
-    ];
-
-    const errors = {
-        uname: "invalid username",
-        pass: "invalid password"
-    };
-
-    const handleSubmit = (event) => {
-        //Prevent page reload
-        event.preventDefault();
-
-        var { uname, pass } = document.forms[0];
-
-        // Find user login info
-        const userData = database.find((user) => user.username === uname.value);
-
-        // Compare user info
-        if (userData) {
-            if (userData.password !== pass.value) {
-                // Invalid password
-                setErrorMessages({ name: "pass", message: errors.pass });
-            } else {
-                setIsSubmitted(true);
             }
-        } else {
-            // Username not found
-            setErrorMessages({ name: "uname", message: errors.uname });
-        }
-    };
+                <div className="form-group">
+                    <input
+                        className="form-control mb-2"
+                        value={username}
+                        placeholder="Username"
+                        onChange={(e) => setUsername(e.target.value)}/>
+                </div>
+                <div className="form-group">
+                    <input
+                        className="form-control mb-2"
+                        value={password}
+                        placeholder="Password"
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}/>
+                </div>
 
-    // Generate JSX code for error message
-    const renderErrorMessage = (name) =>
-        name === errorMessages.name && (
-                 <div className="error">{errorMessages.message}</div>
-             );
 
-    // JSX code for login form
-    const renderForm = (
-        <div className="form">
-            <form onSubmit={handleSubmit}>
-                <div className="input-container">
-                    <label>Username </label>
-                    <input type="text" name="uname" required />
-                    {renderErrorMessage("uname")}
+
+                <div className="form-group">
+                    <button
+                        onClick={handleLoginBtn}
+                        className="btn btn-primary w-100">
+                        Login
+                    </button>
                 </div>
-                <div className="input-container">
-                    <label>Password </label>
-                    <input type="password" name="pass" required />
-                    {renderErrorMessage("pass")}
-                </div>
-                <div className="button-container">
-                    <input type="submit" />
-                </div>
-                <br/>
-                <div className="signup-link">
-                    <Link to="/signup">Sign Up</Link>
-                </div>
+                <div className="text-center">Don't have an account? <Link to="/register">Register</Link></div>
+                {
+                currentUser &&
+                <h2>Welcome {currentUser.username}</h2>
+            }
             </form>
         </div>
-    );
-
-    return (
-        <div className="app">
-            <div className="login-form">
-                <div className="title">Sign In</div>
-                {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
             </div>
         </div>
-    );
+        </div>
+
+    )
 }
 
-export default LoginPage;
+export default Login
+
+
+/*
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="modal-box">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-lg show-modal" data-toggle="modal" data-target="#myModal">
+                  view modal
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content clearfix">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <div class="modal-content clearfix">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <div class="modal-body">
+                                    <div class="modal-icon">
+                                        <i class="fas fa-desktop"></i>
+                                    </div>
+                                    <h3 class="title">Hello User! <span>Welcome back :)</span></h3>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Username" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="Password" required="">
+                                    </div>
+                                    <button class="btn">Free Login</button>
+                                </div>
+                                <div class="modal-footer">
+                                    <ul>
+                                        <li><a href="">Forgot Password ?</a></li>
+                                        <li><a href="">Sign Up</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ */
