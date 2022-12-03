@@ -27,7 +27,7 @@ function HomeScreen(){
     const [filter, setFilter] = useState('');
   
 
-
+    console.log("property");
     console.log(properties);
 
     return(

@@ -1,26 +1,27 @@
 import './App.css';
-import LoginPage from "./property-app/LoginScreen/LoginPage";
-import SignUpPage from "./property-app/LoginScreen/SignUpPage";
+import LoginPage from "./product-app/LoginScreen/LoginPage";
+import SignUpPage from "./product-app/LoginScreen/SignUpPage";
 
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
 
-import HomeScreen from './property-app/HomeScreen';
-import ProfileScreen from './property-app/ProfileScreen';
-import PropertyComponent from "./property-app/PropertyScreen/PropertyComponent";
-
+import HomeScreen from './product-app/HomeScreen';
+import ProfileScreen from './product-app/ProfileScreen';
 import {configureStore} from '@reduxjs/toolkit';
 import {Provider} from "react-redux";
-import userReducer from './property-app/user-reducer';
-import propertyReducer from './property-app/HomeScreen/properties-reducer';
-import ManageRequestScreen from './property-app/ManageRequestScreen';
+import userReducer from './product-app/Reducers/user-reducer';
+import propertyReducer from './product-app/HomeScreen/properties-reducer';
+import ManageRequestScreen from './product-app/ManageRequestScreen';
+import productReducer from "./product-app/Reducers/product-screen-reducer";
+import ProductComponent from "./product-app/ProductScreen/ProductComponent";
 
 const store = configureStore(
     {
         reducer:
             {
                 user: userReducer,
-                properties:propertyReducer
+                properties:propertyReducer,
+                products:productReducer
             }
     });
 
@@ -31,7 +32,7 @@ function App() {
                 <div className="container">
                     <Routes>
                         <Route path="/" element={<HomeScreen/>}/>
-                        <Route path="/property/:pid" element={<PropertyComponent/>}/>
+                        <Route path="/product/:pid" element={<ProductComponent/>}/>
                         <Route path="/account" element={<ProfileScreen/>}/>
                         <Route path="/manage-requests" element={<ManageRequestScreen/>}/>
                         <Route path="/login" element={<LoginPage/>}/>

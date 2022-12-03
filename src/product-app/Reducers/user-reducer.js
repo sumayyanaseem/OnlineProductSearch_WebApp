@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import user from './ProfileScreen/user.json'
+import user from '../ProfileScreen/user.json'
 
 const userSlice = createSlice({
     name: 'user',

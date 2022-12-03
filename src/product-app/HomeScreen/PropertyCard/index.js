@@ -8,7 +8,7 @@ function PropertyCard({property}) {
     return (
         
             <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 wd-card">
-                <Link to={`/property/${property._id}`} className="wd-property-link">
+                <Link to={`/product/${property._id}`} className="wd-property-link">
                     <div className="effect-ming tm-video-item">
                         <img width="100%" height={200} src={`/assets/${property.image}`} alt="property" className="" />
                     </div>

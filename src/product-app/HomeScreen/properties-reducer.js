@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createTuitThunk, deleteTuitThunk, findPropertiesThunk, updateTuitThunk } from "../../services/home-page-thunks";
+import {findPropertiesThunkById} from "../../services/property-screen-thunk";
+
 
 
 const initialState = {
@@ -24,9 +26,26 @@ const propertiesSlice = createSlice({
         [findPropertiesThunk.rejected]:
             (state) => {
                 state.loading = false
+            },
+        [findPropertiesThunkById.fulfilled]:
+            (state,{payload}) => {
+                state.loading = false
+                state.properties=payload
+            },
+
+        [findPropertiesThunkById.rejected]:
+            (state) => {
+                state.loading = false
+            },
+        [findPropertiesThunkById.pending]:
+            (state) => {
+                state.loading = true
+                state.properties=[]
             }
+
+
         }
+
 });
 
-export const { createTuit, deleteTuit } = propertiesSlice.actions;
 export default propertiesSlice.reducer;
