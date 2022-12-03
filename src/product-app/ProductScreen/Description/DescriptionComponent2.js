@@ -22,7 +22,7 @@ const DescriptionComponent2 = ({product}) => {
                         focusable="false"><title>Placeholder</title>
                         <rect width="100%" height="100%" fill="#eee"/>
                         <text x="50%" y="50%" fill="#aaa" dy=".3em">
-                            product.price
+                            {product.price}
                         </text>
                     </svg>
 
@@ -36,7 +36,7 @@ const DescriptionComponent2 = ({product}) => {
                     <h2 className="featurette-heading fw-normal lh-1">Oh yeah, it’s that
                         good. <span
                             className="text-muted">See for yourself.</span></h2>
-                    <p className="lead">product.description</p>
+                    <p className="lead">{product.description}</p>
                 </div>
                 <div className="col-md-5 order-md-1">
                     <svg
