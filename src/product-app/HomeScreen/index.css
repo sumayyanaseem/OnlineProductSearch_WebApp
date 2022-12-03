@@ -2,13 +2,9 @@
     .wd-container { max-width: 870px; }
 }
 
-
-
-
 @media (max-width: 991px) {
     .wd-container { max-width: 870px; }
 }
-
 
 .wd-home-gallery{
     justify-content: space-evenly;
@@ -29,6 +25,10 @@
     width: 100%;
 }
 
+.wd-products-container {
+    background-color: #F5F5F5;
+    padding: 2rem;
+}
 
 .wd-mr-10{
     margin-right: 10px;

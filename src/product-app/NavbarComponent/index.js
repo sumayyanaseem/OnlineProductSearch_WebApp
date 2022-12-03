@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import './index.css'
+import teamLogo from '../../assets/team52logo.png'
 
-function NavbarComponent(){
-    return(
+function NavbarComponent() {
+    return (
         <div className="topnav">
             <Link className='active'>TEAM 52 </Link>
             <Link to="/contact" className='split'>Contact</Link>

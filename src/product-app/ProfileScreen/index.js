@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import React from 'react';
-import moment from 'moment';
 import { useSelector } from 'react-redux';
 import './index.css';
 // import profile from './user.json';
@@ -8,8 +7,8 @@ import './index.css';
 const ProfileScreen = () => {
 
     const profile = useSelector((state) => state.user);
-    return(
-            <div className='wd-profile-container'>
+    return (
+        <div className='wd-profile-container'>
             <div className='wd-profile-header'>
                 {/* TODO whats the use of back */}
                 <i className="fa-solid fa-arrow-left-long wd-back"></i>
@@ -30,18 +29,18 @@ const ProfileScreen = () => {
                 </div>
                 <div className='wd-edit-profile-btn-container'>
                     {
-                        profile.role==='owner' &&  <Link className='wd-edit-profile-btn' to={`/add-property/${profile.id}`}>
-                        Add Property
+                        profile.role === 'owner' && <Link className='wd-edit-profile-btn' to={`/add-property/${profile.id}`}>
+                            Add Property
                         </Link>
                     }
                     {
-                        profile.role==='Admin' &&  <Link className='wd-edit-profile-btn' to="/manage-requests">
-                        Manage Requests
+                        profile.role === 'Admin' && <Link className='wd-edit-profile-btn' to="/manage-requests">
+                            Manage Requests
                         </Link>
                     }
-                     <Link className='wd-edit-profile-btn' to={`/history/${profile.id}`}>
-                            Booking History
-                        </Link>
+                    <Link className='wd-edit-profile-btn' to={`/history/${profile.id}`}>
+                        Booking History
+                    </Link>
                 </div>
             </div>
             <div className='wd-profile-name'>
@@ -55,7 +54,7 @@ const ProfileScreen = () => {
             </div>
             <div className='wd-profile-additional-icons-container'>
                 <div className='wd-profile-additional-info-container'>
-                    <div className='wd-profile-icon'> 
+                    <div className='wd-profile-icon'>
                         <i className="bi bi-balloon"></i>
                     </div>
                     <div className='wd-profile-additional-info-text'>
@@ -64,9 +63,9 @@ const ProfileScreen = () => {
                 </div>
             </div>
         </div >
-        
+
     );
-    
+
 }
 
 export default ProfileScreen;
