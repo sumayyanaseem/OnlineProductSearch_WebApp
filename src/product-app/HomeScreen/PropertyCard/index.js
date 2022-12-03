@@ -13,13 +13,18 @@ function PropertyCard({ property }) {
         <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 wd-card">
             <div onClick={onPropertyClick} className="wd-property-link">
                 <div className="effect-ming tm-video-item">
-                    <img width="100%" height={200} src={`/assets/${property.image}`} alt="property" className="" />
+                    <Carousel>
+                        {
+                            [property.thumbnail, ...property.images].map((image) =>
+                                <img width="100%" height={200} src={image} alt="property" className="" onError={`this.src = ../../../assets/default_image.jpeg`} />
+                            )
+                        }
+                    </Carousel>
+                    {/* <img width="100%" height={200} src={property.thumbnail} alt="property" className="" onerror={`this.src = ../../../assets/default_image.jpeg`} /> */}
                 </div>
                 <div className="wd-card-info">
-                    <div className="d-flex flex-column justify-content-between">
-                        <span>{property.name}</span>
-                        <span>{property.city}</span>
-                        <span>{property.cost} / night</span>
+                    <div className="d-flex flex-column justify-content-between wd-card-title">
+                        <span>{property.title}</span>
                     </div>
 
                     <div>
@@ -48,7 +53,7 @@ function PropertyCard({ property }) {
                 </div>
             </div>
 
-        </div >
+        </div>
     );
 
 }
