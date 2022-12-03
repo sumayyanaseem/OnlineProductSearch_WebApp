@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import './index.css'
-import teamLogo from '../../assets/team52logo.png'
 
 function NavbarComponent() {
     return (
