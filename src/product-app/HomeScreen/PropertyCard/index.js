@@ -6,7 +6,7 @@ import Carousel from 'react-material-ui-carousel';
 function PropertyCard({ property }) {
     const navigate = useNavigate();
     const onPropertyClick = () => {
-        navigate(`/property/${property.id}`)
+        navigate(`/product/${property.id}`)
     }
     return (
 
