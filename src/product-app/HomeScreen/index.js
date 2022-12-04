@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { findProductsThunk } from '../../services/home-page-thunks';
 import { findCategoriesThunk } from '../../services/categories.thunks';
 import SelectComponent from '../../components/SelectComponent';
+import ReactLoading from 'react-loading';
 
 
 function HomeScreen() {
@@ -37,12 +38,23 @@ function HomeScreen() {
         }
     }
 
-    console.log(loading , products)
+    console.log(loading, products)
 
     return (
         <>
             {
-                categoriesLoading && loading && <h3>loading...</h3>
+                categoriesLoading && loading &&
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        height: '100vh',
+                    }}
+
+                >      <ReactLoading type="balls" color="#0000FF"
+                    height={100} width={50} /></div>
+
             }
 
             {
@@ -71,7 +83,7 @@ function HomeScreen() {
                         <div className="row wd-mb-80 wd-home-gallery wd-products-container">
                             {
                                 products.filter(p => p.title?.includes(filter) || filter === '').length === 0 ? <h3>sorry no properties found :(</h3> :
-                                products.filter(
+                                    products.filter(
                                         p => p.title?.includes(filter) || filter === '')
                                         .map(property => <PropertyCard key={property.id} property={property} />)
 
