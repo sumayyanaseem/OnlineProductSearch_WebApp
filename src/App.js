@@ -16,6 +16,7 @@ import productReducer from "./product-app/Reducers/product-screen-reducer";
 import ProductComponent from "./product-app/ProductScreen/ProductComponent";
 import categoriesReducer from './product-app/Reducers/categories.reducer';
 import productRequestsReducer from './product-app/Reducers/product-request-reducer.js'
+import reviewsReducer from "./product-app/Reducers/reviews-reducer";
 
 const store = configureStore(
     {
@@ -25,7 +26,8 @@ const store = configureStore(
             properties: propertyReducer,
             products: productReducer,
             categories: categoriesReducer,
-            productRequests: productRequestsReducer
+            productRequests: productRequestsReducer,
+            reviews: reviewsReducer
         }
     });
 

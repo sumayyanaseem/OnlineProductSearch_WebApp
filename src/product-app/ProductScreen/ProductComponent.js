@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import NavbarComponent from "../NavbarComponent";
-import reviews from "../../assets/Reviews.json";
 import {useSelector} from "react-redux";
 import {useDispatch} from 'react-redux';
 import {useLocation} from "react-router-dom";
@@ -8,6 +7,8 @@ import ImagesComponent from "./ProductsImageComponent/productImageScreen";
 import DescriptionComponent2 from "./Description/DescriptionComponent2";
 import DetailsComponent from "./Details/Details";
 import SuggestionsComponent from "./SuggestionsComponent/SuggestionsComponent";
+import ReviewList from "./ReviewsComponent/ReviewList.js"
+import {findReviewsThunkByProductId} from "../../services/reviews-thunks";
 
 const templateProperty = {
     "host": "Space",
@@ -35,7 +36,13 @@ const ProductComponent = () => {
     console.log(products[active]);
     const prod =products[active];
     console.log(loading);
-    const reviewDetails = reviews.filter(r => r.property_id === active);
+
+    useEffect(()  => {
+        dispatch(findReviewsThunkByProductId(active))
+    }, [])
+    const {reviews, reviewsLoading} = useSelector((state) => state.reviews);
+    console.log("reviews>> " +reviews);
+    console.log("reviewsLoading>> " +reviewsLoading);
     const profile = useSelector((state) => state.user);
 
     const propertyClickHandler = () => {
@@ -85,6 +92,18 @@ const ProductComponent = () => {
                     <div>
                         <SuggestionsComponent category={prod}/>
                     </div>
+
+                    <>
+                        {
+                            reviewsLoading && <h3>loading...</h3>
+                        }
+                        {
+                            !reviewsLoading &&
+                            <div>
+                                <ReviewList review={reviews}/>
+                            </div>
+                        }
+                    </>
                 </div>
             }
             </>
