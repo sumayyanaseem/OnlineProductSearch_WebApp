@@ -7,6 +7,7 @@ import {useLocation} from "react-router-dom";
 import ImagesComponent from "./ProductsImageComponent/productImageScreen";
 import DescriptionComponent2 from "./Description/DescriptionComponent2";
 import DetailsComponent from "./Details/Details";
+import SuggestionsComponent from "./SuggestionsComponent/SuggestionsComponent";
 
 const templateProperty = {
     "host": "Space",
@@ -63,12 +64,12 @@ const ProductComponent = () => {
                         <div className="col-9">
                             <ImagesComponent product={prod}/>
                         </div>
-                        <div className="col-3 d-none d-xl-block d-xxl-block">
+                        <div className="wd-card-info  col-3 d-none d-xl-block d-xxl-block">
                             <DetailsComponent product={prod}/>
                             <div className="d-none d-xl-block d-xxl-block">
                                 {
-                                    <button
-                                        className="rounded-pill btn btn-primary float-end mt-2  fw-bold"
+                                    <button type="button"
+                                        className="rounded-pill btn btn-secondary float-end mt-2 fw-bold"
                                         onClick={propertyClickHandler}>
                                         Buy
                                     </button>
@@ -76,9 +77,13 @@ const ProductComponent = () => {
                             </div>
                         </div>
 
+
                     </div>
                     <div>
                         <DescriptionComponent2 product={prod}/>
+                    </div>
+                    <div>
+                        <SuggestionsComponent category={prod.category}/>
                     </div>
                 </div>
             }

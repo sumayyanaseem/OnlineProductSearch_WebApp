@@ -23,7 +23,7 @@ const DetailsComponent = ({product}) => {
                 <b>Discount Percentage</b>:{product.discountPercentage}
                 <br>
                  </br>
-                <b>Details</b> : {product.stock}
+                <b>Available Quantity</b> : {product.stock}
                 <br/>
                 <b>Brand</b> : {product.brand}
                 <br/>

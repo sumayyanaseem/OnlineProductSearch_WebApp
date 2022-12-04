@@ -3,14 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { Rating } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
 import {useDispatch} from "react-redux";
-import {findProductsThunk} from "../../../services/home-page-thunks";
+import {findProductsThunk, findPropertiesThunk} from "../../../services/home-page-thunks";
+import {useEffect} from "react";
 
 function PropertyCard({ property }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const onPropertyClick = () => {
 
-            dispatch(findProductsThunk())
+        dispatch(findProductsThunk())
 
         navigate(`/product/${property.id}`)
     }
