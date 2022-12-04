@@ -14,6 +14,7 @@ import propertyReducer from './product-app/HomeScreen/properties-reducer';
 import ManageRequestScreen from './product-app/ManageRequestScreen';
 import productReducer from "./product-app/Reducers/product-screen-reducer";
 import ProductComponent from "./product-app/ProductScreen/ProductComponent";
+import categoriesReducer from './product-app/Reducers/categories.reducer';
 
 const store = configureStore(
     {
@@ -21,7 +22,8 @@ const store = configureStore(
         {
             user: userReducer,
             properties: propertyReducer,
-            products: productReducer
+            products: productReducer,
+            categories: categoriesReducer
         }
     });
 

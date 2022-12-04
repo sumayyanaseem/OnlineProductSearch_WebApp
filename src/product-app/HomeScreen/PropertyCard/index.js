@@ -2,17 +2,17 @@ import './index.css'
 import { useNavigate } from "react-router-dom";
 import { Rating } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
-import {useDispatch} from "react-redux";
-import {findProductsThunk, findPropertiesThunk} from "../../../services/home-page-thunks";
-import {useEffect} from "react";
+import { useDispatch } from "react-redux";
+import { findProductsThunk } from "../../../services/home-page-thunks";
+import DefaultImage from '../../../assets/default_image.jpeg'
 
 function PropertyCard({ property }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const onPropertyClick = () => {
-
-        dispatch(findProductsThunk())
-
+        // fetch the selected product details
+        // dispatch(findProductsThunk())
+        // navigate to the product details screen
         navigate(`/product/${property.id}`)
     }
     return (
@@ -23,11 +23,10 @@ function PropertyCard({ property }) {
                     <Carousel>
                         {
                             [property.thumbnail, ...property.images].map((image) =>
-                                <img width="100%" height={200} src={image} alt="property" className="" onError={`this.src = ../../../assets/default_image.jpeg`} />
+                                <img width="100%" height={200} src={image} alt="property" className="" onError={() => DefaultImage} />
                             )
                         }
                     </Carousel>
-                    {/* <img width="100%" height={200} src={property.thumbnail} alt="property" className="" onerror={`this.src = ../../../assets/default_image.jpeg`} /> */}
                 </div>
                 <div className="wd-card-info">
                     <div className="d-flex flex-column justify-content-between wd-card-title">

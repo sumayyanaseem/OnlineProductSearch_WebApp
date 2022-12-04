@@ -8,8 +8,9 @@ export const getAllProperties = async (userID) => {
     return properties;
 }
 
-export const getAllProducts = async (userID) => {
-    const response = await axios.get(`${API_BASE}/products?user=${userID}`);
+export const getAllProducts = async (userID, categoryName) => {
+    console.log("categoryName", categoryName)
+    const response = await axios.get(`${API_BASE}/products?user=${userID}&category=${categoryName}`);
     const properties = response.data;
     return properties;
 }

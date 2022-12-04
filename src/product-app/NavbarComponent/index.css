@@ -1,35 +1,47 @@
 .top-nav {
   overflow: hidden;
   background-color: #F5F5F5;
-  color: #7B7A81;
+  color: #161617;
   top: 0;
   width: 100%;
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  box-shadow:  0 0 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.team-logo {
+  height: 60px;
 }
 
 .top-nav a {
+  height: 60px;
   float: left;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
- color: #7B7A81;
+  color: #464648;
 }
 
 .top-nav a:hover {
- text-decoration: none;
+  text-decoration: none;
 }
 
 .top-nav a:link {
- text-decoration: none;
+  text-decoration: none;
 }
 
-.top-nav a.split:hover {
- text-decoration: none;
+.top-nav a.nav-link:hover {
+  text-decoration: none;
 }
 
-
-.top-nav a.split {
+.top-nav a.nav-link {
   float: right;
   margin-left: 12px;
+}
+
+.nav-link.active {
+  background-color: blue;
+  color: #F5F5F5;
 }

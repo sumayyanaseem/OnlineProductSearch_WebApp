@@ -2,7 +2,7 @@ import NavbarComponent from "../NavbarComponent";
 import requests from './admin-requests.json';
 import PropertyRequest from "./PropertyRequest";
 import './index.css'
-import SearchComponent from "../HomeScreen/SearchComponent";
+import SearchComponent from "../../components/SearchComponent";
 import { useState } from "react";
 
 function ManageRequestScreen() {
