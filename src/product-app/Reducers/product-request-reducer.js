@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {findAllProductRequestsThunk, approveProductRequestThunk} from '../../services/product-request-thunks.js'
-import { approveProductRequest } from "../../services/product-requests-service.js";
+import {findAllProductRequestsThunk, approveProductRequestThunk,rejectProductRequestThunk} from '../../services/product-request-thunks.js'
 
 
 const initialState = {
@@ -39,9 +38,25 @@ const productRequestsSlice = createSlice({
         [approveProductRequestThunk.rejected]:
             (state) => {
                 state.loading = false
+            },
+        [rejectProductRequestThunk.pending]:
+            (state) => {
+                state.loading = true
+                state.productRequests = []
+            },
+        [rejectProductRequestThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.productRequests = payload
+            },
+        [rejectProductRequestThunk.rejected]:
+            (state) => {
+                state.loading = false
             }
 
     }
+
+    
 
 });
 

@@ -9,7 +9,7 @@ import SearchComponent from "../../components/SearchComponent";
 import { useState } from "react";
 import Button from '@mui/material/Button';
 import { findAllProductRequestsThunk } from '../../services/product-request-thunks.js';
-import { approveProductRequestThunk } from '../../services/product-request-thunks.js';
+import { approveProductRequestThunk, rejectProductRequestThunk } from '../../services/product-request-thunks.js';
 
 
 
@@ -27,7 +27,8 @@ function ManageRequestScreen() {
 
     const renderDetailsButton = (params) => {
 
-        if (params.row.status === "Approved") {
+
+        if (params.row.status === "Approved" ||params.row.status === "Rejected" ) {
 
             return (
                 <>
@@ -41,7 +42,7 @@ function ManageRequestScreen() {
                             style={{ marginLeft: 16 }}
                             disabled
                         >
-                            Approved
+                            {params.row.status}
                         </Button>
                     </strong>
                 </>
@@ -51,15 +52,29 @@ function ManageRequestScreen() {
             return (
                 <>
                     <strong>
+                        <div className="wd-manage-req_status">
+
                         <Button
                             variant="contained"
                             color="primary"
                             size="small"
                             style={{ marginLeft: 16 }}
+                            className="wd-manage-req_approve-btn"
                             onClick = {()=>{dispatch(approveProductRequestThunk(params.row.id))}}
                         >
                             Approve
                         </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            size="small"
+                            className="wd-manage-req_reject-btn"
+                            style={{ marginLeft: 16 }}
+                            onClick = {()=>{dispatch(rejectProductRequestThunk(params.row.id))}}
+                        >
+                            Reject
+                        </Button>
+                        </div>
                     </strong>
                 </>
             )
@@ -94,7 +109,7 @@ function ManageRequestScreen() {
 
                     <div className="wd-manage-req-container">
                         <div style={{ width: '100%' }}>
-                            <DataGrid rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} autoHeight="true" />
+                            <DataGrid rowHeight={95} rows={rows} columns={columns} components={{ Toolbar: GridToolbar }} autoHeight="true" />
                         </div>
                     </div>
                 </>

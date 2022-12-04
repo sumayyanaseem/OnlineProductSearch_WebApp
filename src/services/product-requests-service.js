@@ -12,3 +12,12 @@ export const approveProductRequest = async (id) => {
     return products;
 }
 
+export const rejectProductRequest = async (id) => {
+    const response = await axios.get("http://localhost:4000/api/products/request/reject/"+id);
+    const products = response.data;
+    return products;
+}
+
+
+
+
