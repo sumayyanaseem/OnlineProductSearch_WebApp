@@ -29,7 +29,7 @@ const ProfileScreen = () => {
                 </div>
                 <div className='wd-edit-profile-btn-container'>
                     {
-                        profile.role === 'owner' && <Link className='wd-edit-profile-btn' to={`/add-property/${profile.id}`}>
+                        profile.role === 'owner' && <Link className='wd-edit-profile-btn' to={`/add-property`}>
                             Add Property
                         </Link>
                     }

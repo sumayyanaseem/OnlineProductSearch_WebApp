@@ -14,7 +14,7 @@ import SelectComponent from '../../components/SelectComponent';
 
 
 function HomeScreen() {
-    const { properties, loading } = useSelector((state) => state.properties);
+    const { products, loading } = useSelector((state) => state.products);
     const { categories, loading: categoriesLoading } = useSelector((state) => state.categories);
     const profile = useSelector((state) => state.user);
 
@@ -36,6 +36,8 @@ function HomeScreen() {
             dispatch(findProductsThunk({ userID: profile.id, categoryName: selectedCategory }))
         }
     }
+
+    console.log(loading , products)
 
     return (
         <>
@@ -68,8 +70,8 @@ function HomeScreen() {
                     <div className="wd-mt-40">
                         <div className="row wd-mb-80 wd-home-gallery wd-products-container">
                             {
-                                properties.filter(p => p.title?.includes(filter) || filter === '').length === 0 ? <h3>sorry no properties found :(</h3> :
-                                    properties.filter(
+                                products.filter(p => p.title?.includes(filter) || filter === '').length === 0 ? <h3>sorry no properties found :(</h3> :
+                                products.filter(
                                         p => p.title?.includes(filter) || filter === '')
                                         .map(property => <PropertyCard key={property.id} property={property} />)
 

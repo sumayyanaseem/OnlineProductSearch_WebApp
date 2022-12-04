@@ -15,6 +15,7 @@ import ManageRequestScreen from './product-app/ManageRequestScreen';
 import productReducer from "./product-app/Reducers/product-screen-reducer";
 import ProductComponent from "./product-app/ProductScreen/ProductComponent";
 import categoriesReducer from './product-app/Reducers/categories.reducer';
+import productRequestsReducer from './product-app/Reducers/product-request-reducer.js'
 
 const store = configureStore(
     {
@@ -23,7 +24,8 @@ const store = configureStore(
             user: userReducer,
             properties: propertyReducer,
             products: productReducer,
-            categories: categoriesReducer
+            categories: categoriesReducer,
+            productRequests: productRequestsReducer
         }
     });
 
