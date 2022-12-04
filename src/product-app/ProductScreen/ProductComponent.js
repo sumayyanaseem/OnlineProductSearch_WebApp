@@ -83,7 +83,7 @@ const ProductComponent = () => {
                         <DescriptionComponent2 product={prod}/>
                     </div>
                     <div>
-                        <SuggestionsComponent category={prod.category}/>
+                        <SuggestionsComponent category={prod}/>
                     </div>
                 </div>
             }
