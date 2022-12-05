@@ -1,12 +1,11 @@
 import NavbarComponent from "../NavbarComponent";
-import requests from './admin-requests.json';
 import { DataGrid, GridToolbar } from '@material-ui/data-grid';
 import './index.css'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from "react";
-import SearchComponent from "../../components/SearchComponent";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ReactLoading from 'react-loading';
 import Button from '@mui/material/Button';
 import { findAllProductRequestsThunk } from '../../services/product-request-thunks.js';
 import { approveProductRequestThunk, rejectProductRequestThunk } from '../../services/product-request-thunks.js';
@@ -20,9 +19,18 @@ function ManageRequestScreen() {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        console.log("GETTING IT")
         dispatch(findAllProductRequestsThunk())
     }, [])
+
+    const navigate = useNavigate();
+
+     const productDetailsCells = (params) => {
+        return (
+            <div className="wd-manage-req_product-id-cell" onClick={()=>{navigate(`/product/${params.row.productID}`)}}>
+               { params.row.productID}
+            </div>
+        )
+     }
 
 
     const renderDetailsButton = (params) => {
@@ -84,12 +92,13 @@ function ManageRequestScreen() {
     }
 
     const columns = [
-        { field: 'id', headerName: 'REQUESTID', width: 170 },
-        { field: 'productID', headerName: 'PRODUCTID', width: 170 },
-        { field: 'seller', headerName: 'SELLER', width: 170 },
-        { field: 'productName', headerName: 'PRODUCT NAME', width: 170 },
-        { field: 'date', headerName: 'DATE', width: 170 },
-        { field: 'status', headerName: 'STATUS', width: 170, renderCell: renderDetailsButton },
+        { field: 'id', headerName: 'REQUESTID', width: 172 },
+        { field: 'productID', headerName: 'PRODUCTID', width: 170, renderCell: productDetailsCells},
+        { field: 'seller', headerName: 'SELLER', width: 172 },
+        { field: 'productName', headerName: 'PRODUCT NAME', width: 172 },
+        { field: 'date', type:'', headerName: 'DATE', width: 172 },
+        { field: 'status', headerName: 'STATUS', width: 172 },
+        { field: 'action', headerName: 'ACTION', width: 172, renderCell: renderDetailsButton, filterable: false },
     ];
 
 
@@ -99,7 +108,17 @@ function ManageRequestScreen() {
     return (
         <>
             {
-                loading && <h3>loading...</h3>
+                loading &&  
+                <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100vh',
+                }}
+
+            >      <ReactLoading type="spiral" color="#0000FF"
+                height={100} width={50} /></div>
             }
 
             {

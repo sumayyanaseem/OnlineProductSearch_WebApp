@@ -4,6 +4,10 @@
     border-radius: 20px;
 }
 
+.wd-manage-req_product-id-cell:hover{
+    cursor: pointer;
+}
+
 
 .wd-manage-req_status {
     display: flex !important;
