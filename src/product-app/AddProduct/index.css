@@ -1,0 +1,16 @@
+.wd-add-product-container{
+     background-color: #F5F5F5;
+     margin: 2rem;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.wd-add-product-header {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: rgb(85, 84, 84);
+    text-align: center;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

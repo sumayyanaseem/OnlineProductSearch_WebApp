@@ -12,3 +12,9 @@ export const findProductsThunk = createAsyncThunk(
         return await service.getAllProducts(userID, categoryName)
     }
 )
+
+export const createProductsThunk = createAsyncThunk(
+    'products/createProduct', async (product) => {
+        return await service.createProduct(product)
+    }
+)

@@ -19,6 +19,7 @@ import categoriesReducer from './product-app/Reducers/categories.reducer';
 import productRequestsReducer from './product-app/Reducers/product-request-reducer.js'
 import reviewsReducer from "./product-app/Reducers/reviews-reducer";
 import productsByCategoryReducer from "./product-app/Reducers/product-category-reducer";
+import AddProduct from './product-app/AddProduct';
 
 const store = configureStore(
     {
@@ -48,7 +49,7 @@ function App() {
                         <Route path="/manage-requests" element={<ManageRequestScreen />} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/signup" element={<SignUpPage />} />
-
+                        <Route path="/product/add" element={<AddProduct />} />
                     </Routes>
 
                 </div>

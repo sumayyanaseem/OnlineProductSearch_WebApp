@@ -38,8 +38,8 @@ const ProfileScreen = () => {
                             Manage Requests
                         </Link>
                     }
-                    <Link className='wd-edit-profile-btn' to={`/history/${profile.id}`}>
-                        Booking History
+                    <Link className='wd-edit-profile-btn' to={`/product/add`}>
+                        Add Product
                     </Link>
                 </div>
             </div>

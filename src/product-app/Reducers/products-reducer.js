@@ -9,26 +9,26 @@ const initialState = {
 }
 
 const productsSlice = createSlice({
-                                      name: 'products',
-                                      initialState,
-                                      extraReducers: {
-                                          [findProductsThunk.pending]:
-                                              (state) => {
-                                                  state.loading = true
-                                                  state.products = []
-                                              },
-                                          [findProductsThunk.fulfilled]:
-                                              (state, { payload }) => {
-                                                  state.loading = false
-                                                  state.products = payload
-                                              },
-                                          [findProductsThunk.rejected]:
-                                              (state) => {
-                                                  state.loading = false
-                                              }
+    name: 'products',
+    initialState,
+    extraReducers: {
+        [findProductsThunk.pending]:
+            (state) => {
+                state.loading = true
+                state.products = []
+            },
+        [findProductsThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.products = payload
+            },
+        [findProductsThunk.rejected]:
+            (state) => {
+                state.loading = false
+            }
 
-                                      }
+    }
 
-                                  });
+});
 
 export default productsSlice.reducer;
