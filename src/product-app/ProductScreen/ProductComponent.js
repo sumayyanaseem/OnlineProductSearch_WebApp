@@ -8,7 +8,6 @@ import DescriptionComponent2 from "./Description/DescriptionComponent2";
 import DetailsComponent from "./Details/Details";
 import SuggestionsComponent from "./SuggestionsComponent/SuggestionsComponent";
 import ReviewList from "./ReviewsComponent/ReviewList.js"
-import {findReviewsThunkByProductId} from "../../services/reviews-thunks";
 
 const templateProperty = {
     "host": "Space",
@@ -36,9 +35,7 @@ const ProductComponent = () => {
     const prod =productsById;
    console.log(productsByIdLoading);
 
-    useEffect(()  => {
-        dispatch(findReviewsThunkByProductId(active))
-    }, [])
+
     const {reviews, reviewsLoading} = useSelector((state) => state.reviews);
     console.log("reviews>> " +reviews);
     console.log("reviewsLoading>> " +reviewsLoading);

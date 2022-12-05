@@ -5,12 +5,14 @@ import Carousel from 'react-material-ui-carousel';
 import {useDispatch, useSelector} from "react-redux";
 import {findProductsThunkById} from "../../../services/product-screen-thunk";
 import DefaultImage from '../../../assets/default_image.jpeg'
+import {findReviewsThunkByProductId} from "../../../services/reviews-thunks";
 
 function PropertyCard({ property }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const onPropertyClick = () => {
         dispatch(findProductsThunkById(property.id))
+        dispatch(findReviewsThunkByProductId(property.id))
         navigate(`/product/${property.id}`)
     }
     return (

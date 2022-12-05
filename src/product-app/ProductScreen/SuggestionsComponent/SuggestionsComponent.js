@@ -10,20 +10,16 @@ const SuggestionsComponent=({product}) => {
     const navigate = useNavigate();
 
     const category = product.category;
-    console.log("Inside SuggestionsComponent")
-    console.log(category);
-    console.log(product.id)
-   // const { properties, loading } = useSelector((state) => state.properties);
-   // console.log(properties)
-   // console.log(loading)
-    //const subArray = properties.filter(prop => (prop.id!== product.id && prop.category === category))
-   // console.log("subarray "+subArray[0].id);
+    //console.log("Inside SuggestionsComponent")
+    //console.log(category);
+    //console.log(product.id)
+    //console.log("subarray "+subArray[0].id);
     const {productsByCategory, productsByCategoryLoading} = useSelector((state) => state.productsByCategory);
     useEffect(()  => {
         dispatch(findProductsByCategory(category))
     }, [])
-    console.log("productsByCategory >> "+productsByCategory)
-    console.log("productsByCategoryLoading >> "+productsByCategoryLoading)
+    //console.log("productsByCategory >> "+productsByCategory)
+    //console.log("productsByCategoryLoading >> "+productsByCategoryLoading)
     return (
         <>
             {

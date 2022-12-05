@@ -2,15 +2,16 @@ import React from "react";
 import {findProductsThunkById} from "../../../services/product-screen-thunk";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {findReviewsThunkByProductId} from "../../../services/reviews-thunks";
 
 const SuggestionsItemComponent = (item) =>{
-    console.log("SuggestionsItemComponent >> "+item.item)
+    //console.log("SuggestionsItemComponent >> "+item.item)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const onViewClick = () => {
 
         dispatch(findProductsThunkById(item.item.id))
-
+        dispatch(findReviewsThunkByProductId(item.item.id))
         navigate(`/product/${item.item.id}`)
     }
     return (
