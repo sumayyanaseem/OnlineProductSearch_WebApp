@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { findProductsThunkById } from "../../services/product-screen-thunk";
 import { findProductsThunk } from "../../services/home-page-thunks";
 
+
 const initialState = {
     products: [],
     loading: false
