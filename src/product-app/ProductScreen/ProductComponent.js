@@ -31,11 +31,10 @@ const ProductComponent = () => {
     const active = paths[2];
     console.log(active);
     console.log("product");
-    const {products, loading} = useSelector((state) => state.products);
-    console.log(products);
-    console.log(products[active]);
-    const prod =products[active];
-    console.log(loading);
+   const {productsById, productsByIdLoading} = useSelector((state) => state.productsById);
+   console.log(productsById);
+    const prod =productsById;
+   console.log(productsByIdLoading);
 
     useEffect(()  => {
         dispatch(findReviewsThunkByProductId(active))
@@ -57,11 +56,12 @@ const ProductComponent = () => {
 
         <>
             {
-                loading && <h3>loading...</h3>
+                productsByIdLoading && <h3>loading...</h3>
             }
 
             {
-                !loading &&
+
+                !productsByIdLoading &&
 
                 <div className="container-fluid wd-container">
                     <div>
@@ -90,7 +90,7 @@ const ProductComponent = () => {
                         <DescriptionComponent2 product={prod}/>
                     </div>
                     <div>
-                        <SuggestionsComponent category={prod}/>
+                        <SuggestionsComponent product={prod}/>
                     </div>
 
                     <>
