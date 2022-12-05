@@ -1,147 +1,86 @@
-/*import './login.css';
-import profile from "./../../images/a.png";
-import email from "./../../images/email.jpg";
-import pass from "./../../images/pass.png";
-
-
-function LoginPage() {
-    return (
-        <div className="main">
-            <div className="sub-main">
-                <div>
-
-                    <div className="imgs">
-                        <div className="container-image">
-                            <img src={profile} alt="profile" className="profile"/>
-
-                        </div>
-
-
-                    </div>
-                    <div>
-                        <h1>Login Page</h1>
-                        <div>
-                            <img src={email} alt="email" className="email"/>
-                            <input type="text" placeholder="user name" className="name"/>
-                        </div>
-                        <div className="second-input">
-                            <img src={pass} alt="pass" className="email"/>
-                            <input type="password" placeholder="user name" className="name"/>
-                        </div>
-                        <div className="login-button">
-                            <button>Login</button>
-                        </div>
-
-                        <p className="link">
-                            <a href="#">Forgot password ?</a> Or<a href="#">Sign Up</a>
-                        </p>
-
-
-                    </div>
-
-                </div>
-
-
-            </div>
-        </div>
-    );
-}
-
-export default LoginPage;*/
-
-
-
-
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-
-import "./login.css";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {loginThunk} from "../../services/user-thunks";
 import {Link} from "react-router-dom";
+import './login.css'
+import {useNavigate} from "react-router-dom";
 
-function LoginPage() {
-    // React States
-    const [errorMessages, setErrorMessages] = useState({});
-    const [isSubmitted, setIsSubmitted] = useState(false);
+const Login = () => {
+    const [userName, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState(null)
+    const {currentUser} = useSelector((state) => state.user)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const handleLoginBtn = () => {
+        setError(null)
+        //const loginUser = {userName, password}
 
-    // User Login info
-    const database = [
-        {
-            username: "user1",
-            password: "pass1"
-        },
-        {
-            username: "user2",
-            password: "pass2"
+        const newuser = {
+            userName: userName,
+            password: password,
         }
-    ];
+        dispatch(loginThunk(newuser))
 
-    const errors = {
-        uname: "invalid username",
-        pass: "invalid password"
-    };
+        navigate('/')
 
-    const handleSubmit = (event) => {
-        //Prevent page reload
-        event.preventDefault();
-
-        var { uname, pass } = document.forms[0];
-
-        // Find user login info
-        const userData = database.find((user) => user.username === uname.value);
-
-        // Compare user info
-        if (userData) {
-            if (userData.password !== pass.value) {
-                // Invalid password
-                setErrorMessages({ name: "pass", message: errors.pass });
-            } else {
-                setIsSubmitted(true);
-            }
-        } else {
-            // Username not found
-            setErrorMessages({ name: "uname", message: errors.uname });
-        }
-    };
-
-    // Generate JSX code for error message
-    const renderErrorMessage = (name) =>
-        name === errorMessages.name && (
-                 <div className="error">{errorMessages.message}</div>
-             );
-
-    // JSX code for login form
-    const renderForm = (
-        <div className="form">
-            <form onSubmit={handleSubmit}>
-                <div className="input-container">
-                    <label>Username </label>
-                    <input type="text" name="uname" required />
-                    {renderErrorMessage("uname")}
-                </div>
-                <div className="input-container">
-                    <label>Password </label>
-                    <input type="password" name="pass" required />
-                    {renderErrorMessage("pass")}
-                </div>
-                <div className="button-container">
-                    <input type="submit" />
-                </div>
-                <br/>
-                <div className="signup-link">
-                    <Link to="/signup">Sign Up</Link>
-                </div>
-            </form>
-        </div>
-    );
+    }
 
     return (
-        <div className="app">
-            <div className="login-form">
-                <div className="title">Sign In</div>
-                {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+        <div className="container">
+            <div className="row">
+                <div className="col-md-8 offset-md-2">
+
+                    <div className="form-container">
+                        <div className="form-icon"><i className="fa fa-user"></i></div>
+                        <h3 className="title">Login</h3>
+                        <form className="form-horizontal">
+
+                            {
+                                error &&
+                                <div className="alert alert-danger">
+                                    {error}
+                                </div>
+                            }
+                            <div className="form-group">
+                                <input
+                                    className="form-control mb-2"
+                                    value={userName}
+                                    placeholder="Username"
+                                    onChange={(e) => setUsername(e.target.value)}/>
+                            </div>
+                            <div className="form-group">
+                                <input
+                                    className="form-control mb-2"
+                                    value={password}
+                                    placeholder="Password"
+                                    type="password"
+                                    onChange={(e) => setPassword(e.target.value)}/>
+                            </div>
+
+
+                            <div className="form-group">
+                                <button
+                                    onClick={handleLoginBtn}
+                                    className="btn btn-primary w-100">
+                                    Login
+                                </button>
+                            </div>
+                            {
+                                currentUser &&
+                                <h2>Welcome {currentUser.userName}</h2>
+                            }
+                            <div className="text-center">Don't have an account? <Link
+                                to="/register">Register</Link></div>
+
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-    );
+
+    )
 }
 
-export default LoginPage;
+export default Login
+

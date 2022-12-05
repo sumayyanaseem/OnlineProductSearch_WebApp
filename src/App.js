@@ -1,6 +1,6 @@
 import './App.css';
-import LoginPage from "./product-app/LoginScreen/LoginPage";
-import SignUpPage from "./product-app/LoginScreen/SignUpPage";
+import Login from "./product-app/LoginScreen/LoginPage";
+import Register from "./product-app/LoginScreen/SignUpPage";
 
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router";
@@ -20,6 +20,8 @@ import productRequestsReducer from './product-app/Reducers/product-request-reduc
 import reviewsReducer from "./product-app/Reducers/reviews-reducer";
 import productsByCategoryReducer from "./product-app/Reducers/product-category-reducer";
 import AddProduct from './product-app/AddProduct';
+import CurrentUser from "./product-app/LoginScreen/current-user";
+
 
 const store = configureStore(
     {
@@ -28,6 +30,7 @@ const store = configureStore(
             user: userReducer,
             properties: propertyReducer,
             products: productReducer,
+            users: userReducer,
             categories: categoriesReducer,
             productRequests: productRequestsReducer,
             productsById: productByIdReducer,
@@ -39,22 +42,25 @@ const store = configureStore(
 function App() {
     return (
         <Provider store={store}>
-            <BrowserRouter>
-                <div className="container">
+            <CurrentUser>
+                <BrowserRouter>
+                    <div className="container">
 
-                    <Routes>
-                        <Route path="/" element={<HomeScreen />} />
-                        <Route path="/product/:pid" element={<ProductComponent />} />
-                        <Route path="/account" element={<ProfileScreen />} />
-                        <Route path="/manage-requests" element={<ManageRequestScreen />} />
-                        <Route path="/login" element={<LoginPage />} />
-                        <Route path="/signup" element={<SignUpPage />} />
-                        <Route path="/product/add" element={<AddProduct />} />
-                    </Routes>
+                        <Routes>
+                            <Route path="/" element={<HomeScreen />} />
+                            <Route path="/product/:pid" element={<ProductComponent />} />
+                            <Route path="/account" element={<ProfileScreen />} />
+                            <Route path="/manage-requests" element={<ManageRequestScreen />} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                            <Route path="/product/add" element={<AddProduct />} />
 
-                </div>
-            </BrowserRouter>
-        </Provider>
+                        </Routes >
+
+                    </div >
+                </BrowserRouter >
+            </CurrentUser >
+        </Provider >
     );
 }
 

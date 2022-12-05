@@ -16,6 +16,8 @@ import SelectComponent from '../../components/SelectComponent';
 function HomeScreen() {
     const { products, loading } = useSelector((state) => state.products);
     const { categories, loading: categoriesLoading } = useSelector((state) => state.categories);
+    const {currentUser} = useSelector((state) => state.user);
+
     const profile = useSelector((state) => state.user);
 
     const dispatch = useDispatch();
@@ -40,6 +42,10 @@ function HomeScreen() {
 
     return (
         <>
+
+            {
+                currentUser && <h3>welcome {currentUser.userName}</h3>
+            }
             {
                 categoriesLoading && loading && <h3>loading...</h3>
             }
