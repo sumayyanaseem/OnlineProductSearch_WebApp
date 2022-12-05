@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, TextField } from '@mui/material';
+import { Grid, Paper, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -65,7 +65,7 @@ function AddProduct() {
         <div>
             <NavbarComponent></NavbarComponent>
             <div className='wd-add-product-container'>
-                <div className='wd-add-product-header'> Create a new Product</div>
+                <div className='wd-add-product-header'> Create Product</div>
 
                 <form onSubmit={handleSubmit}>
                     <Paper style={{ padding: 16 }}>
@@ -177,18 +177,15 @@ function AddProduct() {
                             </Grid>
 
                             <Grid item xs={12}>
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                >
+                                <button className='wd-submit-btn'>
                                     Submit
-                                </Button>
+                                </button>
                             </Grid>
                         </Grid>
                     </Paper>
                 </form>
             </div>
-        </div>
+        </div >
     )
 }
 
