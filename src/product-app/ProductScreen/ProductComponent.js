@@ -1,15 +1,13 @@
 import React, {useEffect} from 'react';
 import NavbarComponent from "../NavbarComponent";
-import products from "./Products.json";
-import reviews from "../../assets/Reviews.json";
 import {useSelector} from "react-redux";
 import {useDispatch} from 'react-redux';
 import {useLocation} from "react-router-dom";
-import {findPropertiesThunkById} from "../../services/property-screen-thunk";
-import ProductImagesCarousel from "./ProductsImageComponent/ProductImagesCarousel";
-import ImagesComponent from "./productImageScreen";
+import ImagesComponent from "./ProductsImageComponent/productImageScreen";
 import DescriptionComponent2 from "./Description/DescriptionComponent2";
 import DetailsComponent from "./Details/Details";
+import SuggestionsComponent from "./SuggestionsComponent/SuggestionsComponent";
+import ReviewList from "./ReviewsComponent/ReviewList.js"
 
 const templateProperty = {
     "host": "Space",
@@ -25,23 +23,23 @@ const templateProperty = {
     "bedrooms": "3"
 }
 
-const ProductComponent = ({product}) => {
+const ProductComponent = () => {
     const dispatch = useDispatch();
     const {pathname} = useLocation();
     const paths = pathname.split('/')
     const active = paths[2];
     console.log(active);
     console.log("product");
-    //const {products, loading} = useSelector((state) => state.products);
-    console.log(products.products[0]);
-    const propertyDetails =products.products.filter(p => p.id === active);
-    console.log(propertyDetails);
-    const reviewDetails = reviews.filter(r => r.property_id === active);
-    const profile = useSelector((state) => state.user);
+   const {productsById, productsByIdLoading} = useSelector((state) => state.productsById);
+   console.log(productsById);
+    const prod =productsById;
+   console.log(productsByIdLoading);
 
-    useEffect(() => {
-        dispatch(findPropertiesThunkById(active))
-    }, [])
+
+    const {reviews, reviewsLoading} = useSelector((state) => state.reviews);
+    console.log("reviews>> " +reviews);
+    console.log("reviewsLoading>> " +reviewsLoading);
+    const profile = useSelector((state) => state.user);
 
     const propertyClickHandler = () => {
         /*const newProperty = {
@@ -52,22 +50,61 @@ const ProductComponent = ({product}) => {
     }
 
     return (
+
+        <>
+            {
+                productsByIdLoading && <h3>loading...</h3>
+            }
+
+            {
+
+                !productsByIdLoading &&
+
                 <div className="container-fluid wd-container">
                     <div>
                         <NavbarComponent/>
                     </div>
                     <div className="row ms-1 mt-3">
-                        <div  className="col-9">
-                        <ImagesComponent property={propertyDetails}/>
+                        <div className="col-9">
+                            <ImagesComponent product={prod}/>
                         </div>
-                        <div  className="col-3">
-                            <DetailsComponent property={propertyDetails}/>
+                        <div className="wd-card-info  col-3 d-none d-xl-block d-xxl-block">
+                            <DetailsComponent product={prod}/>
+                            <div className="d-none d-xl-block d-xxl-block">
+                                {
+                                    <button type="button"
+                                        className="rounded-pill btn btn-secondary float-end mt-2 fw-bold"
+                                        onClick={propertyClickHandler}>
+                                        Buy
+                                    </button>
+                                }
+                            </div>
                         </div>
+
+
                     </div>
                     <div>
-                        <DescriptionComponent2 property={propertyDetails}/>
+                        <DescriptionComponent2 product={prod}/>
                     </div>
+                    <div>
+                        <SuggestionsComponent product={prod}/>
+                    </div>
+
+                    <>
+                        {
+                            reviewsLoading && <h3>loading...</h3>
+                        }
+                        {
+                            !reviewsLoading &&
+                            <div>
+                                <ReviewList review={reviews}/>
+                            </div>
+                        }
+                    </>
                 </div>
+            }
+            </>
+
 
 
     );

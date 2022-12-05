@@ -1,0 +1,7 @@
+.wd-card-info {
+    font-family: 'Open Sans', sans-serif;
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

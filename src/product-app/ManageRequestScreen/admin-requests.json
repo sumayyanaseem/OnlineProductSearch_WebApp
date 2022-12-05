@@ -1,6 +1,6 @@
 [
     {
-        "req_id":"REQ893284823",
+        "id":"REQ893284823",
         "propertyID": 8907783,
         "owner": "abc",
         "PropertyName": "Khoury",
@@ -8,7 +8,31 @@
         "date":"22/11/2022"
     },
     {
-        "req_id":"REQ23498843",
+        "id":"REQ893284893",
+        "propertyID": 8907783,
+        "owner": "abc",
+        "PropertyName": "Khoury",
+        "Location": "Boston",
+        "date":"22/11/2022"
+    },
+    {
+        "id":"REQ8932848993",
+        "propertyID": 8907783,
+        "owner": "abc",
+        "PropertyName": "Khoury",
+        "Location": "Boston",
+        "date":"22/11/2022"
+    },
+    {
+        "id":"REQ8932848893",
+        "propertyID": 8907783,
+        "owner": "abc",
+        "PropertyName": "Khoury",
+        "Location": "Boston",
+        "date":"22/11/2022"
+    },
+    {
+        "id":"REQ234988489893",
         "propertyID": 124,
         "owner": "xyz",
         "PropertyName": "Ell hall",

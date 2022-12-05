@@ -16,7 +16,10 @@ export const login = async (newuser) => {
 }
 
 export const profile = async () => {
-    const response = await axios.post(`http://localhost:4000/profile`)
+    console.log("inside service profile")
+    const response = await axios.post(`http://localhost:4000/api/profile`)
+    console.log(response.data)
+    console.log("after service profile")
     return response.data
 }
 

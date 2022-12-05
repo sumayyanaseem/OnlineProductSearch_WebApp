@@ -1,18 +1,20 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './index.css'
+import teamLogo from '../../assets/team-52-logo.png'
 
 function NavbarComponent() {
     return (
-        <div className="topnav">
-            <Link className='active'>TEAM 52 </Link>
-            <Link to="/contact" className='split'>Contact</Link>
-            <Link to="/account" className='split'>Account</Link>
-            <Link to="/login" className='split'>Login</Link>
-            <Link to="/" className='split'>Home</Link>
-            {/* <a href="#about" class="split">Contact</a>
-            <a href="#about" class="split">Account</a>
-            <a href="#about" class="split">Login</a> */}
-        </div>
+        <div className="top-nav">
+            <div>
+                <img src={teamLogo} className='team-logo' alt='Team Logo'></img>
+            </div>
+            <div>
+                <NavLink to="/contact" className='nav-link'>Contact</NavLink>
+                <NavLink to="/account" className='nav-link'>Account</NavLink>
+                <NavLink to="/login" className='nav-link'>Login</NavLink>
+                <NavLink to="/" className='nav-link' activeClassName="nav-link.active">Home</NavLink>
+            </div>
+        </div >
     );
 }
 

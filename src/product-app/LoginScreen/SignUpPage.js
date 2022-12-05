@@ -57,19 +57,19 @@ const Register = () => {
                                 <div className="btn-group w-100">
                                     <input type="radio" className="btn-check" name="options"
                                            id="option1" autoComplete="off"
-                                           onClick={() => setRole("admin")}/>
+                                           onClick={() => setRole("Admin")}/>
                                     <label className="btn btn-secondary"
                                            htmlFor="option1">ADMIN</label>
 
                                     <input type="radio" className="btn-check" name="options"
                                            id="option2" autoComplete="off"
-                                           onClick={() => setRole("buyer")}/>
+                                           onClick={() => setRole("User")}/>
                                     <label className="btn btn-secondary"
                                            htmlFor="option2">BUYER</label>
 
                                     <input type="radio" className="btn-check" name="options"
                                            id="option3" autoComplete="off"
-                                           onClick={() => setRole("seller")}/>
+                                           onClick={() => setRole("Seller")}/>
                                     <label className="btn btn-secondary"
                                            htmlFor="option3">SELLER</label>
                                 </div>

@@ -1,0 +1,32 @@
+[
+  {
+    "_id" : "798",
+    "product_id": "1",
+    "user_id": "",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI3vvVZ-pOGsyhaNEm9s-tm96lh7OGxJrpPQ&usqp=CAU",
+    "username": "John",
+    "date": "September 2022",
+    "rating": "4.8",
+    "comment": "This place was so beautiful! We definitely loved feeding the cows!! Once in a life time experience. Also they were very sweet and good communication will be back!"
+  },
+  {
+    "_id" : "799",
+    "product_id": "1",
+    "user_id": "",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnG9XsiAuW2P1NkrMyXF-qAnh2to04EpRvIg&usqp=CAU",
+    "username": "Rex",
+    "date": "November 2022",
+    "rating": "4.2",
+    "comment": "This house is absolutely amazing, there isn’t anything that hasn’t been thought of. We plan on returning as regulars, and you will absolutely love this beautiful home. Yard games in the garage, the bar downstairs, the swings and overall comfort of feeling like “home” this is a must stay!"
+  },
+  {
+    "_id" : "980",
+    "product_id": "124",
+    "user_id": "",
+    "image": "../../Images/P1.jpg",
+    "username": "Rick",
+    "date": "July 2022",
+    "rating": "4.8",
+    "comment": "The host is friendly and quickly send us plunger when the toilet was clogged. The place is comfortable, clean and provided everything we needed. The toilet were clean and they even provided comfortable great scents of shower gels, hair products."
+  }
+]
