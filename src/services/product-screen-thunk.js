@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit"
+import {createAsyncThunk} from "@reduxjs/toolkit"
 import * as service from "./product-screen-service"
 
 export const findProductsThunkById = createAsyncThunk(
