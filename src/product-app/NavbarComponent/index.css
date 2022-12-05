@@ -1,0 +1,35 @@
+.top-nav {
+  overflow: hidden;
+  background-color: #F5F5F5;
+  color: #7B7A81;
+  top: 0;
+  width: 100%;
+  font-weight: bold;
+}
+
+.top-nav a {
+  float: left;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+ color: #7B7A81;
+}
+
+.top-nav a:hover {
+ text-decoration: none;
+}
+
+.top-nav a:link {
+ text-decoration: none;
+}
+
+.top-nav a.split:hover {
+ text-decoration: none;
+}
+
+
+.top-nav a.split {
+  float: right;
+  margin-left: 12px;
+}
