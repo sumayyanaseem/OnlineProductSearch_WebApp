@@ -1,0 +1,5 @@
+.wd-suggession-item-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

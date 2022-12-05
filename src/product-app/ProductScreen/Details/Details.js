@@ -1,7 +1,11 @@
 import React from "react";
-import {Rating} from "@mui/material";
+import { Rating } from "@mui/material";
 
-const DetailsComponent = ({product}) => {
+const DetailsComponent = ({ product }) => {
+
+
+
+    
     return (
         <div className="card-body">
             <h5 className="card-title">
@@ -10,6 +14,8 @@ const DetailsComponent = ({product}) => {
                     <Rating
                         name="simple-controlled"
                         value={product.rating}
+                        readOnly
+                        precision={0.5}
                         onChange={(event, newValue) => {
                             // TODO persist rating update
                             console.log("newValue", newValue)
@@ -19,16 +25,25 @@ const DetailsComponent = ({product}) => {
             </h5>
             <p className="card-text">
                 <b>Rating</b> : {product.rating}
-                <br/>
+                <br />
                 <b>Discount Percentage</b>:{product.discountPercentage}
                 <br>
-                 </br>
+                </br>
                 <b>Available Quantity</b> : {product.stock}
-                <br/>
+                <br />
                 <b>Brand</b> : {product.brand}
-                <br/>
+                <br />
                 <b>Category</b> : {product.category}
             </p>
+            <div className="d-none d-xl-block d-xxl-block">
+                {
+                    <button type="button"
+                        className="rounded-pill btn btn-secondary float-end mt-2 fw-bold"
+                       >
+                        Buy
+                    </button>
+                }
+            </div>
         </div>
     );
 

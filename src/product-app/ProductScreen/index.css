@@ -5,3 +5,8 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+
+.wd-product-component_suggestion-container{
+    margin-top: 55px;
+}

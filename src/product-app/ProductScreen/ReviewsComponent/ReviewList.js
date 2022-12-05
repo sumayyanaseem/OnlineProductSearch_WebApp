@@ -16,16 +16,16 @@ const ReviewList = ({review}) => {
 
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed);
-    const profile = useSelector((state) => state.user);
+    const {currentUser} = useSelector((state) => state.user);
 
     const reviewClickHandler = () => {
         const newReview = {
              comment: getReview,
              _id: (new Date()).getTime(),
              product_id: active,
-             user_id: profile._id,
-             userFirstName: profile.firstName,
-             userLastName: profile.lastName,
+             user_id: currentUser._id,
+             userFirstName: currentUser.firstName,
+             userLastName: currentUser.lastName,
              rating: getRating,
              date: today.toLocaleDateString()
         }
@@ -47,7 +47,7 @@ const ReviewList = ({review}) => {
              <div className="row ms-1 mt-4">
                 <div className="row col-10">
                     {
-                        profile.role === 'user' &&
+                        currentUser.role === 'User' &&
                         <div className="col-10">
                         <textarea value={getReview} placeholder="Write a Review"
                                   className="form-control square-pill ps-5"
@@ -59,7 +59,7 @@ const ReviewList = ({review}) => {
                 </div>
                 <div className="col-2">
                     {
-                        profile.role === 'user' &&
+                        currentUser.role === 'User' &&
                         <button className="rounded-pill btn btn-primary float-end mt-2 pe-3 fw-bold"
                                 onClick={reviewClickHandler}>
                             Submit
