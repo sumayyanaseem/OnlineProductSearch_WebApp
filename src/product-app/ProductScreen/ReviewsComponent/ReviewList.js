@@ -60,7 +60,7 @@ const ReviewList = ({review}) => {
                         </div>
                     }
                     {
-                        profile.role === 'user' &&
+                        currentUser.role === 'user' &&
                         <div className="col-2">
                             <Rating
                                 name="simple-controlled"
