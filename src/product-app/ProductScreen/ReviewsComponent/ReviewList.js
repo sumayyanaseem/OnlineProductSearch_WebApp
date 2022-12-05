@@ -4,6 +4,7 @@ import ReviewsComponent from "./ReviewsComponent.js";
 
 import {createReviewThunk, updateReviewThunk} from "../../../services/reviews-thunks";
 import {useLocation} from "react-router-dom";
+import {Rating} from "@mui/material";
 
 const ReviewList = ({review}) => {
     let [getReview, setReview] = useState('');
@@ -27,7 +28,8 @@ const ReviewList = ({review}) => {
              userFirstName: currentUser.firstName,
              userLastName: currentUser.lastName,
              rating: getRating,
-             date: today.toLocaleDateString()
+             date: today.toLocaleDateString(),
+            getReview: ''
         }
 
         dispatch(createReviewThunk(newReview));
@@ -37,7 +39,9 @@ const ReviewList = ({review}) => {
         <ul className="list-group">
             <div>
                <hr/>
-               <b>REVIEWS</b>
+                <div className="font-weight-bolder wd-review">
+                    <b>REVIEWS</b>
+                </div>
             </div>
 
             {
@@ -53,6 +57,16 @@ const ReviewList = ({review}) => {
                                   className="form-control square-pill ps-5"
                                   onChange={(event) => setReview(event.target.value)}>
                         </textarea>
+                        </div>
+                    }
+                    {
+                        profile.role === 'user' &&
+                        <div className="col-2">
+                            <Rating
+                                name="simple-controlled"
+                                value={getRating}
+                                onChange={(event) =>  setRating(event.target.value)}
+                            />
                         </div>
                     }
 
