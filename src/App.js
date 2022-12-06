@@ -41,7 +41,7 @@ const store = configureStore(
 function App() {
     return (
         <Provider store={store}>
-            <CurrentUser>
+            
             <BrowserRouter>
                 <div className="container">
 
@@ -57,7 +57,7 @@ function App() {
 
                 </div>
             </BrowserRouter>
-            </CurrentUser>
+           
         </Provider>
     );
 }

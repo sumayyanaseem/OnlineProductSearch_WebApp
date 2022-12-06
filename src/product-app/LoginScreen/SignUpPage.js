@@ -1,8 +1,10 @@
-import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {registerThunk} from "../../services/user-thunks";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { registerThunk } from "../../services/user-thunks";
 import './login.css';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import * as service from '../../services/user-service.js'
+import { updateUser } from "../Reducers/user-reducer";
 
 const Register = () => {
     const [username, setUsername] = useState('')
@@ -12,11 +14,12 @@ const Register = () => {
     const [lastname, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [role, setRole] = useState('')
-    const {currentUser} = useSelector((state) => state.user)
+    const { currentUser } = useSelector((state) => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const handleRegisterBtn = () => {
+    const handleRegisterBtn = (event) => {
+        event.preventDefault();
         console.log("inside handle")
         if (password !== validatePassword) {
             alert("Passwords don't match");
@@ -37,9 +40,16 @@ const Register = () => {
                 email: email,
                 role: role
             }
-            dispatch(registerThunk(newuser))
 
-            navigate('/')
+            service.register(newuser).then((response) => { 
+                console.log("REGISTED USER", response.data) ;
+                dispatch(updateUser({currentUser:response.data}));
+                navigate('/');
+            })
+
+            // dispatch(registerThunk(newuser))
+
+          
         }
     }
     return (
@@ -56,22 +66,22 @@ const Register = () => {
                             <div className="form-group">
                                 <div className="btn-group w-100">
                                     <input type="radio" className="btn-check" name="options"
-                                           id="option1" autoComplete="off"
-                                           onClick={() => setRole("Admin")}/>
+                                        id="option1" autoComplete="off"
+                                        onClick={() => setRole("Admin")} />
                                     <label className="btn btn-secondary"
-                                           htmlFor="option1">ADMIN</label>
+                                        htmlFor="option1">ADMIN</label>
 
                                     <input type="radio" className="btn-check" name="options"
-                                           id="option2" autoComplete="off"
-                                           onClick={() => setRole("User")}/>
+                                        id="option2" autoComplete="off"
+                                        onClick={() => setRole("User")} />
                                     <label className="btn btn-secondary"
-                                           htmlFor="option2">BUYER</label>
+                                        htmlFor="option2">BUYER</label>
 
                                     <input type="radio" className="btn-check" name="options"
-                                           id="option3" autoComplete="off"
-                                           onClick={() => setRole("Seller")}/>
+                                        id="option3" autoComplete="off"
+                                        onClick={() => setRole("Seller")} />
                                     <label className="btn btn-secondary"
-                                           htmlFor="option3">SELLER</label>
+                                        htmlFor="option3">SELLER</label>
                                 </div>
                             </div>
 
@@ -81,28 +91,28 @@ const Register = () => {
                                     className="form-control mb-2"
                                     value={firstname}
                                     placeholder="FirstName"
-                                    onChange={(e) => setFirstName(e.target.value)}/>
+                                    onChange={(e) => setFirstName(e.target.value)} />
                             </div>
                             <div className="form-group">
                                 <input
                                     className="form-control mb-2"
                                     value={lastname}
                                     placeholder="LastName"
-                                    onChange={(e) => setLastName(e.target.value)}/>
+                                    onChange={(e) => setLastName(e.target.value)} />
                             </div>
                             <div className="form-group">
                                 <input
                                     className="form-control mb-2"
                                     value={email}
                                     placeholder="Email"
-                                    onChange={(e) => setEmail(e.target.value)}/>
+                                    onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div className="form-group">
                                 <input
                                     className="form-control mb-2"
                                     value={username}
                                     placeholder="Username" required
-                                    onChange={(e) => setUsername(e.target.value)}/>
+                                    onChange={(e) => setUsername(e.target.value)} />
                             </div>
 
                             <div className="form-group">
@@ -114,7 +124,7 @@ const Register = () => {
                                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                     title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
                                     required
-                                    onChange={(e) => setPassword(e.target.value)}/>
+                                    onChange={(e) => setPassword(e.target.value)} />
                             </div>
 
 
@@ -124,7 +134,7 @@ const Register = () => {
                                     value={validatePassword}
                                     type="password"
                                     placeholder="Retype Password" required
-                                    onChange={(e) => setValidatePassword(e.target.value)}/>
+                                    onChange={(e) => setValidatePassword(e.target.value)} />
                             </div>
 
 

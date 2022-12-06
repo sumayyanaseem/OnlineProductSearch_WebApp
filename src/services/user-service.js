@@ -4,9 +4,8 @@ const BASE_URL = 'http://localhost:4000'
 export const register = async (newuser) => {
     console.log("in user service")
     console.log(newuser)
-    const response = await axios.post(`http://localhost:4000/api/register`, newuser)
-    console.log(newuser)
-    return response.data;
+   const resp =  axios.post(`http://localhost:4000/api/register`, newuser);
+   return resp;
 }
 
 export const login = async (newuser) => {
