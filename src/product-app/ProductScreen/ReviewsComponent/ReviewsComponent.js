@@ -1,5 +1,5 @@
 import React from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {deleteReviewThunk} from "../../../services/reviews-thunks";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../index.css';
@@ -7,6 +7,7 @@ import '../index.css';
 const Review = ({review}) =>
 {
 
+    const {currentUser} = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const deleteReviewHandler = (id) => {
         dispatch(deleteReviewThunk(id));
@@ -21,6 +22,7 @@ const Review = ({review}) =>
                 <p><span className="fw-bolder wd-reviews-font"><b>{review.userFirstName} {review.userLastName}</b></span>
                     <span className="text-secondary wd-lightgrey">  {review.date}</span>
                     {
+                        review.user_id === currentUser._id &&
                         <i className="fa fa-x float-end wd-lightgrey"
                            onClick={() => deleteReviewHandler(review._id)}></i>
                     }
