@@ -1,10 +1,13 @@
 import React from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {deleteReviewThunk} from "../../../services/reviews-thunks";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../index.css';
 
 const Review = ({review}) =>
 {
 
+    const {currentUser} = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const deleteReviewHandler = (id) => {
         dispatch(deleteReviewThunk(id));
@@ -13,14 +16,17 @@ const Review = ({review}) =>
     return (
         <div className="row ms-1 mt-2">
             <div className="row mt-4">
-                <div className="col-1">
-                    <img src = {review.image} className="rounded-circle" height={50} width={50}/>
+            <div className="col-1">
+                    <img src={review.image??'/assets/default_dp.jpg'} className="rounded-circle" height={50} width={50} />
                 </div>
-                <div className ="col">
-
-                   <p><span className="fw-bolder"><b>{review.userFirstName} {review.userLastName}</b></span><br/>
-                   <span class="text-secondary wd-lightgrey">{review.date}</span></p>
-                </div>
+                <p><span className="fw-bolder wd-reviews-font"><b>{review.userFirstName} {review.userLastName}</b></span>
+                    <span className="text-secondary wd-lightgrey">  {review.date}</span>
+                    {
+                        review.user_id === currentUser._id &&
+                        <i className="fa fa-x float-end wd-lightgrey"
+                           onClick={() => deleteReviewHandler(review._id)}></i>
+                    }
+                <br/></p>
             </div>
             <div className="me-3"><b>Rating: </b>{review.rating}</div>
             <div className="mb-3 me-3">{review.comment}</div>

@@ -3,6 +3,7 @@ import {findProductsThunkById} from "../../../services/product-screen-thunk";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {findReviewsThunkByProductId} from "../../../services/reviews-thunks";
+import './index.css'
 
 const SuggestionsItemComponent = (item) =>{
     //console.log("SuggestionsItemComponent >> "+item.item)
@@ -18,7 +19,7 @@ const SuggestionsItemComponent = (item) =>{
 
 
 
-            <div className="col-lg-4">
+            <div className="col-lg-4 wd-suggession-item-container">
                 <img className="bd-placeholder-img rounded-circle" width="140" height="140"
                      src={item.item.thumbnail}>
                 </img>

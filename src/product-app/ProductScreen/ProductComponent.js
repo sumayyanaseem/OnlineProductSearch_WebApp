@@ -8,6 +8,7 @@ import DescriptionComponent2 from "./Description/DescriptionComponent2";
 import DetailsComponent from "./Details/Details";
 import SuggestionsComponent from "./SuggestionsComponent/SuggestionsComponent";
 import ReviewList from "./ReviewsComponent/ReviewList.js"
+import './index.css'
 
 const templateProperty = {
     "host": "Space",
@@ -70,15 +71,6 @@ const ProductComponent = () => {
                         </div>
                         <div className="wd-card-info  col-3 d-none d-xl-block d-xxl-block">
                             <DetailsComponent product={prod}/>
-                            <div className="d-none d-xl-block d-xxl-block">
-                                {
-                                    <button type="button"
-                                        className="rounded-pill btn btn-secondary float-end mt-2 fw-bold"
-                                        onClick={propertyClickHandler}>
-                                        Buy
-                                    </button>
-                                }
-                            </div>
                         </div>
 
 
@@ -86,7 +78,7 @@ const ProductComponent = () => {
                     <div>
                         <DescriptionComponent2 product={prod}/>
                     </div>
-                    <div>
+                    <div className="wd-product-component_suggestion-container">
                         <SuggestionsComponent product={prod}/>
                     </div>
 

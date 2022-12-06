@@ -42,25 +42,25 @@ const store = configureStore(
 function App() {
     return (
         <Provider store={store}>
-            <CurrentUser>
-                <BrowserRouter>
-                    <div className="container">
 
-                        <Routes>
-                            <Route path="/" element={<HomeScreen />} />
-                            <Route path="/product/:pid" element={<ProductComponent />} />
-                            <Route path="/account" element={<ProfileScreen />} />
-                            <Route path="/manage-requests" element={<ManageRequestScreen />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/register" element={<Register />} />
-                            <Route path="/product/add" element={<AddProduct />} />
+            <BrowserRouter>
+                <div className="container">
 
-                        </Routes >
+                    <Routes>
+                        <Route path="/" element={<HomeScreen />} />
+                        <Route path="/product/:pid" element={<ProductComponent />} />
+                        <Route path="/account" element={<ProfileScreen />} />
+                        <Route path="/manage-requests" element={<ManageRequestScreen />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/product/add" element={<AddProduct />} />
 
-                    </div >
-                </BrowserRouter >
-            </CurrentUser >
-        </Provider >
+                    </Routes >
+
+                </div>
+            </BrowserRouter>
+
+        </Provider>
     );
 }
 

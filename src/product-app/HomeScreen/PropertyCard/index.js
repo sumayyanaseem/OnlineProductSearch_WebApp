@@ -37,6 +37,8 @@ function PropertyCard({ property }) {
                         <Rating
                             name="simple-controlled"
                             value={property.rating}
+                            readOnly
+                            precision={0.5}
                             onChange={(event, newValue) => {
                                 // TODO persist rating update
                                 console.log("newValue", newValue)
