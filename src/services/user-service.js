@@ -8,6 +8,12 @@ export const register = async (newuser) => {
    return resp;
 }
 
+
+export const getDetailsByUserName = async (userName) => {
+    const resp =  axios.get("http://localhost:4000/api/user/"+ userName);
+    return resp;
+}
+
 export const login = async (user) => {
     const response =  axios.post(`http://localhost:4000/api/login`, user)
     return response;

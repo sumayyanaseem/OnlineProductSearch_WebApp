@@ -11,12 +11,13 @@ import { useDispatch } from 'react-redux';
 import { findProductsThunk } from '../../services/home-page-thunks';
 import { findCategoriesThunk } from '../../services/categories.thunks';
 import SelectComponent from '../../components/SelectComponent';
-
+import SendIcon from '@mui/icons-material/Send';
+import Button from '@mui/material/Button';
 
 function HomeScreen() {
     const { products, loading } = useSelector((state) => state.products);
     const { categories, loading: categoriesLoading } = useSelector((state) => state.categories);
-    const {currentUser} = useSelector((state) => state.user);
+    const { currentUser } = useSelector((state) => state.user);
 
 
 
@@ -76,7 +77,19 @@ function HomeScreen() {
                     <div className="wd-mt-40">
                         <div className="row wd-mb-80 wd-home-gallery wd-products-container">
                             {
-                                products.filter(p => p.title?.includes(filter) || filter === '').length === 0 ? <h3>sorry no properties found :(</h3> :
+                                products.filter(p => p.title?.includes(filter) || filter === '').length === 0 ?
+
+                                    <>
+                                        <h3>You dont have any products. Please go to accounts to add products</h3>
+                                        <Button className='wd-home-page-add-products-btn' variant="contained" endIcon={<SendIcon />}>
+                                            Add products
+                                        </Button>
+                                    </>
+
+
+
+
+                                    :
                                     products.filter(
                                         p => p.title?.includes(filter) || filter === '')
                                         .map(property => <PropertyCard key={property.id} property={property} />)
