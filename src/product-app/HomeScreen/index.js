@@ -18,11 +18,11 @@ function HomeScreen() {
     const { categories, loading: categoriesLoading } = useSelector((state) => state.categories);
     const {currentUser} = useSelector((state) => state.user);
 
-    const profile = useSelector((state) => state.user);
+
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(findProductsThunk({ userID: profile.id, categoryName: "" }))
+        dispatch(findProductsThunk({ userID: currentUser._id, categoryName: "" }))
         dispatch(findCategoriesThunk())
     }, [])
 
@@ -34,7 +34,7 @@ function HomeScreen() {
         const selectedCategory = event.target.value;
         setCategory(selectedCategory);
         if (selectedCategory) {
-            dispatch(findProductsThunk({ userID: profile.id, categoryName: selectedCategory }))
+            dispatch(findProductsThunk({ userID: currentUser._id, categoryName: selectedCategory }))
         }
     }
 

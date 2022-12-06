@@ -49,7 +49,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomeScreen />} />
                         <Route path="/product/:pid" element={<ProductComponent />} />
-                        <Route path="/account" element={<ProfileScreen />} />
+                        <Route path="/account/*" element={<ProfileScreen />} />
                         <Route path="/manage-requests" element={<ManageRequestScreen />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />

@@ -51,3 +51,30 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.wd-pending-legend{
+    background: darkorange;
+    border-radius: 5px;
+    padding: 4px;
+    font-weight: bold;
+    color: black;
+    margin-left: 5px;
+}
+
+.wd-approved-legend{
+    background: darkgreen;
+    border-radius: 5px;
+    padding: 4px;
+    font-weight: bold;
+    color: white;
+    margin-left: 5px;
+}
+
+.wd-rejected-legend{
+    background: red;
+    border-radius: 5px;
+    padding: 4px;
+    font-weight: bold;
+    color: white;
+    margin-left: 5px;
+}
