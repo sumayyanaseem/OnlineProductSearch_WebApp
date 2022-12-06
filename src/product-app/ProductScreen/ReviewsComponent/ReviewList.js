@@ -28,8 +28,7 @@ const ReviewList = ({review}) => {
              userFirstName: currentUser.firstName,
              userLastName: currentUser.lastName,
              rating: getRating,
-             date: today.toLocaleDateString(),
-            getReview: ''
+             date: today.toLocaleDateString()
         }
 
         dispatch(createReviewThunk(newReview));
@@ -60,7 +59,8 @@ const ReviewList = ({review}) => {
                         </div>
                     }
                     {
-                        currentUser.role === 'user' &&
+
+                        currentUser.role === 'User' &&
                         <div className="col-2">
                             <Rating
                                 name="simple-controlled"
