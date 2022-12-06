@@ -20,27 +20,7 @@ const userSlice = createSlice({
         },
     },
     extraReducers: {
-
-        [loginThunk.fulfilled]: (state, action) => {
-            console.log("in login fulfilled")
-            console.log(action.payload)
-            console.log("after login fulfilled")
-            if (Array.isArray(action.payload)) {
-                console.log("array in react")
-            }
-            else {
-                console.log("not array in react")
-            }
-            state.currentUser = action.payload
-            state.loading = false
-        },
-        [loginThunk.rejected]: (state, action) => {
-            console.log("in login rejected")
-            state.error = action.payload
-            state.currentUser = null
-            state.loading = true
-            console.log("after login rejected")
-        },
+        
         [registerThunk.fulfilled]: (state, action) => {
             console.log("in fulfilled")
             console.log(action.payload)
