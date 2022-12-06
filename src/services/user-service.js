@@ -8,10 +8,9 @@ export const register = async (newuser) => {
    return resp;
 }
 
-export const login = async (newuser) => {
-    const response = await axios.post(`http://localhost:4000/api/login`, newuser)
-    console.log(response.data);
-    return response.data;
+export const login = async (user) => {
+    const response =  axios.post(`http://localhost:4000/api/login`, user)
+    return response;
 }
 
 export const profile = async () => {

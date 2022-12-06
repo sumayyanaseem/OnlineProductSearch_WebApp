@@ -1,83 +1,129 @@
-import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {loginThunk} from "../../services/user-thunks";
-import {Link} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginThunk } from "../../services/user-thunks";
+import { Link } from "react-router-dom";
+import { Grid, Paper, TextField } from '@mui/material';
 import './login.css'
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import NavbarComponent from "../NavbarComponent";
+import * as loginService from '../../services/user-service.js'
+import { updateUser } from "../Reducers/user-reducer";
 
 const Login = () => {
     const [userName, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
-    const {currentUser} = useSelector((state) => state.user)
+    const { currentUser } = useSelector((state) => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const handleLoginBtn = () => {
-        setError(null)
-        //const loginUser = {userName, password}
+    const [loginError, setLoginError] = useState(false);
 
-        const newuser = {
-            userName: userName,
-            password: password,
-        }
-        dispatch(loginThunk(newuser))
+    const [loginInput, setLoginInput] = useState({})
 
-        navigate('/')
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        loginService.login(loginInput).then((response) => {
+            setLoginError(false);
+            console.log("REGISTED USER", response.data);
+            dispatch(updateUser({ currentUser: response.data }));
+
+            navigate('/');
+        }).catch((e) => {
+            setLoginError(true)
+        })
 
     }
 
+    const handleInput = (event) => {
+        const name = event.target.name;
+        const newValue = event.target.value;
+        console.log(name, newValue)
+        setLoginInput(
+            {
+                ...loginInput,
+                [name]: newValue
+            }
+        );
+    }
+
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-md-8 offset-md-2">
 
-                    <div className="form-container">
-                        <div className="form-icon"><i className="fa fa-user"></i></div>
-                        <h3 className="title">Login</h3>
-                        <form className="form-horizontal">
+        <div>
+            <NavbarComponent></NavbarComponent>
+            <div className="wd-login-container-wrapper">
+                <div className='wd-login-container'>
+                    <div className='wd-add-product-header'> LOGIN</div>
 
-                            {
-                                error &&
-                                <div className="alert alert-danger">
-                                    {error}
-                                </div>
-                            }
-                            <div className="form-group">
-                                <input
-                                    className="form-control mb-2"
-                                    value={userName}
-                                    placeholder="Username"
-                                    onChange={(e) => setUsername(e.target.value)}/>
-                            </div>
-                            <div className="form-group">
-                                <input
-                                    className="form-control mb-2"
-                                    value={password}
-                                    placeholder="Password"
-                                    type="password"
-                                    onChange={(e) => setPassword(e.target.value)}/>
-                            </div>
+                    <form onSubmit={handleSubmit}>
+                        <Paper style={{ padding: 12 }}>
+                            <Grid container alignItems="center" direction="column" spacing={3}>
+                                <Grid item xs={6} className='wd-login-item'>
+                                    {!loginError &&
+                                        <TextField
+                                            fullWidth
+                                            required
+                                            name="userName"
+                                            type="text"
+                                            label="Username"
+                                            onChange={handleInput}
+                                        />
+                                    }
 
+                                    {loginError &&
+                                        <TextField
+                                            error
+                                            fullWidth
+                                            required
+                                            name="userName"
+                                            type="text"
+                                            label="Invalid username"
+                                            onChange={handleInput}
+                                            defaultValue={loginInput.userName}
+                                        />
+                                    }
 
-                            <div className="form-group">
-                                <button
-                                    onClick={handleLoginBtn}
-                                    className="btn btn-primary w-100">
-                                    Login
-                                </button>
-                            </div>
-                            {
-                                currentUser &&
-                                <h2>Welcome {currentUser.userName}</h2>
-                            }
+                                </Grid>
+                                <Grid item xs={6} className='wd-login-item'>
+                                    {!loginError &&
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            name="password"
+                                            label="Password"
+                                            type="password"
+                                            onChange={handleInput}
+                                        />
+                                    }
+
+                                    {loginError &&
+                                        <TextField
+                                            error
+                                            fullWidth
+                                            name="password"
+                                            label=" Invalid password"
+                                            type="password"
+                                            onChange={handleInput}
+                                            defaultValue={loginInput.password}
+                                        />
+                                    }
+
+                                </Grid>
+
+                                <Grid item xs={12}>
+                                    <button className='wd-submit-btn'>
+                                        Login
+                                    </button>
+                                </Grid>
+                            </Grid>
                             <div className="text-center">Don't have an account? <Link
-                                to="/register">Register</Link></div>
-
-                        </form>
-                    </div>
+                        to="/register">Register</Link></div>
+                        </Paper>
+                    </form>
+                    
                 </div>
             </div>
-        </div>
+
+        </div >
 
     )
 }
