@@ -19,6 +19,7 @@ import categoriesReducer from './product-app/Reducers/categories.reducer';
 import productRequestsReducer from './product-app/Reducers/product-request-reducer.js'
 import reviewsReducer from "./product-app/Reducers/reviews-reducer";
 import productsByCategoryReducer from "./product-app/Reducers/product-category-reducer";
+import AddProduct from './product-app/AddProduct';
 import CurrentUser from "./product-app/LoginScreen/current-user";
 
 
@@ -41,7 +42,7 @@ const store = configureStore(
 function App() {
     return (
         <Provider store={store}>
-            
+
             <BrowserRouter>
                 <div className="container">
 
@@ -50,14 +51,15 @@ function App() {
                         <Route path="/product/:pid" element={<ProductComponent />} />
                         <Route path="/account" element={<ProfileScreen />} />
                         <Route path="/manage-requests" element={<ManageRequestScreen />} />
-                        <Route path="/login" element={<Login/>} />
-                        <Route path="/register" element={<Register/>} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/product/add" element={<AddProduct />} />
 
-                    </Routes>
+                    </Routes >
 
                 </div>
             </BrowserRouter>
-           
+
         </Provider>
     );
 }

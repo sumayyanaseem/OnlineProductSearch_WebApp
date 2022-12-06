@@ -22,7 +22,6 @@ function HomeScreen() {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        console.log("GETTING IT")
         dispatch(findProductsThunk({ userID: profile.id, categoryName: "" }))
         dispatch(findCategoriesThunk())
     }, [])
@@ -31,15 +30,15 @@ function HomeScreen() {
 
     const [category, setCategory] = useState('')
 
-    const handleCategorySelection = (selectedCategory) => {
+    const handleCategorySelection = (event) => {
+        const selectedCategory = event.target.value;
         setCategory(selectedCategory);
-        console.log(selectedCategory)
         if (selectedCategory) {
             dispatch(findProductsThunk({ userID: profile.id, categoryName: selectedCategory }))
         }
     }
 
-    console.log(loading , products)
+    console.log(loading, products)
 
     return (
         <>
@@ -69,6 +68,7 @@ function HomeScreen() {
                                     handleSelection={handleCategorySelection}
                                     values={categories}
                                     label="Category"
+                                    name="category"
                                 />
                             }
                         </div>
@@ -77,7 +77,7 @@ function HomeScreen() {
                         <div className="row wd-mb-80 wd-home-gallery wd-products-container">
                             {
                                 products.filter(p => p.title?.includes(filter) || filter === '').length === 0 ? <h3>sorry no properties found :(</h3> :
-                                products.filter(
+                                    products.filter(
                                         p => p.title?.includes(filter) || filter === '')
                                         .map(property => <PropertyCard key={property.id} property={property} />)
 

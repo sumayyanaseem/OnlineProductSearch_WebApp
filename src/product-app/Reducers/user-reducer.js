@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import user from './../ProfileScreen/user.json'
+import user from './../ProfileScreen/defaultUser.json'
 import { logoutThunk, loginThunk, registerThunk, profileThunk } from "../../services/user-thunks";
 
 const userSlice = createSlice({
@@ -8,7 +8,7 @@ const userSlice = createSlice({
     initialState: {
         loading: false,
         user: [],
-        currentUser: null,
+        currentUser: user,
         error: null
     },
     reducers: {
