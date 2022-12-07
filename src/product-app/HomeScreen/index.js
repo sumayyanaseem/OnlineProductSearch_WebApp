@@ -11,8 +11,13 @@ import { useDispatch } from 'react-redux';
 import { findProductsThunk } from '../../services/home-page-thunks';
 import { findCategoriesThunk } from '../../services/categories.thunks';
 import SelectComponent from '../../components/SelectComponent';
+
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
+
+import ReactLoading from 'react-loading';
+
+
 
 function HomeScreen() {
     const { products, loading } = useSelector((state) => state.products);
@@ -48,7 +53,18 @@ function HomeScreen() {
                 currentUser && <h3>welcome {currentUser.userName}</h3>
             }
             {
-                categoriesLoading && loading && <h3>loading...</h3>
+                categoriesLoading && loading &&
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        height: '100vh',
+                    }}
+
+                >      <ReactLoading type="balls" color="#0000FF"
+                    height={100} width={50} /></div>
+
             }
 
             {

@@ -1,5 +1,24 @@
-.wd-manage-req-container{
+.wd-manage-req-container {
     text-align: center;
     margin-top: 10%;
     border-radius: 20px;
+}
+
+.wd-manage-req_product-id-cell:hover{
+    cursor: pointer;
+}
+
+
+.wd-manage-req_status {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+.wd-manage-req_approve-btn {
+    margin-bottom: 5px !important;
+}
+
+.wd-manage-req_reject-btn{
+    background-color: #ff4500 !important;
 }
