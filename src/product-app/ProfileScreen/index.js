@@ -1,11 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import './index.css';
 import { useLocation } from 'react-router-dom';
 import * as service from '../../services/user-service.js'
+import * as reviewService from '../../services/reviews-service.js'
 import Button from '@mui/material/Button';
-import NavbarComponent from "../NavbarComponent";
 import UserReview from './UserReviewComponent'
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 
@@ -13,8 +13,6 @@ import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCar
 const ProfileScreen = () => {
 
     const { currentUser } = useSelector((state) => state.user);
-    // const [loading, setLoading] = useState(true);
-    // const [reviewsLoading, setReviewLoading] = useState(true);
     const [reviews, setReviews] = useState([])
     const location = useLocation()
     const name = location.pathname
@@ -31,7 +29,6 @@ const ProfileScreen = () => {
         if (userName !== currentUser.userName) {
             console.log("in if", userName)
             service.getDetailsByUserName(userName).then((response) => {
-                setReviews(response.data)
                 setUserProf(...response.data);
             })
         } else {
@@ -50,12 +47,6 @@ const ProfileScreen = () => {
     }, [userProf, userProf?._id])
 
 
-
-
-
-
-
-
     const handleManageRequest = () => {
         navigate('/manage-requests')
     }
@@ -63,6 +54,7 @@ const ProfileScreen = () => {
     const handleManageProducts = () => {
         navigate('/products/add')
     }
+
 
 
 

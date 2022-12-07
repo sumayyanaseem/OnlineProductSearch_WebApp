@@ -4,12 +4,18 @@ import { deleteReviewThunk } from "../../../services/reviews-thunks";
 import StarIcon from '@mui/icons-material/Star';
 import '../index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link, useNavigate } from "react-router-dom";
 
 const Review = ({ review }) => {
     const { currentUser } = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const deleteReviewHandler = (id) => {
         dispatch(deleteReviewThunk(id));
+    }
+    const navigate = useNavigate()
+
+    const onReviewUserNameClickHandler = () => {
+        navigate(`/account/${review.userName}`)
     }
     return (
         <div className="wd-review-container">
@@ -30,12 +36,20 @@ const Review = ({ review }) => {
 
 
                 <div className="wd-review-bottom-container">
-                    <div className="wd-user-container ">
-                        {review.username} {' | '} {review.date}
+                    <div className="wd-user-container">
+                        <button
+                            className="wd-user-container-btn"
+                            onClick={onReviewUserNameClickHandler}>
+                            {review.userFirstName}
+                            {' '}
+                            {review.userLastName}
+                        </button>
+
+                        {' | '} {review.date}
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 export default Review;

@@ -23,7 +23,7 @@ const AddReviewComponent = () => {
         const newReview = {
             comment: reviewComment,
             product_id: productId,
-            user_id: currentUser._id,
+            userName: currentUser.userName,
             userFirstName: currentUser.firstName,
             userLastName: currentUser.lastName,
             rating: rating || 0,

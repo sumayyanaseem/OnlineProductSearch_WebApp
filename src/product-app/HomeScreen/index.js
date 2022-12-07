@@ -98,7 +98,6 @@ function HomeScreen() {
                             }
                         </div>
                     </div>
-                    <div>FOOTER</div>
                 </div>
             }
 

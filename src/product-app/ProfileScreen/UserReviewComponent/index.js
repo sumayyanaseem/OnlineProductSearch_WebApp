@@ -1,9 +1,5 @@
 import './index.css'
-import Card from '@mui/joy/Card';
-import Chip from '@mui/joy/Chip';
-import Typography from '@mui/joy/Typography';
 import * as React from 'react';
-import AspectRatio from '@mui/joy/AspectRatio';
 import { Rating } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,7 +20,7 @@ const UserReview = (props) => {
         <div className="wd-user-review-container" onClick={handleProductNavigate}>
             <div className="wd-user-review-left-pane">
                 <div>
-                    <img className='wd-user-reivew-img' src = {review.product.thumbnail} />
+                    <img className='wd-user-reivew-img' src={review.product.thumbnail} />
                 </div>
                 <div className='wd-user-review-product-title'>
                     {
@@ -35,16 +31,16 @@ const UserReview = (props) => {
 
             <div className="wd-user-review-right-pane">
                 <div>
-                   <span>Rating :</span>  <Rating
-                            name="simple-controlled"
-                            value={review.rating}
-                            readOnly
-                            precision={0.5}
-                            onChange={(event, newValue) => {
-                                // TODO persist rating update
-                                console.log("newValue", newValue)
-                            }}
-                        />
+                    <span>Rating :</span>  <Rating
+                        name="simple-controlled"
+                        value={review.rating}
+                        readOnly
+                        precision={0.5}
+                        onChange={(event, newValue) => {
+                            // TODO persist rating update
+                            console.log("newValue", newValue)
+                        }}
+                    />
                 </div>
                 <div>
                     Comment : {review.comment}

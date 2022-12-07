@@ -1,4 +1,3 @@
-import axios from "axios";
 import { axiosRequest } from "./utils/axios";
 
 export const register = async (newuser) => {

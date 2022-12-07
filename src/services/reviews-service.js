@@ -12,7 +12,7 @@ export const findReviewsByProductId = async (productId) => {
 }
 
 export const findReviewsByUserId = async (id) => {
-    const response =  axios.get(`${API_BASE}?uid=${id}`);
+    const response = await axiosRequest.get(`${API_BASE}?uid=${id}`);
     return response;
 }
 
@@ -24,7 +24,7 @@ export const deleteReview = async (rid) => {
 }
 
 export const updateReview = async (review) => {
-    const response = await axiosRequest
+    await axiosRequest
         .put(`${API_BASE}/${review._id}`, review);
     return review;
 }

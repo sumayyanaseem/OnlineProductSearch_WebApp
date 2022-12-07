@@ -92,3 +92,11 @@
     width: 100px;
     margin-left: 10px;
 }
+
+.wd-user-container-btn {
+    color: blue;
+    text-decoration: none;
+    background-color: white;
+    border: 0;
+    padding: 0;
+}

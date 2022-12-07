@@ -12,8 +12,9 @@ const ReviewList = ({ review }) => {
                 REVIEWS
             </div>
             {
-                currentUser.role === 'User' &&
-                <AddReviewComponent />}
+                currentUser.role === 'Buyer' &&
+                <AddReviewComponent />
+            }
             {
                 review.map(r => <ReviewsComponent key={r.id} review={r} />)
             }
