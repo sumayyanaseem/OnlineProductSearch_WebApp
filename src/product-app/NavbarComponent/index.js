@@ -22,9 +22,15 @@ function NavbarComponent() {
                 }
                 
                 {
-                    (currentUser.role !== 'Admin' || currentUser.role !== 'Buyer' || currentUser.role !== 'Seller') &&
+                    !(currentUser.role === 'Admin' || currentUser.role === 'Buyer' || currentUser.role === 'Seller') &&
                     <NavLink to="/login" className='nav-link'>Login</NavLink>
                 }
+
+                {
+                    (currentUser.role === 'Admin' || currentUser.role === 'Buyer' || currentUser.role === 'Seller') &&
+                    <NavLink to="/logout" className='nav-link'>Logout`` </NavLink>
+                }
+
                 <NavLink to="/" className='nav-link' activeClassName="nav-link.active">Home</NavLink>
             </div>
         </div >
