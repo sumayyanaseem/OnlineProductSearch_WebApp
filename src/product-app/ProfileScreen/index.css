@@ -16,6 +16,12 @@
     border-radius: 100px;
 }
 
+.wd-user-review-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .wd-back {
     padding: 10px;
 }

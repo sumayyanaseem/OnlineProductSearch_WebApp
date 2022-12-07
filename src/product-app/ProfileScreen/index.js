@@ -1,39 +1,59 @@
-import { useNavigate } from "react-router-dom";
-import React, { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import './index.css';
 import { useLocation } from 'react-router-dom';
 import * as service from '../../services/user-service.js'
 import Button from '@mui/material/Button';
-
+import NavbarComponent from "../NavbarComponent";
+import UserReview from './UserReviewComponent'
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 
 
 const ProfileScreen = () => {
 
     const { currentUser } = useSelector((state) => state.user);
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
+    // const [reviewsLoading, setReviewLoading] = useState(true);
+    const [reviews, setReviews] = useState([])
     const location = useLocation()
     const name = location.pathname
     const navigate = useNavigate()
     const userName = name.split('/')[2] ?? currentUser.userName;
-    const [userProf, setUserProf] = useState({})
+
+    const [userProf, setUserProf] = useState()
+
     const handleEditProfile = () => {
         navigate('/edit-profile')
     }
 
-    if (loading) {
+    useEffect(() => {
         if (userName !== currentUser.userName) {
             console.log("in if", userName)
             service.getDetailsByUserName(userName).then((response) => {
-                setUserProf(response.data);
-                setLoading(false);
+                setReviews(response.data)
+                setUserProf(...response.data);
             })
         } else {
             setUserProf(currentUser)
-            setLoading(false);
         }
-    }
+
+    }, [])
+
+    useEffect(() => {
+        if (userProf?._id) {
+            reviewService.findReviewsByUserId(userProf._id).then((response) => {
+                setReviews(response.data);
+            })
+        }
+
+    }, [userProf, userProf?._id])
+
+
+
+
+
+
 
 
     const handleManageRequest = () => {
@@ -44,24 +64,19 @@ const ProfileScreen = () => {
         navigate('/products/add')
     }
 
-    // if (!(currentUser.role === 'Admin' || currentUser.role === 'Buyer' || currentUser.role === 'Seller')) {
-    //     return (
-    //         alert("PAGE IS RESTRICTED!!")
-    //     )
-
-    // }
 
 
     return (
         <>
             {
-                loading && <h1>LOADING...</h1>
+                !userProf || !reviews && <h1>LOADING...</h1>
             }
             {
-                !loading &&
-                <section className="vh-100" style={{ backgroundColor: '#f4f5f7' }}>
+                // !loading &&
+                userProf && reviews &&
+                <section style={{ backgroundColor: '#f4f5f7' }}>
                     <MDBContainer className="py-5 h-100">
-                        <MDBRow className="justify-content-center  h-100">
+                        <MDBRow className="justify-content-center">
                             <MDBCol lg="6" className="mb-4 mb-lg-0">
                                 <MDBCard className="mb-3" style={{ borderRadius: '.5rem' }}>
                                     <MDBRow className="g-0">
@@ -78,7 +93,6 @@ const ProfileScreen = () => {
                                                 </Button>
 
                                             }
-
 
                                             <MDBIcon far icon="edit mb-5" />
                                         </MDBCol>
@@ -140,11 +154,28 @@ const ProfileScreen = () => {
                                 </MDBCard>
                             </MDBCol>
                         </MDBRow>
+                        {
+                            reviews.length > 0 &&
+                            <div className="wd-user-review-card">
+                                {
+                                    reviews.map(review =>
+                                        <UserReview key={review._id} r={review} />
+                                    )
+
+                                }
+                            </div>
+
+                        }
+
                     </MDBContainer>
+
+
                 </section>
 
 
             }
+
+
 
 
         </>
