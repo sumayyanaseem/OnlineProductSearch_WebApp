@@ -6,8 +6,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {findProductsThunkById} from "../../../services/product-screen-thunk";
 import DefaultImage from '../../../assets/default_image.jpeg'
 import {findReviewsThunkByProductId} from "../../../services/reviews-thunks";
+import { useState } from 'react';
 
 function PropertyCard({ property }) {
+
+
+    const {currentUser} = useSelector((state)=>state.user)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const onPropertyClick = () => {
@@ -46,6 +50,12 @@ function PropertyCard({ property }) {
                         />
                     </div>
                 </div>
+                {
+                    currentUser.role === 'Admin' &&
+                    <div >
+                        <span className={property.status === 'Pending'?'wd-pending-legend':(property.status==='Approved'?'wd-approved-legend':'wd-rejected-legend')}> status : {property.status}</span>
+                    </div>
+                }
                 <div className='wd-brand'>
                     <span>{property.brand}</span>
                     {' '}    |   {' '}

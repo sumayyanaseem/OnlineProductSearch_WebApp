@@ -1,9 +1,10 @@
 {
-    "id":"124",
+    "_id":"00000000001",
     "firstName": "Anonymous",
     "lastName": "Venkatesan",
     "handle": "@jayvenkat",
-    "profImg":"room.jpg",
     "dateOfBirth": "09/11/1998",
-    "role":"Anonymous"
+    "role":"Anonymous",
+    "userName":"ANO",
+    "email":"ANO@ANO.com"
 }

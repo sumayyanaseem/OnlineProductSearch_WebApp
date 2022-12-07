@@ -21,6 +21,7 @@ import reviewsReducer from "./product-app/Reducers/reviews-reducer";
 import productsByCategoryReducer from "./product-app/Reducers/product-category-reducer";
 import AddProduct from './product-app/AddProduct';
 import CurrentUser from "./product-app/LoginScreen/current-user";
+import EditProfileComponent from './product-app/EditProfile';
 
 
 const store = configureStore(
@@ -47,9 +48,11 @@ function App() {
                 <div className="container">
 
                     <Routes>
+
                         <Route path="/" element={<HomeScreen />} />
+                        <Route path="/edit-profile" element={<EditProfileComponent />} />
                         <Route path="/product/:pid" element={<ProductComponent />} />
-                        <Route path="/account" element={<ProfileScreen />} />
+                        <Route path="/account/*" element={<ProfileScreen />} />
                         <Route path="/manage-requests" element={<ManageRequestScreen />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />

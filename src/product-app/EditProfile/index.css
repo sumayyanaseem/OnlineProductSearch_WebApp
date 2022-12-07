@@ -1,0 +1,12 @@
+.wd-edit-profile-width-100{
+    width: 100% !important;
+}
+
+.wd-edit-profile-container{
+    background-color: #F5F5F5;
+    /* margin: 18rem; */
+    margin-top: 5rem;
+    margin-left: 18rem;
+    margin-right: 18rem;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%)
+}

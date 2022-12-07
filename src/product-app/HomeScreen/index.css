@@ -2,8 +2,12 @@
     .wd-container { max-width: 100%; }
 }
 
+.wd-home-page-add-products-btn{
+    width: 20% !important;
+}
+
 .wd-home-gallery{
-    justify-content: space-evenly;
+    justify-content: flex-start;
 }
 
 .wd-search-comp {

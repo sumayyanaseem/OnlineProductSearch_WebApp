@@ -2,10 +2,23 @@ import axios from "axios";
 const BASE_URL = 'http://localhost:4000'
 
 export const register = async (newuser) => {
-    console.log("in user service")
-    console.log(newuser)
+   console.log("in user service")
+   console.log(newuser)
    const resp =  axios.post(`http://localhost:4000/api/register`, newuser);
    return resp;
+}
+
+
+export const updateUser = async (updatedUser) => {
+    console.log(updatedUser)
+    const resp =  axios.put(`http://localhost:4000/api/user/update/${updatedUser._id}`, updatedUser);
+    return resp;
+}
+
+
+export const getDetailsByUserName = async (userName) => {
+    const resp =  axios.get("http://localhost:4000/api/user/"+ userName);
+    return resp;
 }
 
 export const login = async (user) => {

@@ -6,7 +6,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     transition: 0.3s;
-    margin-right: 20px;
+    margin-right: 5%;
     padding: 0px !important;
     width: 25%;
     background-color: white;
@@ -50,4 +50,31 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.wd-pending-legend{
+    background: darkorange;
+    border-radius: 5px;
+    padding: 4px;
+    font-weight: bold;
+    color: black;
+    margin-left: 5px;
+}
+
+.wd-approved-legend{
+    background: darkgreen;
+    border-radius: 5px;
+    padding: 4px;
+    font-weight: bold;
+    color: white;
+    margin-left: 5px;
+}
+
+.wd-rejected-legend{
+    background: red;
+    border-radius: 5px;
+    padding: 4px;
+    font-weight: bold;
+    color: white;
+    margin-left: 5px;
 }
