@@ -8,6 +8,10 @@ import { useLocation } from 'react-router-dom';
 import * as service from '../../services/user-service.js'
 import * as reviewService from '../../services/reviews-service.js'
 import Button from '@mui/material/Button';
+import NavbarComponent from "../NavbarComponent";
+
+import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
+
 
 const ProfileScreen = () => {
 
@@ -46,6 +50,15 @@ const ProfileScreen = () => {
     }
 
 
+    const handleManageRequest = () => {
+        navigate('/manage-requests')
+    }
+
+    const handleManageProducts = () => {
+        navigate('/products/add')
+    }
+
+
     return (
         <>
             {
@@ -53,78 +66,90 @@ const ProfileScreen = () => {
             }
             {
                 !loading &&
+                <section className="vh-100" style={{ backgroundColor: '#f4f5f7' }}>
+                    <NavbarComponent></NavbarComponent>
+                    <MDBContainer className="py-5 h-100">
+                        <MDBRow className="justify-content-center  h-100">
+                            <MDBCol lg="6" className="mb-4 mb-lg-0">
+                                <MDBCard className="mb-3" style={{ borderRadius: '.5rem' }}>
+                                    <MDBRow className="g-0">
+                                        <MDBCol md="4" className="gradient-custom text-center text-white"
+                                            style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem' }}>
+                                            <MDBCardImage src={userProf.profileImg??'/assets/default_dp.jpg'}
+                                                alt="Avatar" className="my-5 wd-profile-img" style={{ width: '100px' }} fluid />
+                                            <MDBTypography className="wd-profile-name2" tag="h5">{userProf.firstName} {userProf.lastName}</MDBTypography>
+                                            
+                                            {
+                                                currentUser.userName === userProf.userName  &&
+                                                <Button className='wd-profile-edit-profile-btn' onClick={handleEditProfile} variant="outlined" size="medium">
+                                                Edit profile
+                                            </Button>
 
-                <>
-                    <div className='wd-profile-container'>
-                        <div className='wd-profile-header'>
-                            {/* TODO whats the use of back */}
-                            <i className="fa-solid fa-arrow-left-long wd-back"></i>
-                            <div>
-                                <div className='wd-profile-name'>
-                                    {userProf.firstName} {userProf.lastName}
-                                </div>
-                            </div>
-                        </div>
-                        <div className='wd-picture-container'>
-                            <div>
-                                <div className='wd-banner-picture'>
-                                    <img src={`/assets/banner.jpeg`} alt="Banner" height="200px" width="100%" />
-                                </div>
-                                <div className='wd-profile-picture'>
-                                    <img src={`${userProf.profImg ?? '/assets/default_dp.jpg'}`} alt="Profile" height="150px" width="150px" />
-                                </div>
+                                            }
+                                            
+                                           
+                                            <MDBIcon far icon="edit mb-5" />
+                                        </MDBCol>
+                                        <MDBCol md="8">
+                                            <MDBCardBody className="p-4">
+                                                <MDBTypography tag="h6">Information</MDBTypography>
+                                                <hr className="mt-0 mb-4" />
+                                                <MDBRow className="pt-1">
+                                                    <MDBCol size="6" className="mb-3">
+                                                        <MDBTypography tag="h6">Email</MDBTypography>
+                                                        <MDBCardText className="text-muted">{userProf.email}</MDBCardText>
+                                                    </MDBCol>
+                                                    <MDBCol size="6" className="mb-3">
+                                                        <MDBTypography tag="h6">Username</MDBTypography>
+                                                        <MDBCardText className="text-muted">{userProf.userName}</MDBCardText>
+                                                    </MDBCol>
+                                                    <MDBCol size="6" className="mb-3">
+                                                        <MDBTypography tag="h6">Date of birth</MDBTypography>
+                                                        <MDBCardText className="text-muted">{userProf.dateOfBirth}</MDBCardText>
+                                                    </MDBCol>
+                                                </MDBRow>
 
-                            </div>
+                                                {
 
-                            {currentUser.userName === userProf.userName &&
+                                                    userProf.role === 'Admin' &&
+
+                                                    <>
+                                                        <MDBTypography tag="h6">Action</MDBTypography>
+                                                        <hr className="mt-0 mb-4" />
+                                                        <MDBRow className="pt-1">
+                                                            <Button className='wd-profile-edit-profile-btn' onClick={handleManageRequest} variant="outlined" size="medium">
+                                                                Manage request
+                                                            </Button>
+                                                        </MDBRow>
+                                                    </>
+
+                                                }
+
+                                                {
+
+                                                    userProf.role === 'Seller' &&
+
+                                                    <>
+                                                        <MDBTypography tag="h6">Action</MDBTypography>
+                                                        <hr className="mt-0 mb-4" />
+                                                        <MDBRow className="pt-1">
+                                                            <Button className='wd-profile-edit-profile-btn' onClick={handleManageProducts} variant="outlined" size="medium">
+                                                               Manage Products
+                                                            </Button>
+                                                        </MDBRow>
+                                                    </>
+
+                                                }
 
 
-                                <div className='wd-edit-profile-btn-container'>
-                                    {
-                                        userProf.role === 'Seller' && <Link className='wd-edit-profile-btn' to={`/product/add`}>
-                                            Add Product
-                                        </Link>
-                                    }
-                                    {
-                                        userProf.role === 'Admin' && <Link className='wd-edit-profile-btn' to="/manage-requests">
-                                            Manage Requests
-                                        </Link>
-                                    }
-
-                                </div>
-                            }
-
-                        </div>
-                        <div className='wd-profile-handle'>
-                            <Button className='wd-profile-edit-profile-btn' onClick={handleEditProfile} variant="outlined" size="medium">
-                                Edit profile
-                            </Button>
-                        </div>
-                        <div className='wd-profile-name'>
-                            {userProf.firstName} {userProf.lastName}
-                        </div>
-                        <div className='wd-profile-handle'>
-                            {userProf.userName}
-                        </div>
-
-
-                        <div className='wd-profile-bio'>
-                            {userProf.bio}
-                        </div>
-                        <div className='wd-profile-additional-icons-container'>
-                            <div className='wd-profile-additional-info-container'>
-                                <div className='wd-profile-icon'>
-                                    <i className="bi bi-balloon"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div >
-
-                    <div>
-                        <h1>REVIEWS</h1>
-                    </div>
-                </>
+                                            </MDBCardBody>
+                                        </MDBCol>
+                                    </MDBRow>
+                                </MDBCard>
+                            </MDBCol>
+                        </MDBRow>
+                    </MDBContainer>
+                </section>
 
 
             }

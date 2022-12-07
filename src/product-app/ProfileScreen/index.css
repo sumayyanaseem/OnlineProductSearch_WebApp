@@ -3,6 +3,8 @@
     flex-direction: column;
     border: 2px solid lightgray;
     padding: 20px;
+    margin: 8rem;
+    border-radius: 50px;
 }
 
 .wd-profile-header {
@@ -10,12 +12,15 @@
     align-items: center;
 }
 
+.wd-profile-image{
+    border-radius: 100px;
+}
+
 .wd-back {
     padding: 10px;
 }
 
 .wd-profile-edit-profile-btn{
-    width: 160px;
     color: black;
     border-color: black;
 }
@@ -30,6 +35,10 @@
     padding: 2px 10px 2px 10px;
 }
 
+.wd-profile-name2{
+    color: black;
+}
+
 .wd-profile-tweet-count {
     color: rgb(89, 101, 114);
     padding: 2px 10px 2px 10px;
@@ -42,7 +51,7 @@
 .wd-profile-picture {
     position: absolute;
     top: 200px;
-    margin-left: 15px;
+    margin-left: 400px;
 }
 
 .wd-edit-profile-btn-container {
