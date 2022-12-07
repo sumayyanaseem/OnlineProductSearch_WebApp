@@ -58,6 +58,13 @@ const ProfileScreen = () => {
         navigate('/products/add')
     }
 
+    if(!(currentUser.role === 'Admin'||currentUser.role === 'Buyer'||currentUser.role === 'Seller')){
+        return(
+           alert("PAGE IS RESTRICTED!!")
+        )
+
+    }
+
 
     return (
         <>
@@ -74,19 +81,19 @@ const ProfileScreen = () => {
                                     <MDBRow className="g-0">
                                         <MDBCol md="4" className="gradient-custom text-center text-white"
                                             style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem' }}>
-                                            <MDBCardImage src={userProf.profileImg??'/assets/default_dp.jpg'}
+                                            <MDBCardImage src={userProf.profileImg ?? '/assets/default_dp.jpg'}
                                                 alt="Avatar" className="my-5 wd-profile-img" style={{ width: '100px' }} fluid />
                                             <MDBTypography className="wd-profile-name2" tag="h5">{userProf.firstName} {userProf.lastName}</MDBTypography>
-                                            
+
                                             {
-                                                currentUser.userName === userProf.userName  &&
+                                                currentUser.userName === userProf.userName &&
                                                 <Button className='wd-profile-edit-profile-btn' onClick={handleEditProfile} variant="outlined" size="medium">
-                                                Edit profile
-                                            </Button>
+                                                    Edit profile
+                                                </Button>
 
                                             }
-                                            
-                                           
+
+
                                             <MDBIcon far icon="edit mb-5" />
                                         </MDBCol>
                                         <MDBCol md="8">
@@ -133,7 +140,7 @@ const ProfileScreen = () => {
                                                         <hr className="mt-0 mb-4" />
                                                         <MDBRow className="pt-1">
                                                             <Button className='wd-profile-edit-profile-btn' onClick={handleManageProducts} variant="outlined" size="medium">
-                                                               Manage Products
+                                                                Manage Products
                                                             </Button>
                                                         </MDBRow>
                                                     </>
