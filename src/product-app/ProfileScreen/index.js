@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import './index.css';
@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import * as service from '../../services/user-service.js'
 import * as reviewService from '../../services/reviews-service.js'
+import Button from '@mui/material/Button';
 
 const ProfileScreen = () => {
 
@@ -18,10 +19,16 @@ const ProfileScreen = () => {
     const location = useLocation()
     const name = location.pathname
 
+    const navigate = useNavigate()
+
 
     const userName = name.split('/')[2] ?? currentUser.userName;
 
     const [userProf, setUserProf] = useState({})
+
+    const handleEditProfile = () => {
+        navigate('/edit-profile')
+    }
 
 
 
@@ -66,6 +73,7 @@ const ProfileScreen = () => {
                                 <div className='wd-profile-picture'>
                                     <img src={`${userProf.profImg ?? '/assets/default_dp.jpg'}`} alt="Profile" height="150px" width="150px" />
                                 </div>
+
                             </div>
 
                             {currentUser.userName === userProf.userName &&
@@ -73,8 +81,8 @@ const ProfileScreen = () => {
 
                                 <div className='wd-edit-profile-btn-container'>
                                     {
-                                        userProf.role === 'owner' && <Link className='wd-edit-profile-btn' to={`/add-property`}>
-                                            Add Property
+                                        userProf.role === 'Seller' && <Link className='wd-edit-profile-btn' to={`/product/add`}>
+                                            Add Product
                                         </Link>
                                     }
                                     {
@@ -82,12 +90,15 @@ const ProfileScreen = () => {
                                             Manage Requests
                                         </Link>
                                     }
-                                    <Link className='wd-edit-profile-btn' to={`/product/add`}>
-                                        Add Product
-                                    </Link>
+
                                 </div>
                             }
 
+                        </div>
+                        <div className='wd-profile-handle'>
+                            <Button className='wd-profile-edit-profile-btn' onClick={handleEditProfile} variant="outlined" size="medium">
+                                Edit profile
+                            </Button>
                         </div>
                         <div className='wd-profile-name'>
                             {userProf.firstName} {userProf.lastName}
@@ -95,6 +106,8 @@ const ProfileScreen = () => {
                         <div className='wd-profile-handle'>
                             {userProf.userName}
                         </div>
+
+
                         <div className='wd-profile-bio'>
                             {userProf.bio}
                         </div>
