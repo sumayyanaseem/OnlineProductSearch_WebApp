@@ -63,7 +63,6 @@ function AddProduct() {
 
     return (
         <div>
-            <NavbarComponent></NavbarComponent>
             <div className='wd-add-product-container'>
                 <div className='wd-add-product-header'> Create Product</div>
 

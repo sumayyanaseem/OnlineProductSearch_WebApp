@@ -124,7 +124,6 @@ function ManageRequestScreen() {
             {
                 !loading &&
                 <>
-                    <NavbarComponent />
 
                     <div className="wd-manage-req-container">
                         <div style={{ width: '100%' }}>

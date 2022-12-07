@@ -22,6 +22,7 @@ import productsByCategoryReducer from "./product-app/Reducers/product-category-r
 import AddProduct from './product-app/AddProduct';
 import CurrentUser from "./product-app/LoginScreen/current-user";
 import EditProfileComponent from './product-app/EditProfile';
+import NavbarComponent from './product-app/NavbarComponent';
 
 
 const store = configureStore(
@@ -43,10 +44,10 @@ const store = configureStore(
 function App() {
     return (
         <Provider store={store}>
-
-            <BrowserRouter>
+          
+            <BrowserRouter>        
+                <NavbarComponent></NavbarComponent>
                 <div className="container">
-
                     <Routes>
 
                         <Route path="/" element={<HomeScreen />} />
