@@ -48,7 +48,15 @@ const EditProfileComponent = () => {
         
     }
 
+    if(!(currentUser.role === 'Admin'||currentUser.role === 'Buyer'||currentUser.role === 'Seller')){
+        return(
+           alert("PAGE IS RESTRICTED!!")
+        )
+
+    }
+
     return(
+        
         <div>
             <div className='wd-edit-profile-container'>
                 <div className='wd-add-product-header'>Edit Profile</div>
