@@ -26,20 +26,21 @@ const ProfileScreen = () => {
     }
 
     useEffect(() => {
-        if (userName !== currentUser.userName) {
+        if (userName && userName !== currentUser.userName) {
             console.log("in if", userName)
             service.getDetailsByUserName(userName).then((response) => {
-                setUserProf(...response.data);
+                setUserProf(response.data);
             })
         } else {
             setUserProf(currentUser)
         }
 
-    }, [])
+    }, [userName])
 
     useEffect(() => {
         if (userProf?._id) {
             reviewService.findReviewsByUserId(userProf._id).then((response) => {
+
                 setReviews(response.data);
             })
         }
