@@ -1,0 +1,45 @@
+.wd-user-review-container{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+    background-color: white;
+    padding: 2%;
+    border-radius: 10px;
+    width: 45%;
+
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.wd-user-review-container:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+
+.wd-user-review-left-pane{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.wd-user-reivew-img{
+    vertical-align: middle;
+    height: 100px;
+    width: 130px;
+    border-radius: 20px;
+}
+
+.wd-user-review-right-pane{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.wd-user-review-product-title{
+font-weight: bold;
+margin-top: 5px;
+margin-left: 34px;
+}

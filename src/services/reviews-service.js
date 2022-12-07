@@ -10,6 +10,13 @@ export const findReviewsByProductId = async (productId) => {
     const reviews = response.data;
     return reviews;
 }
+
+export const findReviewsByUserId = async (id) => {
+    const response =  axios.get(`${API_BASE}?uid=${id}`);
+    return response;
+}
+
+
 export const deleteReview = async (rid) => {
     const response = await axios
         .delete(`${API_BASE}/${rid}`)
