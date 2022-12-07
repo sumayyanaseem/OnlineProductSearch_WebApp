@@ -2,21 +2,13 @@ import './index.css'
 import { useNavigate } from "react-router-dom";
 import { Rating } from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
-import {useDispatch, useSelector} from "react-redux";
-import {findProductsThunkById} from "../../../services/product-screen-thunk";
 import DefaultImage from '../../../assets/default_image.jpeg'
-import {findReviewsThunkByProductId} from "../../../services/reviews-thunks";
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 function PropertyCard({ property }) {
-
-
-    const {currentUser} = useSelector((state)=>state.user)
-    const dispatch = useDispatch();
+    const { currentUser } = useSelector((state) => state.user)
     const navigate = useNavigate();
     const onPropertyClick = () => {
-        dispatch(findProductsThunkById(property.id))
-        dispatch(findReviewsThunkByProductId(property.id))
         navigate(`/product/${property.id}`)
     }
     return (
@@ -53,7 +45,7 @@ function PropertyCard({ property }) {
                 {
                     currentUser.role === 'Admin' &&
                     <div >
-                        <span className={property.status === 'Pending'?'wd-pending-legend':(property.status==='Approved'?'wd-approved-legend':'wd-rejected-legend')}> status : {property.status}</span>
+                        <span className={property.status === 'Pending' ? 'wd-pending-legend' : (property.status === 'Approved' ? 'wd-approved-legend' : 'wd-rejected-legend')}> status : {property.status}</span>
                     </div>
                 }
                 <div className='wd-brand'>

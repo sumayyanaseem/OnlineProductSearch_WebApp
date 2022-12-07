@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import user from './../ProfileScreen/defaultUser.json'
-import { logoutThunk, loginThunk, registerThunk, profileThunk } from "../../services/user-thunks";
+import defaultUser from './../ProfileScreen/defaultUser.json'
+import { logoutThunk, registerThunk, profileThunk, getUserThunk } from "../../services/user-thunks";
 
 const userSlice = createSlice({
     name: 'user',
     initialState: {
         loading: false,
         user: [],
-        currentUser: user,
+        currentUser: defaultUser,
         error: null
     },
     reducers: {
@@ -20,7 +20,7 @@ const userSlice = createSlice({
         },
     },
     extraReducers: {
-        
+
         [registerThunk.fulfilled]: (state, action) => {
             console.log("in fulfilled")
             console.log(action.payload)
@@ -43,7 +43,8 @@ const userSlice = createSlice({
 
 
         [logoutThunk.fulfilled]: (state, action) => {
-            state.currentUser = null
+            state.currentUser = defaultUser
+            localStorage.removeItem('accessToken')
         },
 
         [profileThunk.fulfilled]: (state, action) => {
@@ -55,6 +56,19 @@ const userSlice = createSlice({
         [profileThunk.rejected]: (state, action) => {
             state.error = action.payload
             state.currentUser = null
+        },
+
+        [getUserThunk.pending]: (state, action) => {
+            state.loading = true;
+        },
+        [getUserThunk.fulfilled]: (state, action) => {
+            state.currentUser = action.payload
+            state.loading = false;
+        },
+        [getUserThunk.rejected]: (state, action) => {
+            state.error = action.payload
+            state.loading = false;
+            state.currentUser = defaultUser
         },
 
 

@@ -1,9 +1,7 @@
 
 import PropertyCard from './PropertyCard';
 import './index.css'
-import './bootstrap.min.css'
 import { useEffect } from 'react';
-import NavbarComponent from '../NavbarComponent';
 import SearchComponent from '../../components/SearchComponent';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -17,14 +15,10 @@ import Button from '@mui/material/Button';
 
 import ReactLoading from 'react-loading';
 
-
-
 function HomeScreen() {
     const { products, loading } = useSelector((state) => state.products);
     const { categories, loading: categoriesLoading } = useSelector((state) => state.categories);
     const { currentUser } = useSelector((state) => state.user);
-
-
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -44,14 +38,8 @@ function HomeScreen() {
         }
     }
 
-    console.log(loading, products)
-
     return (
         <>
-
-            {
-                currentUser && <h3>welcome {currentUser.userName}</h3>
-            }
             {
                 categoriesLoading && loading &&
                 <div
@@ -93,7 +81,7 @@ function HomeScreen() {
                                 products.filter(p => p.title?.includes(filter) || filter === '').length === 0 ?
 
                                     <>
-                                        <h3>You dont have any products. Please go to accounts to add products</h3>
+                                        <h3>You don't have any products. Please go to accounts to add products</h3>
                                         <Button className='wd-home-page-add-products-btn' variant="contained" endIcon={<SendIcon />}>
                                             Add products
                                         </Button>

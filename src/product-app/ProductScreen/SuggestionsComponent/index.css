@@ -1,5 +1,50 @@
-.wd-suggession-item-container{
+.wd-suggestion-item-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: 10px;
+    border-radius: 8px;
+    width: 24%;
+     cursor: pointer;
+    border: 1px solid #dfdcdc;
+}
+
+.wd-suggestion-main-container {
+    padding-top: 20px;
+    display: flex;
+}
+
+.wd-suggestion-item-title {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 10px 0 10px;
+}
+.wd-suggestion-item-description{
+    font-weight: 300;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+   padding: 10px 10px 0 10px;
+    color: rgb(112, 111, 111);
+}
+
+.wd-suggestion-item-price{
+  font-weight: bold;
+  padding: 10px;
+}
+
+.wd-suggestion-item-price-container{
+    display: flex;
+    align-items: center;
+}
+
+.wd-suggestion-item-discount{
+    font-weight: 200;
+    color: blue;
+}
+
+.wd-suggestion-header{
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 10px 0 10px;
 }

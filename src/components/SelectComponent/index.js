@@ -18,7 +18,7 @@ const SelectComponent = ({ selectedValue, handleSelection, values, label, name }
                 >
                     {
                         values.map((value) =>
-                            <MenuItem value={value}>{value}</MenuItem>
+                            <MenuItem value={value} key={value}>{value}</MenuItem>
                         )
                     }
                 </Select>

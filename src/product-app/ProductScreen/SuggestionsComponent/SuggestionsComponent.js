@@ -1,43 +1,34 @@
-import React, {useEffect} from "react";
-import {findProductsByCategory} from "../../../services/product-screen-thunk";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect } from "react";
+import { findProductsByCategory } from "../../../services/product-screen-thunk";
+import { useDispatch, useSelector } from "react-redux";
 import SuggestionsItemComponent from "./SuggestionsItemComponent";
-import {useNavigate} from "react-router-dom";
+import './index.css'
+import { Skeleton } from "@mui/material";
 
-
-const SuggestionsComponent=({product}) => {
+const SuggestionsComponent = ({ product }) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-
     const category = product.category;
-    //console.log("Inside SuggestionsComponent")
-    //console.log(category);
-    //console.log(product.id)
-    //console.log("subarray "+subArray[0].id);
-    const {productsByCategory, productsByCategoryLoading} = useSelector((state) => state.productsByCategory);
-    useEffect(()  => {
+    const { productsByCategory, productsByCategoryLoading } = useSelector((state) => state.productsByCategory);
+
+    useEffect(() => {
         dispatch(findProductsByCategory(category))
-    }, [])
-    //console.log("productsByCategory >> "+productsByCategory)
-    //console.log("productsByCategoryLoading >> "+productsByCategoryLoading)
+    }, [category, dispatch])
+
     return (
         <>
             {
-                productsByCategoryLoading && <h3>loading...</h3>
+                productsByCategoryLoading ? <Skeleton animation="wave" width={"100%"} height={600} />
+                    : <>
+                        <div className="wd-suggestion-header">SIMILAR PRODUCTS</div>
+                        <div className="wd-suggestion-main-container">
+                            {productsByCategory.filter((p) => p.id !== product.id).splice(0, 4).map(prod =>
+                                <SuggestionsItemComponent
+                                    key={prod.id} item={prod} />)
+                            }
+                        </div>
+                    </>
             }
-
-            {
-
-                !productsByCategoryLoading &&
-
-                <div className="row">
-                    {productsByCategory.map(prod =>
-                                   <SuggestionsItemComponent
-                                       key={prod.id} item={prod}/>)
-                    }
-                </div>
-            }
-            </>
+        </>
     );
 };
 

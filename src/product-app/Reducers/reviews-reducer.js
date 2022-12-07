@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {createReviewThunk, findReviewsThunkByProductId, deleteReviewThunk, updateReviewThunk}
+import { createReviewThunk, findReviewsThunkByProductId, deleteReviewThunk, updateReviewThunk }
     from "../../services/reviews-thunks";
 
-    const initialState = {
-        reviews: [],
-        reviewsLoading: false
-    }
+const initialState = {
+    reviews: [],
+    reviewsLoading: false
+}
 
 const reviewsSlice = createSlice({
     name: 'reviews',
@@ -19,25 +19,26 @@ const reviewsSlice = createSlice({
             },
         [findReviewsThunkByProductId.fulfilled]:
             (state, { payload }) => {
-            console.log("reducer in fulfilled")
+                console.log("reducer in fulfilled")
                 state.reviewsLoading = false
                 state.reviews = payload
             },
         [findReviewsThunkByProductId.rejected]:
             (state) => {
-            console.log("reducer in rejected")
+                console.log("reducer in rejected")
                 state.reviewsLoading = false
             },
         [createReviewThunk.fulfilled]:
             (state, { payload }) => {
                 state.reviewsLoading = false
-                state.reviews.push(payload)
+                state.reviews = [payload, ...state.reviews]
+                console.log(state.reviews)
             },
-        [deleteReviewThunk.fulfilled] :
+        [deleteReviewThunk.fulfilled]:
             (state, { payload }) => {
                 state.reviewsLoading = false
                 state.reviews = state.reviews
-                    .filter(r => r._id !== payload)
+                    .filter(r => r.id !== payload)
             },
         [updateReviewThunk.fulfilled]:
             (state, { payload }) => {
@@ -53,6 +54,6 @@ const reviewsSlice = createSlice({
     }
 });
 
-export const {createReview, deleteReview} = reviewsSlice.actions;
+export const { createReview, deleteReview } = reviewsSlice.actions;
 
 export default reviewsSlice.reducer;

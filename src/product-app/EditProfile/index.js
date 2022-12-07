@@ -16,7 +16,7 @@ const EditProfileComponent = () => {
 
     const [dob, setDob] = useState();
 
-    const {currentUser} = useSelector((state)=>state.user)
+    const { currentUser } = useSelector((state) => state.user)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -38,25 +38,18 @@ const EditProfileComponent = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(dob)
-        let updatedUser = { ...editProfileInput,dateOfBirth:dob }
+        let updatedUser = { ...editProfileInput, dateOfBirth: dob }
         service.updateUser(updatedUser).then((response) => {
             console.log("REGISTED USER", response.data);
             dispatch(updateUser({ currentUser: updatedUser }));
             navigate('/account');
         })
-  
-        
-    }
 
-    if(!(currentUser.role === 'Admin'||currentUser.role === 'Buyer'||currentUser.role === 'Seller')){
-        return(
-           alert("PAGE IS RESTRICTED!!")
-        )
 
     }
 
-    return(
-        
+    return (
+
         <div>
             <div className='wd-edit-profile-container'>
                 <div className='wd-add-product-header'>Edit Profile</div>
@@ -76,7 +69,7 @@ const EditProfileComponent = () => {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                            <TextField
+                                <TextField
                                     fullWidth
                                     required
                                     name="lastName"
@@ -87,7 +80,7 @@ const EditProfileComponent = () => {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                            <TextField
+                                <TextField
                                     fullWidth
                                     required
                                     name="email"
@@ -98,16 +91,16 @@ const EditProfileComponent = () => {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                            <LocalizationProvider fullWidth dateAdapter={AdapterDayjs} >
-                                        <DatePicker
+                                <LocalizationProvider fullWidth dateAdapter={AdapterDayjs} >
+                                    <DatePicker
                                         className='wd-edit-profile-width-100'
                                         fullWidth
-                                            label="Date of birth"
-                                            value={editProfileInput.dateOfBirth}
-                                            onChange={(newValue) => setDob(newValue)}
-                                            renderInput={(params) => <TextField {...params} />}
-                                        />
-                                    </LocalizationProvider>
+                                        label="Date of birth"
+                                        value={editProfileInput.dateOfBirth}
+                                        onChange={(newValue) => setDob(newValue)}
+                                        renderInput={(params) => <TextField {...params} />}
+                                    />
+                                </LocalizationProvider>
                             </Grid>
                             <Grid item xs={12}>
                                 <button className='wd-submit-btn'>

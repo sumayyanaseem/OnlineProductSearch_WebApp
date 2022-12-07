@@ -1,14 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import './index.css';
-// import profile from './user.json';
-import { useParams } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import * as service from '../../services/user-service.js'
-import * as reviewService from '../../services/reviews-service.js'
 import Button from '@mui/material/Button';
-import NavbarComponent from "../NavbarComponent";
 
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 
@@ -17,24 +13,14 @@ const ProfileScreen = () => {
 
     const { currentUser } = useSelector((state) => state.user);
     const [loading, setLoading] = useState(true);
-
-
-    const [reviewsLoading, setReviewLoading] = useState(true);
     const location = useLocation()
     const name = location.pathname
-
     const navigate = useNavigate()
-
-
     const userName = name.split('/')[2] ?? currentUser.userName;
-
     const [userProf, setUserProf] = useState({})
-
     const handleEditProfile = () => {
         navigate('/edit-profile')
     }
-
-
 
     if (loading) {
         if (userName !== currentUser.userName) {
@@ -58,12 +44,12 @@ const ProfileScreen = () => {
         navigate('/products/add')
     }
 
-    if(!(currentUser.role === 'Admin'||currentUser.role === 'Buyer'||currentUser.role === 'Seller')){
-        return(
-           alert("PAGE IS RESTRICTED!!")
-        )
+    // if (!(currentUser.role === 'Admin' || currentUser.role === 'Buyer' || currentUser.role === 'Seller')) {
+    //     return (
+    //         alert("PAGE IS RESTRICTED!!")
+    //     )
 
-    }
+    // }
 
 
     return (
