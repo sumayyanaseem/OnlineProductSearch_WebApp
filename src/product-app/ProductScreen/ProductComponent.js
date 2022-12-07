@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import NavbarComponent from "../NavbarComponent";
-import reviews from "../../assets/Reviews.json";
 import {useSelector} from "react-redux";
 import {useDispatch} from 'react-redux';
 import {useLocation} from "react-router-dom";
@@ -8,6 +7,8 @@ import ImagesComponent from "./ProductsImageComponent/productImageScreen";
 import DescriptionComponent2 from "./Description/DescriptionComponent2";
 import DetailsComponent from "./Details/Details";
 import SuggestionsComponent from "./SuggestionsComponent/SuggestionsComponent";
+import ReviewList from "./ReviewsComponent/ReviewList.js"
+import './index.css'
 
 const templateProperty = {
     "host": "Space",
@@ -30,12 +31,15 @@ const ProductComponent = () => {
     const active = paths[2];
     console.log(active);
     console.log("product");
-    const {products, loading} = useSelector((state) => state.products);
-    console.log(products);
-    console.log(products[active]);
-    const prod =products[active];
-    console.log(loading);
-    const reviewDetails = reviews.filter(r => r.property_id === active);
+   const {productsById, productsByIdLoading} = useSelector((state) => state.productsById);
+   console.log(productsById);
+    const prod =productsById;
+   console.log(productsByIdLoading);
+
+
+    const {reviews, reviewsLoading} = useSelector((state) => state.reviews);
+    console.log("reviews>> " +reviews);
+    console.log("reviewsLoading>> " +reviewsLoading);
     const profile = useSelector((state) => state.user);
 
     const propertyClickHandler = () => {
@@ -50,11 +54,12 @@ const ProductComponent = () => {
 
         <>
             {
-                loading && <h3>loading...</h3>
+                productsByIdLoading && <h3>loading...</h3>
             }
 
             {
-                !loading &&
+
+                !productsByIdLoading &&
 
                 <div className="container-fluid wd-container">
                     <div>
@@ -66,15 +71,6 @@ const ProductComponent = () => {
                         </div>
                         <div className="wd-card-info  col-3 d-none d-xl-block d-xxl-block">
                             <DetailsComponent product={prod}/>
-                            <div className="d-none d-xl-block d-xxl-block">
-                                {
-                                    <button type="button"
-                                        className="rounded-pill btn btn-secondary float-end mt-2 fw-bold"
-                                        onClick={propertyClickHandler}>
-                                        Buy
-                                    </button>
-                                }
-                            </div>
                         </div>
 
 
@@ -82,9 +78,21 @@ const ProductComponent = () => {
                     <div>
                         <DescriptionComponent2 product={prod}/>
                     </div>
-                    <div>
-                        <SuggestionsComponent category={prod}/>
+                    <div className="wd-product-component_suggestion-container">
+                        <SuggestionsComponent product={prod}/>
                     </div>
+
+                    <>
+                        {
+                            reviewsLoading && <h3>loading...</h3>
+                        }
+                        {
+                            !reviewsLoading &&
+                            <div>
+                                <ReviewList review={reviews}/>
+                            </div>
+                        }
+                    </>
                 </div>
             }
             </>

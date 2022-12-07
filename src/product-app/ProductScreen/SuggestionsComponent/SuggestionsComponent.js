@@ -1,39 +1,43 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {findProductsByCategory} from "../../../services/product-screen-thunk";
+import {useDispatch, useSelector} from "react-redux";
+import SuggestionsItemComponent from "./SuggestionsItemComponent";
+import {useNavigate} from "react-router-dom";
 
 
-const SuggestionsComponent=({category}) => {
-    //TODO:fetch products based on category and iterate over it and display max three items per category.
-   console.log(category)
+const SuggestionsComponent=({product}) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const category = product.category;
+    //console.log("Inside SuggestionsComponent")
+    //console.log(category);
+    //console.log(product.id)
+    //console.log("subarray "+subArray[0].id);
+    const {productsByCategory, productsByCategoryLoading} = useSelector((state) => state.productsByCategory);
+    useEffect(()  => {
+        dispatch(findProductsByCategory(category))
+    }, [])
+    //console.log("productsByCategory >> "+productsByCategory)
+    //console.log("productsByCategoryLoading >> "+productsByCategoryLoading)
     return (
-    <div className="row">
-        <div className="col-lg-4">
-            <img className="bd-placeholder-img rounded-circle" width="140" height="140"
-                 src={category.thumbnail}>
-            </img>
+        <>
+            {
+                productsByCategoryLoading && <h3>loading...</h3>
+            }
 
-            <h2 className="fw-normal">{category.title}</h2>
-            <p>{category.description}</p>
-            <p><a className="btn btn-secondary" href="#">View details &raquo;</a></p>
-        </div>
-        <div className="col-lg-4">
-            <img className="bd-placeholder-img rounded-circle" width="140" height="140"
-                 src={category.thumbnail}>
-            </img>
+            {
 
-            <h2 className="fw-normal">{category.title}</h2>
-            <p>{category.description}</p>
-            <p><a className="btn btn-secondary" href="#">View details &raquo;</a></p>
-        </div>
-        <div className="col-lg-4">
-            <img className="bd-placeholder-img rounded-circle" width="140" height="140"
-                 src={category.thumbnail}>
-            </img>
+                !productsByCategoryLoading &&
 
-            <h2 className="fw-normal">{category.title}</h2>
-            <p>{category.description}</p>
-            <p><a className="btn btn-secondary" href="#">View details &raquo;</a></p>
-        </div>
-    </div>
+                <div className="row">
+                    {productsByCategory.map(prod =>
+                                   <SuggestionsItemComponent
+                                       key={prod.id} item={prod}/>)
+                    }
+                </div>
+            }
+            </>
     );
 };
 

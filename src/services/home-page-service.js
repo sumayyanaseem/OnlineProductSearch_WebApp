@@ -15,5 +15,14 @@ export const getAllProducts = async (userID, categoryName) => {
     return properties;
 }
 
+export const createProduct = async (product) => {
+    const response = await axios.post(
+        `${API_BASE}/products`, product,
+        {
+            'Content-Type': 'multipart/form-data'
+        });
+    const properties = response.data;
+    return properties;
+}
 
 

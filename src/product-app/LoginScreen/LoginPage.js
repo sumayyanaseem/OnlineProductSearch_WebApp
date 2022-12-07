@@ -1,147 +1,132 @@
-/*import './login.css';
-import profile from "./../../images/a.png";
-import email from "./../../images/email.jpg";
-import pass from "./../../images/pass.png";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginThunk } from "../../services/user-thunks";
+import { Link } from "react-router-dom";
+import { Grid, Paper, TextField } from '@mui/material';
+import './login.css'
+import { useNavigate } from "react-router-dom";
+import NavbarComponent from "../NavbarComponent";
+import * as loginService from '../../services/user-service.js'
+import { updateUser } from "../Reducers/user-reducer";
 
+const Login = () => {
+    const [userName, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState(null)
+    const { currentUser } = useSelector((state) => state.user)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const [loginError, setLoginError] = useState(false);
 
-function LoginPage() {
-    return (
-        <div className="main">
-            <div className="sub-main">
-                <div>
-
-                    <div className="imgs">
-                        <div className="container-image">
-                            <img src={profile} alt="profile" className="profile"/>
-
-                        </div>
-
-
-                    </div>
-                    <div>
-                        <h1>Login Page</h1>
-                        <div>
-                            <img src={email} alt="email" className="email"/>
-                            <input type="text" placeholder="user name" className="name"/>
-                        </div>
-                        <div className="second-input">
-                            <img src={pass} alt="pass" className="email"/>
-                            <input type="password" placeholder="user name" className="name"/>
-                        </div>
-                        <div className="login-button">
-                            <button>Login</button>
-                        </div>
-
-                        <p className="link">
-                            <a href="#">Forgot password ?</a> Or<a href="#">Sign Up</a>
-                        </p>
-
-
-                    </div>
-
-                </div>
-
-
-            </div>
-        </div>
-    );
-}
-
-export default LoginPage;*/
-
-
-
-
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-
-import "./login.css";
-import {Link} from "react-router-dom";
-
-function LoginPage() {
-    // React States
-    const [errorMessages, setErrorMessages] = useState({});
-    const [isSubmitted, setIsSubmitted] = useState(false);
-
-    // User Login info
-    const database = [
-        {
-            username: "user1",
-            password: "pass1"
-        },
-        {
-            username: "user2",
-            password: "pass2"
-        }
-    ];
-
-    const errors = {
-        uname: "invalid username",
-        pass: "invalid password"
-    };
+    const [loginInput, setLoginInput] = useState({})
 
     const handleSubmit = (event) => {
-        //Prevent page reload
         event.preventDefault();
+        loginService.login(loginInput).then((response) => {
+            setLoginError(false);
+            console.log("REGISTED USER", response.data);
+            dispatch(updateUser({ currentUser: response.data }));
 
-        var { uname, pass } = document.forms[0];
+            navigate('/');
+        }).catch((e) => {
+            setLoginError(true)
+        })
 
-        // Find user login info
-        const userData = database.find((user) => user.username === uname.value);
+    }
 
-        // Compare user info
-        if (userData) {
-            if (userData.password !== pass.value) {
-                // Invalid password
-                setErrorMessages({ name: "pass", message: errors.pass });
-            } else {
-                setIsSubmitted(true);
+    const handleInput = (event) => {
+        const name = event.target.name;
+        const newValue = event.target.value;
+        console.log(name, newValue)
+        setLoginInput(
+            {
+                ...loginInput,
+                [name]: newValue
             }
-        } else {
-            // Username not found
-            setErrorMessages({ name: "uname", message: errors.uname });
-        }
-    };
-
-    // Generate JSX code for error message
-    const renderErrorMessage = (name) =>
-        name === errorMessages.name && (
-                 <div className="error">{errorMessages.message}</div>
-             );
-
-    // JSX code for login form
-    const renderForm = (
-        <div className="form">
-            <form onSubmit={handleSubmit}>
-                <div className="input-container">
-                    <label>Username </label>
-                    <input type="text" name="uname" required />
-                    {renderErrorMessage("uname")}
-                </div>
-                <div className="input-container">
-                    <label>Password </label>
-                    <input type="password" name="pass" required />
-                    {renderErrorMessage("pass")}
-                </div>
-                <div className="button-container">
-                    <input type="submit" />
-                </div>
-                <br/>
-                <div className="signup-link">
-                    <Link to="/signup">Sign Up</Link>
-                </div>
-            </form>
-        </div>
-    );
+        );
+    }
 
     return (
-        <div className="app">
-            <div className="login-form">
-                <div className="title">Sign In</div>
-                {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+
+        <div>
+            <NavbarComponent></NavbarComponent>
+            <div className="wd-login-container-wrapper">
+                <div className='wd-login-container'>
+                    <div className='wd-add-product-header'> LOGIN</div>
+
+                    <form onSubmit={handleSubmit}>
+                        <Paper style={{ padding: 12 }}>
+                            <Grid container alignItems="center" direction="column" spacing={3}>
+                                <Grid item xs={6} className='wd-login-item'>
+                                    {!loginError &&
+                                        <TextField
+                                            fullWidth
+                                            required
+                                            name="userName"
+                                            type="text"
+                                            label="Username"
+                                            onChange={handleInput}
+                                        />
+                                    }
+
+                                    {loginError &&
+                                        <TextField
+                                            error
+                                            fullWidth
+                                            required
+                                            name="userName"
+                                            type="text"
+                                            label="Invalid username"
+                                            onChange={handleInput}
+                                            defaultValue={loginInput.userName}
+                                        />
+                                    }
+
+                                </Grid>
+                                <Grid item xs={6} className='wd-login-item'>
+                                    {!loginError &&
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            name="password"
+                                            label="Password"
+                                            type="password"
+                                            onChange={handleInput}
+                                        />
+                                    }
+
+                                    {loginError &&
+                                        <TextField
+                                            error
+                                            fullWidth
+                                            name="password"
+                                            label=" Invalid password"
+                                            type="password"
+                                            onChange={handleInput}
+                                            defaultValue={loginInput.password}
+                                        />
+                                    }
+
+                                </Grid>
+
+                                <Grid item xs={12}>
+                                    <button className='wd-submit-btn'>
+                                        Login
+                                    </button>
+                                </Grid>
+                            </Grid>
+                            <div className="text-center">Don't have an account? <Link
+                        to="/register">Register</Link></div>
+                        </Paper>
+                    </form>
+                    
+                </div>
             </div>
-        </div>
-    );
+
+        </div >
+
+    )
 }
 
-export default LoginPage;
+export default Login
+

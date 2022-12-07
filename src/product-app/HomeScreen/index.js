@@ -17,11 +17,12 @@ import ReactLoading from 'react-loading';
 function HomeScreen() {
     const { products, loading } = useSelector((state) => state.products);
     const { categories, loading: categoriesLoading } = useSelector((state) => state.categories);
+    const {currentUser} = useSelector((state) => state.user);
+
     const profile = useSelector((state) => state.user);
 
     const dispatch = useDispatch();
     useEffect(() => {
-        console.log("GETTING IT")
         dispatch(findProductsThunk({ userID: profile.id, categoryName: "" }))
         dispatch(findCategoriesThunk())
     }, [])
@@ -30,9 +31,9 @@ function HomeScreen() {
 
     const [category, setCategory] = useState('')
 
-    const handleCategorySelection = (selectedCategory) => {
+    const handleCategorySelection = (event) => {
+        const selectedCategory = event.target.value;
         setCategory(selectedCategory);
-        console.log(selectedCategory)
         if (selectedCategory) {
             dispatch(findProductsThunk({ userID: profile.id, categoryName: selectedCategory }))
         }
@@ -42,6 +43,10 @@ function HomeScreen() {
 
     return (
         <>
+
+            {
+                currentUser && <h3>welcome {currentUser.userName}</h3>
+            }
             {
                 categoriesLoading && loading &&
                 <div
@@ -75,6 +80,7 @@ function HomeScreen() {
                                     handleSelection={handleCategorySelection}
                                     values={categories}
                                     label="Category"
+                                    name="category"
                                 />
                             }
                         </div>
