@@ -70,9 +70,6 @@ function HomeScreen() {
             {
                 !loading &&
                 <div className='container-fluid wd-container '>
-                    <div>
-                        <NavbarComponent />
-                    </div>
                     <div className="wd-search-filter">
                         <div className="wd-search">
                             <SearchComponent placeHolder="Search for Products..." onSearch={(res) => { setFilter(res) }} />

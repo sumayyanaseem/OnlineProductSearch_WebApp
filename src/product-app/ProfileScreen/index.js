@@ -67,7 +67,6 @@ const ProfileScreen = () => {
             {
                 !loading &&
                 <section className="vh-100" style={{ backgroundColor: '#f4f5f7' }}>
-                    <NavbarComponent></NavbarComponent>
                     <MDBContainer className="py-5 h-100">
                         <MDBRow className="justify-content-center  h-100">
                             <MDBCol lg="6" className="mb-4 mb-lg-0">

@@ -50,7 +50,6 @@ const EditProfileComponent = () => {
 
     return(
         <div>
-            <NavbarComponent></NavbarComponent>
             <div className='wd-edit-profile-container'>
                 <div className='wd-add-product-header'>Edit Profile</div>
 

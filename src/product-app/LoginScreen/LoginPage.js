@@ -49,7 +49,6 @@ const Login = () => {
     return (
 
         <div>
-            <NavbarComponent></NavbarComponent>
             <div className="wd-login-container-wrapper">
                 <div className='wd-login-container'>
                     <div className='wd-add-product-header'> LOGIN</div>

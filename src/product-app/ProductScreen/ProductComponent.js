@@ -62,9 +62,6 @@ const ProductComponent = () => {
                 !productsByIdLoading &&
 
                 <div className="container-fluid wd-container">
-                    <div>
-                        <NavbarComponent/>
-                    </div>
                     <div className="row ms-1 mt-3">
                         <div className="col-9">
                             <ImagesComponent product={prod}/>
