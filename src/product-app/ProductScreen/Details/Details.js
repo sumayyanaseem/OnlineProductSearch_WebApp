@@ -2,10 +2,6 @@ import React from "react";
 import { Rating } from "@mui/material";
 
 const DetailsComponent = ({ product }) => {
-
-
-
-    
     return (
         <div className="card-body">
             <h5 className="card-title">
@@ -39,7 +35,7 @@ const DetailsComponent = ({ product }) => {
                 {
                     <button type="button"
                         className="rounded-pill btn btn-secondary float-end mt-2 fw-bold"
-                       >
+                    >
                         Buy
                     </button>
                 }

@@ -10,6 +10,8 @@ import './index.css';
 
 function AddProduct() {
     const { categories, loading: categoriesLoading } = useSelector((state) => state.categories);
+    const { currentUser } = useSelector((state) => state.user)
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -33,6 +35,7 @@ function AddProduct() {
         for (let i = 0; i < productImages.length; i++) {
             formData.append("images", productImages[i])
         }
+        formData.append("username", currentUser.userName)
 
         dispatch(createProductsThunk(formData));
         // TODO navigate to?

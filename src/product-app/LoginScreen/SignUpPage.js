@@ -16,23 +16,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const Register = () => {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [validatePassword, setValidatePassword] = useState('')
-    const [firstname, setFirstName] = useState('')
-    const [lastname, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [role, setRole] = useState("Buyer")
-    const { currentUser } = useSelector((state) => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [loginError, setLoginError] = useState(false);
-
     const [loginInput, setLoginInput] = useState({});
-
     const [dob, setDob] = useState();
-
-
     const handleInput = (event) => {
         const name = event.target.name;
         const newValue = event.target.value;
@@ -54,12 +41,12 @@ const Register = () => {
             delete loginInput.validatePassword;
             console.log(loginInput)
             console.log(dob)
-            let newUser = { ...loginInput, _id: (new Date()).getTime(),dateOfBirth:dob }
-            service.register(newUser).then((response) => {
-                console.log("REGISTED USER", response.data);
-                dispatch(updateUser({ currentUser: response.data }));
-                navigate('/');
-            })
+            let newUser = { ...loginInput, _id: (new Date()).getTime(), dateOfBirth: dob }
+            service.register(newUser).then(
+                (response) => {
+                    navigate('/login');
+                }
+            )
 
         }
 

@@ -1,39 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { findProductsThunkById} from "../../services/product-screen-thunk";
+import { findProductsThunkById } from "../../services/product-screen-thunk";
 
 const initialState = {
-    productsById: [],
-    productsByIdLoading: false
+    productById: null,
+    productByIdLoading: false
 }
 
-const productsByIdSlice = createSlice({
-                                        name: 'productsById',
-                                        initialState,
-                                        extraReducers: {
-                                            [findProductsThunkById.fulfilled]:
-                                                (state,{payload}) => {
-                                                console.log("findProductsThunkById  inside fulfilled");
-                                                    state.productsByIdLoading = false
-                                                    state.productsById=payload
-                                                    console.log(state.productsById)
+const productByIdSlice = createSlice({
+    name: 'productById',
+    initialState,
+    extraReducers: {
+        [findProductsThunkById.fulfilled]:
+            (state, { payload }) => {
+                state.productByIdLoading = false
+                state.productById = payload
+            },
 
-                                                },
+        [findProductsThunkById.rejected]:
 
-                                            [findProductsThunkById.rejected]:
+            (state) => {
+                state.productByIdLoading = false
+            },
+        [findProductsThunkById.pending]:
+            (state) => {
+                state.productByIdLoading = true
+            }
 
-                                                (state) => {
-                                                    console.log(" findProductsThunkById inside rejected");
-                                                    state.productsByIdLoading = false
-                                                },
-                                            [findProductsThunkById.pending]:
-                                                (state) => {
-                                                    console.log(" findProductsThunkById inside pending");
-                                                    state.productsByIdLoading = true
-                                                    state.productsById=[]
-                                                }
+    }
 
-                                        }
+});
 
-                                    });
-
-export default productsByIdSlice.reducer;
+export default productByIdSlice.reducer;

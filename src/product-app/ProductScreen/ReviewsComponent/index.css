@@ -1,0 +1,102 @@
+.wd-review-header {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 0px;
+}
+
+.wd-review-rating-container {
+    background-color: rgb(233, 233, 250);
+    width: fit-content;
+    padding: 0.6rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    height: fit-content;
+}
+
+.wd-review-container {
+    padding-left: 10px;
+    display: flex;
+    margin: 16px 0 16px;
+    width: 100%;
+    border: 1px solid rgb(231, 230, 230);
+    padding: 16px 8px;
+    border-radius: 10px;
+}
+
+.wd-review-comment-container {
+    width: 100%;
+}
+
+.wd-review-comment-user-container {
+    width: 100%;
+}
+
+.wd-user-container {
+    color: gray;
+}
+
+.wd-review-delete {
+    color: blue;
+    background-color: white;
+    border: 0;
+}
+
+.wd-review-bottom-container {
+    display: flex;
+}
+
+.wd-review-list-container {
+    border-top: 1px solid lightgray;
+    margin: 20px 10px 20px 0;
+}
+
+.wd-product-review-button-container {
+    background-color: white;
+    border: 2px solid blue;
+    border-radius: 5px;
+    color: blue;
+}
+
+.wd-add-review-overall-rating {
+    font-weight: bold;
+    display: flex;
+}
+
+.wd-add-review-action-buttons-container {
+    font-weight: bold;
+    display: flex;
+    margin-top: 10px;
+}
+
+.wd-add-review-cancel-action {
+    font-weight: bold;
+    border: 1px solid blue;
+    color: blue;
+    background-color: white;
+    font-weight: bold;
+    border-radius: 24px;
+    height: 50px;
+    width: 100px;
+}
+
+.wd-add-review-submit-action {
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    border: 0;
+    border-radius: 24px;
+    height: 50px;
+    width: 100px;
+    margin-left: 10px;
+}
+
+.wd-user-container-btn {
+    color: blue;
+    text-decoration: none;
+    background-color: white;
+    border: 0;
+    padding: 0;
+}

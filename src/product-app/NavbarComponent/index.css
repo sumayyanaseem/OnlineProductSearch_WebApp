@@ -3,15 +3,22 @@
   background-color: #F5F5F5;
   color: #161617;
   top: 0;
-  width: 100%;
   font-weight: bold;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  box-shadow:  0 0 8px 0 rgba(0, 0, 0, 0.1);
+  align-items: center;
+  box-shadow:  0 0 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .team-logo {
   height: 60px;
+}
+
+.navigation-left-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .top-nav a {
@@ -44,4 +51,25 @@
 .nav-link.active {
   background-color: blue;
   color: #F5F5F5;
+}
+
+.team-logo-container{
+  font-size: 30px;
+  height: 60px;
+  background-color: white;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+}
+
+.team-logo-team-text {
+  font-weight: 240;
+  padding-right: 10px;
+  color: gray;
+}
+
+.team-logo-second-container {
+  font-size: 30px;
+  font-weight: bold;
+  color: blue;
 }

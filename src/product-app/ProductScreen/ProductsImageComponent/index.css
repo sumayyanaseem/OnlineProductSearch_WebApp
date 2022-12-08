@@ -1,0 +1,9 @@
+.image-gallery-slide img {
+    width: auto;
+    height: 500px;
+    background-color: #F5F5F5;
+}
+.image-gallery-thumbnail{
+     /* width: auto; */
+      height: 100px;
+}

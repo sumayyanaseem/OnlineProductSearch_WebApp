@@ -1,19 +1,19 @@
-import Carousel from "react-material-ui-carousel";
-import DefaultImage from '../../../assets/default_image.jpeg'
+import ReactImageGallery from "react-image-gallery";
+import './index.css'
 
 
 const ImagesComponent = ({ product }) => {
-    return (
-        <div>
 
-            <Carousel>
-                {
-                    [product.thumbnail, ...product.images].map((image) =>
-                        <img width="100%" height={600} src={image} alt="property" className="" onError={() => DefaultImage} />
-                    )
-                }
-            </Carousel>
-        </div>
+    const productImages = (product ? [product.thumbnail, ...(product?.images ?? [])] : []).map((image) => ({ original: image, thumbnail: image }))
+    return (
+        <ReactImageGallery
+            items={productImages}
+            showThumbnails={true}
+            showFullscreenButton={false}
+            showPlayButton={false}
+            autoPlay={false}
+            showNav={false}
+        />
     );
 };
 

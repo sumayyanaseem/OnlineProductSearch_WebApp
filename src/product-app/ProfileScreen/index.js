@@ -1,14 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import './index.css';
-// import profile from './user.json';
-import { useParams } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import * as service from '../../services/user-service.js'
 import * as reviewService from '../../services/reviews-service.js'
 import Button from '@mui/material/Button';
-import NavbarComponent from "../NavbarComponent";
 import UserReview from './UserReviewComponent'
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 
@@ -16,15 +13,10 @@ import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCar
 const ProfileScreen = () => {
 
     const { currentUser } = useSelector((state) => state.user);
-    // const [loading, setLoading] = useState(true);
-    // const [reviewsLoading, setReviewLoading] = useState(true);
-    const [reviews,setReviews] = useState([])
+    const [reviews, setReviews] = useState([])
     const location = useLocation()
     const name = location.pathname
-
     const navigate = useNavigate()
-
-
     const userName = name.split('/')[2] ?? currentUser.userName;
 
     const [userProf, setUserProf] = useState()
@@ -33,33 +25,27 @@ const ProfileScreen = () => {
         navigate('/edit-profile')
     }
 
-    useEffect(()=>{
-        if (userName !== currentUser.userName) {
+    useEffect(() => {
+        if (userName && userName !== currentUser.userName) {
             console.log("in if", userName)
             service.getDetailsByUserName(userName).then((response) => {
-                setReviews(response.data)
-                setUserProf(...response.data); 
+                setUserProf(response.data);
             })
         } else {
             setUserProf(currentUser)
         }
 
-    },[])
+    }, [userName])
 
-    useEffect(()=>{
-        if(userProf?._id){
-            reviewService.findReviewsByUserId(userProf._id).then((response)=>{
+    useEffect(() => {
+        if (userProf?._id) {
+            reviewService.findReviewsByUserId(userProf._id).then((response) => {
+
                 setReviews(response.data);
             })
         }
 
-    },[userProf,userProf?._id])
-
-
-
-    
-
-
+    }, [userProf, userProf?._id])
 
 
     const handleManageRequest = () => {
@@ -164,25 +150,25 @@ const ProfileScreen = () => {
                         {
                             reviews.length > 0 &&
                             <div className="wd-user-review-card">
-                            {      
-                                reviews.map(review=>
-                                    <UserReview key={review._id} r={review} />
-                                )
-                               
-                            }
+                                {
+                                    reviews.map(review =>
+                                        <UserReview key={review._id} r={review} />
+                                    )
+
+                                }
                             </div>
-                            
+
                         }
-                       
+
                     </MDBContainer>
 
-                    
+
                 </section>
 
 
             }
 
-            
+
 
 
         </>

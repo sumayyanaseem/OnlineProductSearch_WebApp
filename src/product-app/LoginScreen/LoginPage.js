@@ -1,19 +1,13 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loginThunk } from "../../services/user-thunks";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Grid, Paper, TextField } from '@mui/material';
 import './login.css'
 import { useNavigate } from "react-router-dom";
-import NavbarComponent from "../NavbarComponent";
 import * as loginService from '../../services/user-service.js'
-import { updateUser } from "../Reducers/user-reducer";
+import { getUserThunk } from "../../services/user-thunks";
 
 const Login = () => {
-    const [userName, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState(null)
-    const { currentUser } = useSelector((state) => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [loginError, setLoginError] = useState(false);
@@ -24,9 +18,9 @@ const Login = () => {
         event.preventDefault();
         loginService.login(loginInput).then((response) => {
             setLoginError(false);
-            console.log("REGISTED USER", response.data);
-            dispatch(updateUser({ currentUser: response.data }));
-
+            const { accessToken } = response.data;
+            localStorage.setItem("accessToken", accessToken)
+            dispatch(getUserThunk());
             navigate('/');
         }).catch((e) => {
             setLoginError(true)
@@ -115,10 +109,10 @@ const Login = () => {
                                 </Grid>
                             </Grid>
                             <div className="text-center">Don't have an account? <Link
-                        to="/register">Register</Link></div>
+                                to="/register">Register</Link></div>
                         </Paper>
                     </form>
-                    
+
                 </div>
             </div>
 
