@@ -1,0 +1,23 @@
+.wd-address-contact-details-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.wd-address-address-header {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.wd-address-save-btn {
+    color: white;
+    border: 0;
+    background-color: blue;
+    font-size: 18px;
+    border-radius: 20px;
+    width: 80px;
+    height: 40px;
+}
+
+.wd-address-cancel-btn {
+    cursor: pointer;
+}

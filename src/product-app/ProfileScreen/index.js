@@ -17,7 +17,7 @@ const ProfileScreen = () => {
     const location = useLocation()
     const name = location.pathname
     const navigate = useNavigate()
-    const userName = name.split('/')[2] ?? currentUser.userName;
+    const userName = name.split('/')[2] ?? currentUser?.userName;
 
     const [userProf, setUserProf] = useState()
 
@@ -27,7 +27,6 @@ const ProfileScreen = () => {
 
     useEffect(() => {
         if (userName && userName !== currentUser.userName) {
-            console.log("in if", userName)
             service.getDetailsByUserName(userName).then((response) => {
                 setUserProf(response.data);
             })
@@ -38,14 +37,14 @@ const ProfileScreen = () => {
     }, [userName])
 
     useEffect(() => {
-        if (userProf?._id) {
-            reviewService.findReviewsByUserId(userProf._id).then((response) => {
+        if (userProf?.userName) {
+            reviewService.findReviewsByUserName(userProf.userName).then((response) => {
 
                 setReviews(response.data);
             })
         }
 
-    }, [userProf, userProf?._id])
+    }, [userProf, userProf?.userName])
 
 
     const handleManageRequest = () => {
@@ -55,9 +54,6 @@ const ProfileScreen = () => {
     const handleManageProducts = () => {
         navigate('/products/add')
     }
-
-
-
 
     return (
         <>
@@ -80,7 +76,7 @@ const ProfileScreen = () => {
                                             <MDBTypography className="wd-profile-name2" tag="h5">{userProf.firstName} {userProf.lastName}</MDBTypography>
 
                                             {
-                                                currentUser.userName === userProf.userName &&
+                                                currentUser?.userName === userProf.userName &&
                                                 <Button className='wd-profile-edit-profile-btn' onClick={handleEditProfile} variant="outlined" size="medium">
                                                     Edit profile
                                                 </Button>

@@ -4,7 +4,7 @@ import { deleteReviewThunk } from "../../../services/reviews-thunks";
 import StarIcon from '@mui/icons-material/Star';
 import '../index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const Review = ({ review }) => {
     const { currentUser } = useSelector((state) => state.user);
@@ -26,7 +26,7 @@ const Review = ({ review }) => {
 
             <div className="wd-review-comment-user-container">
                 {
-                    review.user_id === currentUser._id &&
+                    review.userName === currentUser?.userName &&
                     <i className="fa fa-x float-end wd-lightgrey"
                         onClick={() => deleteReviewHandler(review.id)}></i>
                 }

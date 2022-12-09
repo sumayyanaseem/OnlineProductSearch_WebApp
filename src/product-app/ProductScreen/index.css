@@ -79,11 +79,10 @@
 .wd-product-details-buy {
     color: white;
     background-color: blue;
-    border-radius: 20px;
-    width: 125px;
+    width: 200px;
     border: 0;
     font-weight: bold;
-    height: 60px;
+    height: 53px;
     margin: 20px 40px 0;
 }
 
@@ -129,4 +128,8 @@
     margin-left: 5px;
     margin-top: 10px;
     font-weight: bold;
+}
+
+.wd-product-details-buy:disabled{
+    background-color: darkgray;
 }

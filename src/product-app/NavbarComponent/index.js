@@ -1,6 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import './index.css'
-import teamLogo from '../../assets/team-52-logo.png'
 import { useDispatch, useSelector } from 'react-redux';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { IconButton } from '@mui/material';
@@ -10,7 +9,7 @@ function NavbarComponent() {
 
     const { currentUser } = useSelector((state) => state.user);
 
-    const isAnonymous = !(currentUser.role === 'Admin' || currentUser.role === 'Buyer' || currentUser.role === 'Seller')
+    const isAnonymous = !currentUser || !(currentUser.role === 'Admin' || currentUser.role === 'Buyer' || currentUser.role === 'Seller')
 
     const dispatch = useDispatch()
     const navigate = useNavigate()

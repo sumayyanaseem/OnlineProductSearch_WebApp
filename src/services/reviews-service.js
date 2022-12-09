@@ -6,16 +6,15 @@ export const createReview = async (newReview) => {
     return response.data;
 }
 export const findReviewsByProductId = async (productId) => {
-    const response = await axiosRequest.get(`${API_BASE}/${productId}`);
+    const response = await axiosRequest.get(`${API_BASE}`, { params: { pid: productId } });
     const reviews = response.data;
     return reviews;
 }
 
-export const findReviewsByUserId = async (id) => {
-    const response = await axiosRequest.get(`${API_BASE}?uid=${id}`);
+export const findReviewsByUserName = async (userName) => {
+    const response = await axiosRequest.get(`${API_BASE}`, { params: { userName } });
     return response;
 }
-
 
 export const deleteReview = async (rid) => {
     const response = await axiosRequest
