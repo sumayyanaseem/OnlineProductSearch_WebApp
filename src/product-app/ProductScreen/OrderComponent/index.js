@@ -11,7 +11,7 @@ const OrderComponent = ({ productId, quantity, showOrderForm, setShowOrderForm }
  
     const [showAddAddressForm, setShowAddAddressForm] = useState(false)
     const { userAddresses, loading:_ } = useSelector((state) => state.userAddresses);
-    const [selectedUserAddressId, setSelectedUserAddressId] = useState('');
+    const [selectedUserAddressId, setSelectedUserAddressId] = useState();
     const [deliveryInstruction, setDeliveryInstruction] = useState('');
 
     const dispatch = useDispatch();
@@ -77,7 +77,7 @@ const OrderComponent = ({ productId, quantity, showOrderForm, setShowOrderForm }
             </DialogContent>
             <DialogActions className='wd-order-dialog-action'>
                 <button onClick={() => { setShowOrderForm(false) }} className='wd-cancel-order-btn'>Cancel</button>
-                <button onClick={placeOrder} className='wd-place-order-btn'>Place Order</button>
+                <button onClick={placeOrder} className='wd-place-order-btn' disabled={!selectedUserAddressId}>Place Order</button>
             </DialogActions>
         </Dialog>
     )

@@ -32,3 +32,7 @@
 .wd-order-dialog-action {
      box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.1);
 }
+
+.wd-place-order-btn:disabled{
+    background-color: darkgray;
+}
