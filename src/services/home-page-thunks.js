@@ -7,8 +7,7 @@ export const findPropertiesThunk = createAsyncThunk(
 )
 
 export const findProductsThunk = createAsyncThunk(
-    'products/findProducts', async ({ userID, categoryName = null }) => {
-        console.log("categoryName", categoryName)
+    'products/findProducts', async ({ userID = null, categoryName = null }) => {
         return await service.getAllProducts(userID, categoryName)
     }
 )

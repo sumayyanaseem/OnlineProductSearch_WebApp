@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import defaultUser from './../ProfileScreen/defaultUser.json'
 import { logoutThunk, registerThunk, profileThunk, getUserThunk } from "../../services/user-thunks";
 
 const userSlice = createSlice({
@@ -8,7 +7,7 @@ const userSlice = createSlice({
     initialState: {
         loading: false,
         user: [],
-        currentUser: defaultUser,
+        currentUser: null,
         error: null
     },
     reducers: {
@@ -43,7 +42,7 @@ const userSlice = createSlice({
 
 
         [logoutThunk.fulfilled]: (state, action) => {
-            state.currentUser = defaultUser
+            state.currentUser = null
             localStorage.removeItem('accessToken')
         },
 
@@ -68,7 +67,7 @@ const userSlice = createSlice({
         [getUserThunk.rejected]: (state, action) => {
             state.error = action.payload
             state.loading = false;
-            state.currentUser = defaultUser
+            state.currentUser = null
         },
 
 

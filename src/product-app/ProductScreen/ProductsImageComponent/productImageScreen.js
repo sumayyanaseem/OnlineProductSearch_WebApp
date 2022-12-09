@@ -3,7 +3,6 @@ import './index.css'
 
 
 const ImagesComponent = ({ product }) => {
-
     const productImages = (product ? [product.thumbnail, ...(product?.images ?? [])] : []).map((image) => ({ original: image, thumbnail: image }))
     return (
         <ReactImageGallery

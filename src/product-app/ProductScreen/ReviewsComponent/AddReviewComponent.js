@@ -22,7 +22,7 @@ const AddReviewComponent = () => {
         event.preventDefault()
         const newReview = {
             comment: reviewComment,
-            product_id: productId,
+            productId: productId,
             userName: currentUser.userName,
             userFirstName: currentUser.firstName,
             userLastName: currentUser.lastName,

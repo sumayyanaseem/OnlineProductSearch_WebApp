@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import SelectComponent from '../../components/SelectComponent';
 import { findCategoriesThunk } from '../../services/categories.thunks';
 import { createProductsThunk } from '../../services/home-page-thunks';
-import NavbarComponent from '../NavbarComponent';
 import './index.css';
 
 function AddProduct() {

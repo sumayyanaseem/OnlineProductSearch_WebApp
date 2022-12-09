@@ -9,8 +9,14 @@ export const getAllProperties = async (userID) => {
 }
 
 export const getAllProducts = async (userID, categoryName) => {
-    console.log("categoryName", categoryName)
-    const response = await axiosRequest.get(`${API_BASE}/products?user=${userID}&category=${categoryName}`);
+    console.log(categoryName);
+    const response = await axiosRequest.get(
+        `${API_BASE}/products`, {
+            params: {
+                user: userID,
+                category: categoryName
+            }
+    });
     const properties = response.data;
     return properties;
 }

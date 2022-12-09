@@ -11,6 +11,7 @@ import { findReviewsThunkByProductId } from '../../services/reviews-thunks';
 import { FormControl, InputLabel, MenuItem, Select, Skeleton } from '@mui/material';
 import { useState } from 'react';
 import StarIcon from '@mui/icons-material/Star';
+import OrderComponent from './OrderComponent';
 
 const ProductComponent = () => {
     const dispatch = useDispatch();
@@ -20,7 +21,9 @@ const ProductComponent = () => {
 
     const { reviews, reviewsLoading } = useSelector((state) => state.reviews);
 
-    const [quantity, setQuantity] = useState()
+    const [quantity, setQuantity] = useState('')
+    const [showOrderForm, setShowOrderForm] = useState()
+    const { currentUser } = useSelector((state) => state.user);
 
     useEffect(() => {
         const paths = pathname.split('/')
@@ -85,37 +88,45 @@ const ProductComponent = () => {
                                         <div className='wd-product-details-description'>
                                             {product.description}
                                         </div>
-                                        <div className='wd-product-details-qty-and-buy-container'>
-                                            <FormControl style={{ minWidth: 80, marginTop: '20px' }}>
-                                                <InputLabel id="demo-simple-select-label">QTY</InputLabel>
-                                                <Select
-                                                    labelId="demo-simple-select-label"
-                                                    id="demo-simple-select"
-                                                    value={quantity}
-                                                    label="QTY"
-                                                    onChange={handleQuantityChange}
-                                                >
-                                                    {
-                                                        [...Array(product.stock > 5 ? 5 : product.stock)]
-                                                            .map(
-                                                                (_, value) =>
-                                                                    <MenuItem value={value} key={value}>
-                                                                        <span className='wd-product-details-qty-value'>{value}</span></MenuItem>)
-                                                    }
-                                                </Select>
-                                            </FormControl>
-                                            <button className='wd-product-details-buy'>
-                                                ORDER
-                                            </button>
-                                        </div>
-                                        {product.seller && <div className='wd-product-details-seller-container'>
-                                            <div className='wd-product-details-seller-text'>
-                                                Seller :
+                                        {currentUser?.role === "Buyer"
+                                            && <div className='wd-product-details-qty-and-buy-container'>
+                                                <FormControl style={{ minWidth: 80, marginTop: '20px' }}>
+                                                    <InputLabel id="demo-simple-select-label">QTY</InputLabel>
+                                                    <Select
+                                                        labelId="demo-simple-select-label"
+                                                        id="demo-simple-select"
+                                                        value={quantity}
+                                                        label="QTY"
+                                                        onChange={handleQuantityChange}
+                                                    >
+                                                        {
+                                                            [...Array(product.stock > 5 ? 5 : product.stock)]
+                                                                .map(
+                                                                    (_, value) =>
+                                                                        <MenuItem value={value+1} key={value+1}>
+                                                                            <span className='wd-product-details-qty-value'>{value+1}</span></MenuItem>)
+                                                        }
+                                                    </Select>
+                                                </FormControl>
+                                                <button className='wd-product-details-buy' onClick={() => { setShowOrderForm(true) }} disabled={!quantity||quantity<=0}>
+                                                    BUY NOW
+                                                </button>
+                                                <OrderComponent
+                                                    productId={product.id}
+                                                    quantity={quantity}
+                                                    showOrderForm={showOrderForm}
+                                                    setShowOrderForm={setShowOrderForm} />
+                                            </div>}
+                                        {
+                                            product.seller && <div className='wd-product-details-seller-container'>
+                                                <div className='wd-product-details-seller-text'>
+                                                    Seller :
+                                                </div>
+                                                <div className='wd-product-details-seller-name'>
+                                                    {product.seller}
+                                                </div>
                                             </div>
-                                            <div className='wd-product-details-seller-name'>
-                                                {product.seller}
-                                            </div>
-                                        </div>}
+                                        }
                                     </>)}
 
                         </div>
