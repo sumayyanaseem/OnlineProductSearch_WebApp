@@ -12,26 +12,20 @@
     align-items: center;
 }
 
-.wd-profile-image{
+.wd-profile-image {
     border-radius: 100px;
-}
-
-.wd-user-review-card{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 
 .wd-back {
     padding: 10px;
 }
 
-.wd-profile-edit-profile-btn{
-    color: black;
-    border-color: black;
+.wd-profile-edit-profile-btn {
+    color: blue;
+    border-color: blue;
 }
 
-.wd-profile-icon{
+.wd-profile-icon {
     margin-top: 4px;
 }
 
@@ -41,7 +35,7 @@
     padding: 2px 10px 2px 10px;
 }
 
-.wd-profile-name2{
+.wd-profile-name2 {
     color: black;
 }
 
@@ -141,7 +135,7 @@
 .wd-profile-input {
     border: 0px;
     width: 100%;
-    outline:none;
+    outline: none;
 }
 
 .wd-profile-input-label {
@@ -153,4 +147,45 @@
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 30px;
+}
+
+.wd-profile-screen-container {
+    margin: 30px;
+    padding: 30px 20px 20px 30px;
+    background-color: #F5F5F5;
+}
+
+.wd-profile-screen-account-header {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.wd-account-menu-item {
+    color: rgb(66, 66, 66);
+    font-weight: 500;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.wd-account-menu-item-active {
+    color: blue;
+    font-weight: 500;
+    margin: 20px;
+}
+
+.wd-account-menu-container {
+    margin-top: 20px;
+    width: 20%;
+}
+
+.wd-account-menu-item-text {
+    margin-left: 10px;
+}
+
+.wd-account-details-container {
+    display: flex;
+}
+
+.wd-account-details-item-list-container{
+    width: 80%;
 }

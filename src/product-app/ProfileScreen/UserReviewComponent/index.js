@@ -1,58 +1,61 @@
 import './index.css'
-import * as React from 'react';
+import {useEffect,useState} from 'react';
 import { Rating } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import * as reviewService from '../../../services/reviews-service.js'
 
 
-const UserReview = (props) => {
-
-    const review = props.r;
-
-    console.log("HERE HERE", review)
+const UserReview = ({ userName }) => {
     const navigate = useNavigate()
-
-    const handleProductNavigate = () => {
+    const handleProductNavigate = (review) => {
         navigate(`/product/${review.product.id}`)
     }
+    const [reviews, setReviews] = useState([])
+    useEffect(() => {
+        if (userName) {
+            reviewService.findReviewsByUserName(userName).then((response) => {
+
+                setReviews(response.data);
+            })
+        }
+
+    }, [userName])
 
 
     return (
-        <div className="wd-user-review-container" onClick={handleProductNavigate}>
-            <div className="wd-user-review-left-pane">
-                <div>
-                    <img className='wd-user-reivew-img' src={review.product.thumbnail} />
-                </div>
-                <div className='wd-user-review-product-title'>
-                    {
-                        review.product.title
-                    }
-                </div>
-            </div>
+        reviews.length > 0 &&
+        <div className="wd-user-review-card">
+            {
+                reviews.map(review =>
+                    <div className="wd-user-review-container">
+                        <div className='wd-user-review-header'>
+                            <div>
+                                <img className='wd-user-review-img' src={review.product.thumbnail} alt={`${review.product.id}-thumbnail`}  onClick={() => handleProductNavigate(review)}/>
+                            </div>
+                            <div className='wd-user-review-product-title-and-date-container'>
+                                <div className='wd-user-review-product-title' onClick={() => handleProductNavigate(review)}>
+                                    {review.product.title}
+                                </div>
+                                   <div className='wd-user-review-date'>
+                                    {review.date}
+                                </div>
+                            </div>
+                        </div>
 
-            <div className="wd-user-review-right-pane">
-                <div>
-                    <span>Rating :</span>  <Rating
-                        name="simple-controlled"
-                        value={review.rating}
-                        readOnly
-                        precision={0.5}
-                        onChange={(event, newValue) => {
-                            // TODO persist rating update
-                            console.log("newValue", newValue)
-                        }}
-                    />
-                </div>
-                <div>
-                    Comment : {review.comment}
-                </div>
-                <div>
-                    {
-                        review.date
-                    }
-                </div>
-            </div>
+                            <div className='wd-user-review-comment'>
+                               {review.comment}
+                            </div>
+                            <Rating
+                                    name="review-rating"
+                                    value={review.rating}
+                                    readOnly
+                                    precision={0.5}
+                                />
+                    </div>
+                )
+
+            }
         </div>
-
     );
 
 }

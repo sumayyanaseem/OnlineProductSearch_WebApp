@@ -10,3 +10,7 @@ export const getOrders = async () => {
     const response = await axiosRequest.get(`${API_BASE}/orders`);
     return response.data;
 }
+
+export const cancelOrder = async (orderId) => {
+    await axiosRequest.post(`${API_BASE}/orders/cancel`, { orderId });
+}

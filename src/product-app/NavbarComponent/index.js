@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { IconButton } from '@mui/material';
 import { logoutThunk } from '../../services/user-thunks';
+import PersonIcon from '@mui/icons-material/Person';
 
 function NavbarComponent() {
 
@@ -28,8 +29,11 @@ function NavbarComponent() {
                 <NavLink to="/" className='nav-link'>Home</NavLink>
                 {
                     !isAnonymous && (
+                        <>
+                            <NavLink to="/account" className='nav-link'>
 
-                        <NavLink to="/account" className='nav-link'>{currentUser.firstName}</NavLink>
+                                <PersonIcon />{currentUser.firstName}</NavLink>
+                        </>
                     )
                 }
                 {

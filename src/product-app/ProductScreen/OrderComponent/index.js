@@ -1,33 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button, RadioGroup, Radio, FormControlLabel } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, RadioGroup, Radio, FormControlLabel } from '@mui/material';
 import './index.css';
 import AddAddressComponent from './AddAddressComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import AddressComponent from './AddressComponent';
 import { findUserAddressesThunk } from '../../../services/address-thunks';
-import { createOrderThunk } from '../../../services/order-thunks';
+import { formatDate } from '../../../utils/format-date';
+import { createOrder } from '../../../services/order-service';
+import { useNavigate } from 'react-router-dom';
 
-const OrderComponent = ({ productId, quantity, showOrderForm, setShowOrderForm }) => {
+const OrderComponent = ({ productId, productPrice ,quantity, showOrderForm, setShowOrderForm }) => {
  
     const [showAddAddressForm, setShowAddAddressForm] = useState(false)
     const { userAddresses, loading:_ } = useSelector((state) => state.userAddresses);
     const [selectedUserAddressId, setSelectedUserAddressId] = useState();
     const [deliveryInstruction, setDeliveryInstruction] = useState('');
+    const navigate =useNavigate();
 
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findUserAddressesThunk())
     }, [])
 
-       const placeOrder = () => {
+       const placeOrder = async() => {
         const placeOrderRequest={
             productId,
             quantity,
             addressId: selectedUserAddressId,
-            deliveryInstruction
+            deliveryInstruction,
+            price: productPrice * quantity,
+            date: formatDate(new Date())
         }
-        dispatch(createOrderThunk(placeOrderRequest));
-        setShowOrderForm(false)
+        await createOrder(placeOrderRequest);
+        setShowOrderForm(false);
+        navigate('/account#orders')
     }
 
     return (
