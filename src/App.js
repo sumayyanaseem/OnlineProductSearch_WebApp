@@ -9,7 +9,6 @@ import categoriesReducer from './product-app/Reducers/categories.reducer';
 import productRequestsReducer from './product-app/Reducers/product-request-reducer.js'
 import reviewsReducer from "./product-app/Reducers/reviews-reducer";
 import productsByCategoryReducer from "./product-app/Reducers/product-category-reducer";
-import ordersReducer from "./product-app/Reducers/orders-reducer";
 
 import addressReducer from "./product-app/Reducers/address-reducer";
 import ProductApplication from './product-app';
@@ -28,8 +27,7 @@ const store = configureStore(
             productById: productByIdReducer,
             productsByCategory: productsByCategoryReducer,
             reviews: reviewsReducer,
-            userAddresses: addressReducer,
-            orders: ordersReducer
+            userAddresses: addressReducer
         }
     });
 

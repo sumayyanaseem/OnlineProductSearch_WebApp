@@ -113,6 +113,7 @@ const ProductComponent = () => {
                                                 </button>
                                                 <OrderComponent
                                                     productId={product.id}
+                                                    productPrice={product.price}
                                                     quantity={quantity}
                                                     showOrderForm={showOrderForm}
                                                     setShowOrderForm={setShowOrderForm} />
