@@ -20,11 +20,13 @@ const SuggestionsComponent = ({ product }) => {
                 productsByCategoryLoading ? <Skeleton animation="wave" width={"100%"} height={600} />
                     : <>
                         <div className="wd-suggestion-header">SIMILAR PRODUCTS</div>
-                        <div className="wd-suggestion-main-container">
-                            {productsByCategory.filter((p) => p.id !== product.id).splice(0, 4).map(prod =>
-                                <SuggestionsItemComponent
-                                    key={prod.id} item={prod} />)
-                            }
+                        <div className="wd-mt-40">
+                            <div className="row wd-suggestion-main-container">
+                                {productsByCategory.filter((p) => p.id !== product.id).splice(0, 3).map(prod =>
+                                    <SuggestionsItemComponent
+                                        key={prod.id} item={prod} />)
+                                }
+                            </div>
                         </div>
                     </>
             }

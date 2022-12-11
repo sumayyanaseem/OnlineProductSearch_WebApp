@@ -4,7 +4,7 @@ import { deleteReviewThunk } from "../../../services/reviews-thunks";
 import StarIcon from '@mui/icons-material/Star';
 import '../index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Review = ({ review }) => {
     const { currentUser } = useSelector((state) => state.user);
@@ -44,8 +44,7 @@ const Review = ({ review }) => {
                             {' '}
                             {review.userLastName}
                         </button>
-
-                        {' | '} {review.date}
+                        <div>{review.date}</div>
                     </div>
                 </div>
             </div>

@@ -36,6 +36,8 @@
 
 .wd-user-container {
     color: gray;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .wd-review-delete {
@@ -99,4 +101,6 @@
     background-color: white;
     border: 0;
     padding: 0;
+    margin-right: 10px;
+    text-align: left;
 }

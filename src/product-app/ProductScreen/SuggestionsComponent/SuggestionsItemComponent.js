@@ -8,7 +8,7 @@ const SuggestionsItemComponent = ({ item }) => {
         navigate(`/product/${item.id}`)
     }
     return (
-        <div className="wd-suggestion-item-container" onClick={onViewClick}>
+        <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 mb-5 wd-suggestion-item-container" onClick={onViewClick}>
             <img className="bd-placeholder-img" width="100%" height="200"
                 src={item.thumbnail} alt={`${item.title}-thumbnail`}>
             </img>

@@ -46,7 +46,7 @@ function HomeScreen() {
         return () => {
             controller.abort()
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentUser, currentUser?._id, category])
 
     const handleCategorySelection = (event) => {
@@ -123,8 +123,10 @@ function HomeScreen() {
                             <h3>
                                 Products from Other Sellers
                             </h3>
-                            <div className="row wd-mb-80 wd-home-gallery wd-products-container">
-                                {genericProductsForSellers.map((product) => <ProductCard key={product.id} product={product} />)}
+                            <div className="wd-mt-40">
+                                <div className="row wd-mb-80 wd-home-gallery wd-products-container">
+                                    {genericProductsForSellers.map((product) => <ProductCard key={product.id} product={product} />)}
+                                </div>
                             </div>
                         </div>
                     }

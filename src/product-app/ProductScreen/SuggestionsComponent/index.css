@@ -4,14 +4,14 @@
     justify-content: space-between;
     margin: 10px;
     border-radius: 8px;
-    width: 24%;
-     cursor: pointer;
+    cursor: pointer;
     border: 1px solid #dfdcdc;
 }
 
 .wd-suggestion-main-container {
     padding-top: 20px;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .wd-suggestion-item-title {

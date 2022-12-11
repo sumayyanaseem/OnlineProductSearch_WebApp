@@ -165,27 +165,38 @@
     font-weight: 500;
     margin: 20px;
     cursor: pointer;
+    display: flex;
+    height: fit-content;
 }
 
 .wd-account-menu-item-active {
     color: blue;
     font-weight: 500;
     margin: 20px;
+    display: flex;
+    height: fit-content;
 }
 
 .wd-account-menu-container {
     margin-top: 20px;
-    width: 20%;
+    /* width: 20%; */
+    height: fit-content;
 }
 
 .wd-account-menu-item-text {
     margin-left: 10px;
+    width: fit-content;
 }
 
 .wd-account-details-container {
     display: flex;
 }
 
-.wd-account-details-item-list-container{
-    width: 80%;
+.wd-account-details-item-list-container {
+   margin: 1px;
+   padding: 5px;
+}
+
+.wd-account-menu-item-icon {
+    width: fit-content;
 }

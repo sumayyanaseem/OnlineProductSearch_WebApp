@@ -2,8 +2,7 @@
     font-family: 'Open Sans', sans-serif;
     padding: 12px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
 .wd-product-details-review {
@@ -43,6 +42,8 @@
     border-radius: 15px;
     padding: 0.6rem;
     font-size: 24px;
+    display: flex;
+    align-items: center;
 }
 
 .wd-product-details-currency-container {

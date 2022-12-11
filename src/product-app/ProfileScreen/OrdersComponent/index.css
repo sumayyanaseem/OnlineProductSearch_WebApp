@@ -1,12 +1,13 @@
 .wd-order-item-container {
-    background-color: #FFF;
-    margin: 10px;
+    margin: 10px 0;
     width: 100%;
 }
 
 .wd-orders-list-container {
     display: flex;
     flex-wrap: wrap;
+    margin: 1px;
+    padding: 1px;
 }
 
 .wd-order-item-header-container {
@@ -39,6 +40,7 @@
 .wd-order-product-details-container {
     display: flex;
     width: 100%;
+    background-color: #FFF;
 }
 
 .wd-order-product-details {
@@ -85,14 +87,14 @@
     background-color: rgb(234, 234, 234);
     height: max-content;
     padding: 0.8rem;
-    margin: 0.8rem;
+    margin: 0.4rem;
     color: rgb(72, 72, 72);
     text-align: center;
 }
 
 .wd-order-cancel-button {
     background-color: #FFF;
-    margin: 0.8rem;
+    margin: 0.4rem;
 }
 
 .wd-order-product-quantity-cancel-container {
