@@ -30,12 +30,18 @@ const ProfileScreen = () => {
     }, [currentUser, userName])
 
 
-    const menuItems = {
-        "personal-information": {
+    const baseMenuItems = {
+        profile: {
             title: "Profile",
-            id: "personal-information",
+            id: "profile",
             icon: <PersonIcon />,
             component: <PersonalInformationComponent userProf={userProf} />
+        },
+        reviews: {
+            title: "Reviews",
+            id: "reviews",
+            icon: <ReviewsIcon />,
+            component: <UserReview userName={userProf?.userName} />
         },
         orders: {
             title: "Orders",
@@ -43,15 +49,28 @@ const ProfileScreen = () => {
             icon: <ShoppingBasketIcon />,
             component: <OrdersComponent userProf={userProf} />
         },
-        reviews: {
-            title: "Reviews",
-            id: "reviews",
-            icon: <ReviewsIcon />,
-            component: <UserReview userName={userProf?.userName} />
+    }
+
+    const getMenuItems = (userProf) => {
+        switch (userProf?.role) {
+            case "Buyer":
+                if (currentUser?.userName === userProf.userName) {
+                    return baseMenuItems
+                }
+                return { profile: baseMenuItems.profile, reviews: baseMenuItems.reviews };
+            case "Admin":
+            case "Seller":
+            default:
+                return {
+                    profile: baseMenuItems.profile
+                }
         }
     }
 
-    const [selectedMenuItem, setSelectedMenuItem] = useState(location.hash ? location.hash.replace('#', '') : menuItems["personal-information"].id)
+    const menuItems = getMenuItems(userProf);
+
+
+    const [selectedMenuItem, setSelectedMenuItem] = useState(location.hash ? location.hash.replace('#', '') : menuItems["profile"].id)
 
     return (
         <>
