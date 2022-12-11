@@ -8,7 +8,7 @@ export const getAllProperties = async (userID) => {
     return properties;
 }
 
-export const getAllProducts = async (userID, categoryName) => {
+export const getAllProducts = async (userID, categoryName, controllerSignal) => {
     console.log(categoryName);
     console.log("user is",userID)
     const response = await axiosRequest.get(
@@ -16,7 +16,8 @@ export const getAllProducts = async (userID, categoryName) => {
             params: {
                 user: userID,
                 category: categoryName
-            }
+            },
+            signal: controllerSignal
     });
     const properties = response.data;
     return properties;

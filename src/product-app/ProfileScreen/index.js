@@ -22,7 +22,7 @@ const ProfileScreen = () => {
 
     const [userProf, setUserProf] = useState()
     useEffect(() => {
-        if (userName && userName !== currentUser.userName) {
+        if (userName && userName !== currentUser?.userName) {
             service.getDetailsByUserName(userName).then((response) => {
                 setUserProf(response.data);
             })
