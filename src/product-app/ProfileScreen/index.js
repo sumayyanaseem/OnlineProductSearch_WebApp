@@ -60,6 +60,7 @@ const ProfileScreen = () => {
             icon: <ReviewsIcon />
         }
     ]
+
     console.log("location.hash", location.hash)
 
     const [selectedMenuItem, setSelectedMenuItem] = useState(location.hash ? location.hash.replace('#','') : menuItems[0].id)

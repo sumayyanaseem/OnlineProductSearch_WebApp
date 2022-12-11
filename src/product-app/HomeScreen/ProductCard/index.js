@@ -43,7 +43,7 @@ function PropertyCard({ property }) {
                     </div>
                 </div>
                 {
-                    currentUser?.role === 'Admin' &&
+                    (currentUser?.role === 'Admin' || currentUser?.role === 'Seller')  &&
                     <div >
                         <span className={property.status === 'Pending' ? 'wd-pending-legend' : (property.status === 'Approved' ? 'wd-approved-legend' : 'wd-rejected-legend')}> status : {property.status}</span>
                     </div>

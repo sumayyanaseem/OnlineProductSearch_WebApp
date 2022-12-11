@@ -1,5 +1,5 @@
 
-import PropertyCard from './PropertyCard';
+import PropertyCard from './ProductCard';
 import './index.css'
 import { useEffect } from 'react';
 import SearchComponent from '../../components/SearchComponent';
@@ -78,6 +78,9 @@ function HomeScreen() {
                             }
                         </div>
                     </div>
+                    {
+                        currentUser?.role === 'Seller' && <h3>Your Products</h3>
+                    }
                     <div className="wd-mt-40">
                         <div className="row wd-mb-80 wd-home-gallery wd-products-container">
                             {
@@ -89,10 +92,6 @@ function HomeScreen() {
                                             Add products
                                         </Button>
                                     </>
-
-
-
-
                                     :
                                     products.filter(
                                         p => p.title?.includes(filter) || filter === '')

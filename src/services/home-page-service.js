@@ -10,6 +10,7 @@ export const getAllProperties = async (userID) => {
 
 export const getAllProducts = async (userID, categoryName) => {
     console.log(categoryName);
+    console.log("user is",userID)
     const response = await axiosRequest.get(
         `${API_BASE}/products`, {
             params: {
