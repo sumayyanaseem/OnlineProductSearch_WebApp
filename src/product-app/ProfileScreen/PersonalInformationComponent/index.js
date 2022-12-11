@@ -56,15 +56,18 @@ const PersonalInformationComponent = ({ userProf }) => {
                                             <MDBTypography tag="h6">Username</MDBTypography>
                                             <MDBCardText className="text-muted">{userProf.userName}</MDBCardText>
                                         </MDBCol>
-                                        <MDBCol sm="12" md="6" className="mb-3">
-                                            <MDBTypography tag="h6">Date of birth</MDBTypography>
-                                            <MDBCardText className="text-muted">{userProf.dateOfBirth}</MDBCardText>
-                                        </MDBCol>
+                                        {
+                                            userProf.dateOfBirth && userProf.dateOfBirth === currentUser?.dateOfBirth &&
+                                            <MDBCol sm="12" md="6" className="mb-3">
+                                                <MDBTypography tag="h6">Date of birth</MDBTypography>
+                                                <MDBCardText className="text-muted">{userProf.dateOfBirth}</MDBCardText>
+                                            </MDBCol>
+                                        }
                                     </MDBRow>
 
                                     {
 
-                                        userProf.role === 'Admin' &&
+                                        currentUser?.role === 'Admin' &&
 
                                         <>
                                             <MDBTypography tag="h6">Action</MDBTypography>
@@ -80,7 +83,7 @@ const PersonalInformationComponent = ({ userProf }) => {
 
                                     {
 
-                                        userProf.role === 'Seller' &&
+                                        currentUser?.role === 'Seller' &&
 
                                         <>
                                             <MDBTypography tag="h6">Action</MDBTypography>
