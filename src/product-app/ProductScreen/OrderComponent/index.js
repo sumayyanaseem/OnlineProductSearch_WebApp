@@ -50,9 +50,10 @@ const OrderComponent = ({ productId, productPrice ,quantity, showOrderForm, setS
                     }}>
                         {
                             userAddresses.map(
-                                (address) => {
+                                (address, index) => {
                                     return (
                                         <FormControlLabel
+                                           key={`${address.name}-${index}`}
                                            style={{width:'100%'}}
                                             fullWidth
                                             value={address._id}

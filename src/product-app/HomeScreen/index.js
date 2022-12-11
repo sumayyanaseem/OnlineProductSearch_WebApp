@@ -1,5 +1,5 @@
 
-import PropertyCard from './ProductCard';
+import ProductCard from './ProductCard';
 import './index.css'
 import { useEffect } from 'react';
 import SearchComponent from '../../components/SearchComponent';
@@ -8,37 +8,50 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { findProductsThunk } from '../../services/home-page-thunks';
 import { findCategoriesThunk } from '../../services/categories.thunks';
+import * as homePageService from '../../services/home-page-service';
 import SelectComponent from '../../components/SelectComponent';
-
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
-
 import ReactLoading from 'react-loading';
 
 function HomeScreen() {
     const { products, loading } = useSelector((state) => state.products);
     const { categories, loading: categoriesLoading } = useSelector((state) => state.categories);
     const { currentUser } = useSelector((state) => state.user);
-
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(findProductsThunk(currentUser?._id ? { userID: currentUser._id } : {}))
-        dispatch(findCategoriesThunk())
-    }, [])
-
-    const [filter, setFilter] = useState('');
+    const [genericProductsForSellers, setGenericProductsForSellers] = useState([]);
 
     const [category, setCategory] = useState('')
+    const [filter, setFilter] = useState('');
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const controller = new AbortController();
+        const controllerSignal = controller.signal;
+        const productsQuery = { controllerSignal };
+        if (category) {
+            productsQuery.categoryName = category;
+        }
+        if (currentUser?._id) {
+            productsQuery.userID = currentUser?._id;
+        }
+        dispatch(findProductsThunk(productsQuery))
+        dispatch(findCategoriesThunk())
+        if (currentUser?.role === "Seller") {
+            homePageService
+                .getAllProducts(null, category)
+                .then((response) => {
+                    setGenericProductsForSellers(response);
+                });
+        }
+        return () => {
+            controller.abort()
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentUser, currentUser?._id, category])
 
     const handleCategorySelection = (event) => {
         const selectedCategory = event.target.value;
-        const productsQuery = currentUser?._id ? { userID: currentUser._id } : {};
         setCategory(selectedCategory);
-        console.log(selectedCategory)
-        if (selectedCategory) {
-            productsQuery.categoryName = selectedCategory;
-            dispatch(findProductsThunk(productsQuery))
-        }
     }
 
     return (
@@ -86,20 +99,38 @@ function HomeScreen() {
                             {
                                 products.filter(p => p.title?.includes(filter) || filter === '').length === 0 ?
 
-                                    <>
-                                        <h3>You don't have any products. Please go to accounts to add products</h3>
-                                        <Button className='wd-home-page-add-products-btn' variant="contained" endIcon={<SendIcon />}>
-                                            Add products
-                                        </Button>
+                                    <>  {
+                                        currentUser?.role === 'Seller' &&
+                                        <>
+                                            <h3>You don't have any products. Please go to accounts to add products</h3>
+                                            <Button className='wd-home-page-add-products-btn' variant="contained" endIcon={<SendIcon />}>
+                                                Add products
+                                            </Button>
+                                        </>
+                                    }
                                     </>
                                     :
                                     products.filter(
                                         p => p.title?.includes(filter) || filter === '')
-                                        .map(property => <PropertyCard key={property.id} property={property} />)
+                                        .map(product => <ProductCard key={product.id} product={product} />)
 
                             }
                         </div>
                     </div>
+                    {
+                        currentUser?.role === 'Seller' &&
+                        <div>
+                            <h3>
+                                Products from Other Sellers
+                            </h3>
+                            <div className="wd-mt-40">
+                                <div className="row wd-mb-80 wd-home-gallery wd-products-container">
+                                    {genericProductsForSellers.map((product) => <ProductCard key={product.id} product={product} />)}
+                                </div>
+                            </div>
+                        </div>
+                    }
+
                 </div>
             }
 

@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import './index.css'
 import { useDispatch, useSelector } from 'react-redux';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import { IconButton } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { logoutThunk } from '../../services/user-thunks';
 import PersonIcon from '@mui/icons-material/Person';
 
@@ -32,7 +32,9 @@ function NavbarComponent() {
                         <>
                             <NavLink to="/account" className='nav-link'>
 
-                                <PersonIcon />{currentUser.firstName}</NavLink>
+                                <PersonIcon />
+                                <Box sx={{ display: { xs: 'none', md: 'block' } }} > {currentUser.firstName}</Box>
+                                </NavLink>
                         </>
                     )
                 }

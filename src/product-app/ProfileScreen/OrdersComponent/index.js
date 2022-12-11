@@ -25,11 +25,11 @@ const OrdersComponent = () => {
     }
 
     return (
-        <div className='wd-orders-list-container'>
+        <div className='row wd-orders-list-container'>
             {orders.map((order) =>
-                <div className='wd-order-item-container' key={order.id}>
-                    <div className='wd-order-item-header-container'>
-                        <div className='wd-order-placed-container'>
+                <div className='row wd-order-item-container' key={order.id}>
+                    <div className='row wd-order-item-header-container'>
+                        <div className='col-md-4 col-lg-4 col-xxl-4 row wd-order-placed-container'>
                             <div className='wd-order-placed-header'>
                                 ORDER PLACED
                             </div>
@@ -37,7 +37,7 @@ const OrdersComponent = () => {
                                 {order.date}
                             </div>
                         </div>
-                        <div className='wd-order-placed-container'>
+                        <div className='col-md-2 col-lg-2 col-xxl-2 row wd-order-placed-container'>
                             <div className='wd-order-placed-header'>
                                 TOTAL
                             </div>
@@ -45,7 +45,7 @@ const OrdersComponent = () => {
                                 {'$ '}{order.price ?? 0}
                             </div>
                         </div>
-                        <div className='wd-order-placed-container'>
+                        <div className='col-md-4 col-lg-4 col-xxl-4 row wd-order-placed-container'>
                             <div className='wd-order-placed-header'>
                                 SHIP TO
                             </div>
@@ -53,7 +53,7 @@ const OrdersComponent = () => {
                                 {order.userAddress?.name}{', '} {order.userAddress?.address1}  {order.userAddress?.address2},  {order.userAddress?.city} {order.userAddress?.state} {order.userAddress?.country} {'-'}{order.userAddress?.zipCode}
                             </div>
                         </div>
-                          <div className='wd-order-placed-container'>
+                          <div className='col-md-2 col-lg-2 col-xxl-2 row wd-order-placed-container'>
                             <div className='wd-order-placed-header'>
                                 ORDER #
                             </div>
@@ -62,11 +62,11 @@ const OrdersComponent = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='wd-order-product-details-container'>
-                        <div>
+                    <div className='row wd-order-product-details-container'>
+                        <div className='col-lg-4 col-xxl-4 row'>
                             <img className='wd-order-product-thumbnail' src={order.product.thumbnail} alt={`${order.product.id}-thumbnail`} onClick={() => handleProductNavigate(order)} />
                         </div>
-                        <div className='wd-order-product-details'>
+                        <div className='wd-order-product-details col-lg-6 col-xxl-6 row'>
                             <div className='wd-order-product-title' onClick={() => handleProductNavigate(order)}>
                                 {order.product?.title}
                             </div>
@@ -86,7 +86,7 @@ const OrdersComponent = () => {
                             </div>
                         </div>
 
-                        <div className='wd-order-product-quantity-cancel-container'>
+                        <div className='col-lg-2 col-xxl-2 row wd-order-product-quantity-cancel-container'>
                             <div className='wd-order-product-quantity'>
                                 QTY {':'} {order.quantity}
                             </div>

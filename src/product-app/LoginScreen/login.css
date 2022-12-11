@@ -80,8 +80,7 @@
     background-color: #F5F5F5;
     margin: 2rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-    width: 50%;
-
+    min-width: 50%;
 }
 
 .wd-register-item{

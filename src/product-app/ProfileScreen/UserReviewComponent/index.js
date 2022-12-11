@@ -24,10 +24,10 @@ const UserReview = ({ userName }) => {
 
     return (
         reviews.length > 0 &&
-        <div className="wd-user-review-card">
+        <div className="row wd-user-review-card">
             {
                 reviews.map(review =>
-                    <div className="wd-user-review-container">
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-12 wd-user-review-container" key={review._id}>
                         <div className='wd-user-review-header'>
                             <div>
                                 <img className='wd-user-review-img' src={review.product.thumbnail} alt={`${review.product.id}-thumbnail`}  onClick={() => handleProductNavigate(review)}/>

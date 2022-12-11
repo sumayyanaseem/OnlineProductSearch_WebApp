@@ -42,9 +42,8 @@ const ProductComponent = () => {
         <>
             {
                 (<div className="container-fluid wd-product-details-container">
-
                     <div className="row ms-1 mt-3">
-                        <div className="col-9">
+                        <div className="col-12 col-md-12 col-lg-9 col-xl-9">
                             {
                                 (productByIdLoading || !product) ?
                                     <Skeleton animation="wave" width={"100%"} height={600} />
@@ -52,7 +51,7 @@ const ProductComponent = () => {
                             }
 
                         </div>
-                        <div className="wd-product-details-card-info  col-3 d-none d-xl-block d-xxl-block">
+                        <div className="wd-product-details-card-info col-lg-3 col-xl-3">
                             {
                                 (productByIdLoading || !product) ?
                                     (<Skeleton animation="wave" width={"100%"} height={600} />)
@@ -74,7 +73,8 @@ const ProductComponent = () => {
                                         </div>
                                         <div className='wd-product-details-price-discount-container'>
                                             <div className='wd-product-details-price-container'>
-                                                <span className='wd-product-details-currency-container'>$</span>{' '} {product.price}
+                                                <div className='wd-product-details-currency-container'>$</div>
+                                                <div>{product.price}</div> 
                                             </div>
                                             <div className='wd-product-details-discount-container'>
                                                 <div className='wd-product-details-discount-text'>
@@ -121,7 +121,7 @@ const ProductComponent = () => {
                                         {
                                             product.seller && <div className='wd-product-details-seller-container'>
                                                 <div className='wd-product-details-seller-text'>
-                                                    Seller :
+                                                    Seller
                                                 </div>
                                                 <div className='wd-product-details-seller-name'>
                                                     {product.seller}
