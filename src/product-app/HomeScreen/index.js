@@ -97,7 +97,7 @@ function HomeScreen() {
                     <div className="wd-mt-40">
                         <div className="row wd-mb-80 wd-home-gallery wd-products-container">
                             {
-                                products.filter(p => p.title?.includes(filter) || filter === '').length === 0 ?
+                                products.filter(p => p.title.toLowerCase()?.includes(filter.toLowerCase()) || filter === '').length === 0 ?
 
                                     <>  {
                                         currentUser?.role === 'Seller' &&
@@ -111,7 +111,7 @@ function HomeScreen() {
                                     </>
                                     :
                                     products.filter(
-                                        p => p.title?.includes(filter) || filter === '')
+                                        p => p.title?.toLowerCase().includes(filter.toLowerCase()) || filter === '')
                                         .map(product => <ProductCard key={product.id} product={product} />)
 
                             }

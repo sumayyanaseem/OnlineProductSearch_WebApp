@@ -9,6 +9,7 @@ const SearchComponent = (props) => {
     const [filter, setFilter] = useState('');
     const onSearchInputChange = (event) => {
         const input = event.target.value;
+        props.onSearch(input)
         setFilter(input);
     }
 
