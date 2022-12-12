@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SelectComponent from '../../components/SelectComponent';
 import { findCategoriesThunk } from '../../services/categories.thunks';
-import { createProductsThunk } from '../../services/home-page-thunks';
+import * as homePageService from "../../services/home-page-service"
 import './index.css';
 
 function AddProduct() {
@@ -23,7 +23,7 @@ function AddProduct() {
 
     const [productImages, setProductImages] = useState({})
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async(event) => {
         //Prevent page reload
         event.preventDefault();
         const formData = new FormData();
@@ -36,8 +36,7 @@ function AddProduct() {
         }
         formData.append("username", currentUser.userName)
 
-        dispatch(createProductsThunk(formData));
-        // TODO navigate to?
+        await homePageService.createProduct(formData)
         navigate('/')
     }
 
