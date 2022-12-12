@@ -12,7 +12,7 @@ const ReviewList = ({ review }) => {
                 REVIEWS
             </div>
             {
-                currentUser?.role === 'Buyer' &&
+                (currentUser?.role === 'Buyer' || !currentUser) &&
                 <AddReviewComponent />
             }
             {
