@@ -13,6 +13,7 @@ import SelectComponent from '../../components/SelectComponent';
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 import ReactLoading from 'react-loading';
+import { useNavigate } from 'react-router-dom';
 
 function HomeScreen() {
     const { products, loading } = useSelector((state) => state.products);
@@ -23,6 +24,12 @@ function HomeScreen() {
     const [category, setCategory] = useState('')
     const [filter, setFilter] = useState('');
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
+
+    const handleAddProducts = (event) => {
+        navigate('/products/add')
+    }
 
     useEffect(() => {
         const controller = new AbortController();
@@ -103,7 +110,7 @@ function HomeScreen() {
                                         currentUser?.role === 'Seller' &&
                                         <>
                                             <h3>You don't have any products. Please go to accounts to add products</h3>
-                                            <Button className='wd-home-page-add-products-btn' variant="contained" endIcon={<SendIcon />}>
+                                            <Button className='wd-home-page-add-products-btn' variant="contained" endIcon={<SendIcon />} onClick={handleAddProducts}>
                                                 Add products
                                             </Button>
                                         </>
