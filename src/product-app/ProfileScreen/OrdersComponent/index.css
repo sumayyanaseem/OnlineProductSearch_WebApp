@@ -29,6 +29,17 @@
     font-weight: 500;
 }
 
+.wd-order-address-list-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.wd-order-address-btn {
+    margin: 0 !important;
+    padding: 2px !important;
+    
+}
+
 .wd-order-product-thumbnail {
     width: 150px;
     height: 150px;

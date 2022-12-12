@@ -42,6 +42,7 @@ function AddProduct() {
     }
 
     const handleInput = (event) => {
+        console.log("event targer",event.target)
         const name = event.target.name;
         const newValue = event.target.value;
         console.log(name, newValue)
@@ -136,11 +137,12 @@ function AddProduct() {
                             <Grid item xs={6}>
                                 {!categoriesLoading &&
                                     <SelectComponent
-                                        selectedValue={productInput.category}
+                                        selectedValue={productInput.category??[]}
                                         handleSelection={handleInput}
                                         name="category"
                                         values={categories}
                                         label="Category"
+                                        multiple ={true}
                                     />}
                             </Grid>
 

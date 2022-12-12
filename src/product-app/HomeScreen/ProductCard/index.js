@@ -47,7 +47,7 @@ const ProductCard = ({ product }) => {
                 <div className='wd-brand'>
                     <span>{product.brand}</span>
                     {' '}    |   {' '}
-                    <span>{product.category}</span>
+                    <span>{product.categories.join(' | ')}</span>
                 </div>
                 <div className='wd-price-container'>
                     <div className='wd-price'>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, RadioGroup, Radio, FormControlLabel } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, RadioGroup, Radio, FormControlLabel, Checkbox, FormGroup } from '@mui/material';
 import './index.css';
 import AddAddressComponent from './AddAddressComponent';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ const OrderComponent = ({ productId, productPrice ,quantity, showOrderForm, setS
  
     const [showAddAddressForm, setShowAddAddressForm] = useState(false)
     const { userAddresses, loading:_ } = useSelector((state) => state.userAddresses);
-    const [selectedUserAddressId, setSelectedUserAddressId] = useState();
+    const [selectedUserAddressId, setSelectedUserAddressId] = useState([]);
     const [deliveryInstruction, setDeliveryInstruction] = useState('');
     const navigate =useNavigate();
 
@@ -26,7 +26,7 @@ const OrderComponent = ({ productId, productPrice ,quantity, showOrderForm, setS
         const placeOrderRequest={
             productId,
             quantity,
-            addressId: selectedUserAddressId,
+            addressIds: selectedUserAddressId,
             deliveryInstruction,
             price: productPrice * quantity,
             date: formatDate(new Date())
@@ -44,10 +44,7 @@ const OrderComponent = ({ productId, productPrice ,quantity, showOrderForm, setS
             <DialogTitle> Select Delivery Address </DialogTitle>
             <DialogContent>
                 <div>
-                    <RadioGroup value={selectedUserAddressId} onChange={(event) => {
-                        console.log(event.currentTarget)
-                        setSelectedUserAddressId(event.currentTarget.value)
-                    }}>
+                    <FormGroup >
                         {
                             userAddresses.map(
                                 (address, index) => {
@@ -57,7 +54,13 @@ const OrderComponent = ({ productId, productPrice ,quantity, showOrderForm, setS
                                            style={{width:'100%'}}
                                             fullWidth
                                             value={address._id}
-                                            control={<Radio />}
+                                            control={<Checkbox onChange={(event) => {
+                                                console.log(event.currentTarget.checked)
+                                                event.currentTarget.checked === true ? 
+                                                setSelectedUserAddressId([...selectedUserAddressId, event.currentTarget.value]) :
+                                                setSelectedUserAddressId(selectedUserAddressId.filter(addressId => addressId !== event.currentTarget.value))
+                                                
+                                            }}/>}
                                             label={
                                                 <AddressComponent address={address} />
                                             }
@@ -65,7 +68,7 @@ const OrderComponent = ({ productId, productPrice ,quantity, showOrderForm, setS
                                     )
                                 }
                             )}
-                    </RadioGroup>
+                    </FormGroup>
                     <button className='wd-order-new-address-btn' onClick={() => setShowAddAddressForm(true)}>+ Add a new Address</button>
 
                     {showAddAddressForm && <AddAddressComponent setShowAddAddressForm={setShowAddAddressForm} />}

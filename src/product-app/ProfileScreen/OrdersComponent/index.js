@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { cancelOrder } from '../../../services/order-service';
 import { getOrders } from '../../../services/order-service';
 import './index.css';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
 
 const OrdersComponent = () => {
 
@@ -49,9 +51,22 @@ const OrdersComponent = () => {
                             <div className='wd-order-placed-header'>
                                 SHIP TO
                             </div>
-                            <div className='wd-order-placed-date'>
-                                {order.userAddress?.name}{', '} {order.userAddress?.address1}  {order.userAddress?.address2},  {order.userAddress?.city} {order.userAddress?.state} {order.userAddress?.country} {'-'}{order.userAddress?.zipCode}
-                            </div>
+                            {
+                                <div className='wd-order-address-list-container'>
+                                    {
+                                    order.userAddresses?.map(address => 
+                                        <Tooltip arrow title={`${address.name}${', '} ${address.address1}  ${address.address2},  ${address.city} ${address.state} ${address.country} ${'-'}${address.zipCode}`}>
+                                        <Button sx={{ m: 1 }} className="wd-order-address-btn"> 
+                                        {address.name} |
+                                         </Button>
+                                      </Tooltip>
+                                       
+                                    )
+                                    }
+                                </div>
+                            }
+
+                            
                         </div>
                           <div className='col-md-2 col-lg-2 col-xxl-2 row wd-order-placed-container'>
                             <div className='wd-order-placed-header'>

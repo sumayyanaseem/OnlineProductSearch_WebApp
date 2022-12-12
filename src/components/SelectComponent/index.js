@@ -2,7 +2,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
 import React from "react"
 import Box from '@mui/material/Box';
 
-const SelectComponent = ({ selectedValue, handleSelection, values, label, name }) => {
+const SelectComponent = ({ selectedValue, handleSelection, values, label, name,multiple=false }) => {
     return (
         <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
@@ -15,6 +15,8 @@ const SelectComponent = ({ selectedValue, handleSelection, values, label, name }
                     value={selectedValue}
                     label={label}
                     onChange={handleSelection}
+                    multiple={multiple}
+                    
                 >
                     {
                         values.map((value) =>
