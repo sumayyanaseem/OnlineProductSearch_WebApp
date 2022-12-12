@@ -7,7 +7,7 @@ import { Skeleton } from "@mui/material";
 
 const SuggestionsComponent = ({ product }) => {
     const dispatch = useDispatch();
-    const category = product.category;
+    const category = product.categories[0];
     const { productsByCategory, productsByCategoryLoading } = useSelector((state) => state.productsByCategory);
 
     useEffect(() => {

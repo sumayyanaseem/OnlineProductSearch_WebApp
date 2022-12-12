@@ -104,3 +104,8 @@
     margin-right: 10px;
     text-align: left;
 }
+
+.wd-user-review-action-icons {
+    text-align: center;
+    cursor: pointer;
+}

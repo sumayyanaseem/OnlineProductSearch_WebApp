@@ -24,6 +24,6 @@ export const deleteReview = async (rid) => {
 
 export const updateReview = async (review) => {
     await axiosRequest
-        .put(`${API_BASE}/${review._id}`, review);
+        .put(`${API_BASE}/${review.id}`, review);
     return review;
 }

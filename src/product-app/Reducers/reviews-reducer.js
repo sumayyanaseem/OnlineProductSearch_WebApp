@@ -44,7 +44,7 @@ const reviewsSlice = createSlice({
             (state, { payload }) => {
                 state.reviewsLoading = false
                 const reviewsNdx = state.reviews
-                    .findIndex((r) => r._id === payload._id)
+                    .findIndex((r) => r.id === payload.id)
                 state.reviews[reviewsNdx] = {
                     ...state.reviews[reviewsNdx],
                     ...payload

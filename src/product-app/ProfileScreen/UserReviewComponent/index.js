@@ -13,8 +13,9 @@ const UserReview = ({ userName }) => {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
         if (userName) {
-            reviewService.findReviewsByUserName(userName).then((response) => {
-
+            reviewService
+            .findReviewsByUserName(userName)
+            .then((response) => {
                 setReviews(response.data);
             })
         }

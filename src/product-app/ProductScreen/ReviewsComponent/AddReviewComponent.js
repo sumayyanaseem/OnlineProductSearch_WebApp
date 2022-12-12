@@ -2,7 +2,7 @@ import { Rating, TextField } from '@mui/material';
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { createReviewThunk } from '../../../services/reviews-thunks';
 import { formatDate } from '../../../utils/format-date';
 import './index.css';

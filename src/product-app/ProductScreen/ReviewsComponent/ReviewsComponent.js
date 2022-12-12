@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteReviewThunk } from "../../../services/reviews-thunks";
+import { deleteReviewThunk, updateReviewThunk } from "../../../services/reviews-thunks";
 import StarIcon from '@mui/icons-material/Star';
 import '../index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from "react-router-dom";
+import { TextField } from "@mui/material";
 
 const Review = ({ review }) => {
     const { currentUser } = useSelector((state) => state.user);
+    const [isEdit, setIsEdit] = useState(false);
     const dispatch = useDispatch();
     const deleteReviewHandler = (id) => {
         dispatch(deleteReviewThunk(id));
@@ -16,6 +19,19 @@ const Review = ({ review }) => {
 
     const onReviewUserNameClickHandler = () => {
         navigate(`/account/${review.userName}`)
+    }
+    const handleReviewEdit = () => {
+        setIsEdit(true);
+    }
+    const [updatedReviewComment, setUpdatedReviewComment] = useState(review.comment)
+
+    const handleUpdateSave = () => {
+        const updatedReview = {
+            ...review,
+            comment: updatedReviewComment
+        }
+        dispatch(updateReviewThunk(updatedReview));
+        setIsEdit(false)
     }
     return (
         <div className="wd-review-container">
@@ -27,11 +43,38 @@ const Review = ({ review }) => {
             <div className="wd-review-comment-user-container">
                 {
                     review.userName === currentUser?.userName &&
-                    <i className="fa fa-x float-end wd-lightgrey"
-                        onClick={() => deleteReviewHandler(review.id)}></i>
+                    (<div className="wd-user-review-action-icons">
+                        <i className="fa fa-x float-end wd-lightgrey"
+                            onClick={() => deleteReviewHandler(review.id)}></i>
+                        <EditIcon className="float-end wd-lightgrey mr-2" onClick={
+                            () => {
+                                handleReviewEdit(review)
+                            }
+                        } />
+                    </div>
+                    )
                 }
                 <div className="wd-review-comment-container">
-                    {review.comment}
+                    {!isEdit
+                        ? <div>{review.comment}</div>
+                        : <TextField
+                            id="outlined-textarea"
+                            label="Write a review"
+                            placeholder="What do you like or dislike about this product?"
+                            multiline
+                            fullWidth
+                            value={updatedReviewComment}
+                            style={{ color: "blue" }}
+                            onChange={(event) => setUpdatedReviewComment(event.target.value)}
+                            onKeyPress={(ev) => {
+                                console.log(`Pressed keyCode ${ev.key}`);
+                                if (ev.key === 'Enter') {
+                                    // Do code here
+                                    ev.preventDefault();
+                                    handleUpdateSave()
+                                }
+                            }}
+                        />}
                 </div>
 
 
