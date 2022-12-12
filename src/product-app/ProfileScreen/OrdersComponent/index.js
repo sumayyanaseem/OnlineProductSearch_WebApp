@@ -24,6 +24,13 @@ const OrdersComponent = () => {
 
     const handleCancel = async (order) => {
         await cancelOrder(order._id)
+        const orderIndex = orders
+            .findIndex((o) => o._id === order._id)
+        setOrders([
+            ...orders.slice(0, orderIndex),
+            Object.assign({}, orders[orderIndex], { ...orders[orderIndex], isCancelled: true }),
+            ...orders.slice(orderIndex + 1)]
+        )
     }
 
     return (
@@ -54,21 +61,21 @@ const OrdersComponent = () => {
                             {
                                 <div className='wd-order-address-list-container'>
                                     {
-                                    order.userAddresses?.map(address => 
-                                        <Tooltip arrow title={`${address.name}${', '} ${address.address1}  ${address.address2},  ${address.city} ${address.state} ${address.country} ${'-'}${address.zipCode}`}>
-                                        <Button sx={{ m: 1 }} className="wd-order-address-btn"> 
-                                        {address.name} |
-                                         </Button>
-                                      </Tooltip>
-                                       
-                                    )
+                                        order.userAddresses?.map((address, index) =>
+                                            <Tooltip arrow title={`${address.name}${', '} ${address.address1}  ${address.address2},  ${address.city} ${address.state} ${address.country} ${'-'}${address.zipCode}`}>
+                                                <Button sx={{ m: 1 }} className="wd-order-address-btn">
+                                                    {address.name} {(index+1)!==order.userAddresses.length&&"|"}
+                                                </Button>
+                                            </Tooltip>
+
+                                        )
                                     }
                                 </div>
                             }
 
-                            
+
                         </div>
-                          <div className='col-md-2 col-lg-2 col-xxl-2 row wd-order-placed-container'>
+                        <div className='col-md-2 col-lg-2 col-xxl-2 row wd-order-placed-container'>
                             <div className='wd-order-placed-header'>
                                 ORDER #
                             </div>
